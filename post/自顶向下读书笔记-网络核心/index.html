@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>自顶向下读书笔记 网络核心 | 于先森的个人博客</title>
+    <meta property="og:title" content="自顶向下读书笔记 网络核心 - 于先森的个人博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-01-31T07:30:12&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-01-31T07:30:12&#43;08:00'>
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,于先森,javascript,nodejs,博客,服务器,前端,小程序">
+    <meta name="description" content="自顶向下读书笔记 网络核心">
+        
+    <meta name="author" content="inno">
+    <meta property="og:url" content="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/my.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://patrick-prod.github.io/">
+                        于先森的个人博客
+                    </a>
+                
+                <p class="description">渣本在校大学生/全栈开发，专注于JavaScript、Golang，科学技术是第一生产力。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://patrick-prod.github.io/">首页</a>
+                    
+                    <a  href="https://patrick-prod.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://patrick-prod.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">自顶向下读书笔记 网络核心</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月31日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>即由互联因特网端系统的分组交换机和链路构成的网状网络。</p>
+<p><img src="http://image.innoweb.cn/2020-01-30-213732.png" alt="image-20200122152106356"></p>
+<h2 id="分组交换">分组交换</h2>
+<p>在各种网络应用中，端系统彼此交换<strong><code>报文(message)</code></strong>。 报文能够包含协议设计者需要的任何东西。为了从源端系统向目的端系统发送一个报文，将长报文划分为较小的数据块，称之为<strong><code>分组(packet)</code></strong> 。在源和目的之间，每个分组都通过<strong><code>通信链路</code></strong>和<strong><code>分组交换机 (packet switch) (交换机主要有两类: 路由器和链路层交换机)</code></strong>传送。分组以等于该链路最大传输速率的速度传输通过通信链路。 因此，如果某源端系统或分组交换机经过一条链路发送一个<code>L比特</code>的分组，链路的传输速率为 <code>R 比特/秒</code>，则传输该分组的时间为 <code>L/R 秒</code>。</p>
+<p>接下来我们详细的描述一下分组交换原则</p>
+<h3 id="存储转发传输">存储转发传输</h3>
+<p>多数分组交换机在链路的输入端使用<strong><code>存储转发传输(store and forward packet switching)</code></strong> 机制，当路由器已经接收完了该分组的所有比特后，它才能开始向出链路传输(即&quot;转发&rdquo;)该分组。</p>
+<p><img src="http://image.innoweb.cn/2020-01-30-213745.png" alt="image-20200122152730066"></p>
+<p>为了深刻领悟得储转发传输，我们现在计算一下从源开始发送分组到目的地收到整个分组所经过的时间。源在时刻<code>0</code>开始传输，在时刻 <code>L/R 秒</code>，因为该路由器刚好接收到整个分组，所以它能够朝着目的地向出链路开始传输分组;在时刻 <code>2L/R</code>，路由器已经传输了整个分组，并且整个分组已经被目的地接收。 所以，总时延是 <code>2L/R</code>。如果交换机一旦比特到达就转发比特(不必首先收到整个分组) , 则因为比特没有在路由器保持，总时延将是<code>L/R</code>。</p>
+<blockquote>
+<p><a href=""><strong>上面L表示bit总量，R表示Rmbps，若一条线路的传输速率为1mbps，传输速率于距离看作无关，只与bit量有关。</strong></a></p>
+</blockquote>
+<p>现在我们来计算从源开始发送第一个分组直到目的地接收到所有三个分组所需的时间，与前面一样，在时刻<code>L/R</code>，路由器开始转发第一个分组，而在时刻 <code>L/R</code>， 源也开始发送第二个分组，因为它已经完成了发送整个第一个分组。因此，在时刻 <code>2L/R</code>， 目的地已经收到第一个分组并且路由器已经收到第二个分组。 类似地，在时刻 <code>3L/R</code>， 目的地已经收到前两个分组并且路由器已经收到第三个分组。最后，在时刻 <code>4L/R</code>， 目的地已经收到所 有 <code>3</code> 个分组。</p>
+<p>我们现在来考虑通过由 <code>N</code> 条速率均为 <code>R</code> 的链路组成的路径(所以，在源和目的地之间有<code>N-1</code>台路由器) ，从源到目的地发送一个分组的总体情况。 应用如上相同的逻辑，我们看到端到端时延是:
+$$
+d_{end~to~end} = N\frac{L}{R}
+$$</p>
+<h3 id="排队时延和分组丢失">排队时延和分组丢失</h3>
+<p>每个分组交换机有多条链路与之相连。对于每条相连的链路，该分组交换机具有一个 <strong><code>输出缓存 (output buffer) (也称为输出队列 output queue)</code></strong> ，它用于存储路由器准备发往那条链路的分组。 该输出缓存在分组交换中起着重要的作用。如果到达的分组需要传输到某条链路，但发现该链路正忙于传输其他分组，该到达分组必须在该输出缓存中等待。</p>
+<p><img src="http://image.innoweb.cn/2020-01-30-213755.png" alt="image-20200122154617560"></p>
+<p>除了存储转发时延以外，分组还要承受输出缓存的<strong><code>排队时延 (queue delay)</code></strong> 。 这些时延是变化的，变化的程度取决于网络中的拥塞程度。 因为缓存空间的大小是有限的， 一个到达的分组可能发现该缓存已被其他等待传输的分组完全充满了。此情况下，将出现分组丢失<strong><code>丢包(packet lost)</code></strong> ，刚到达的分组或已经排队的分组之一将被丢弃。</p>
+<h3 id="转发表和路由选择协议">转发表和路由选择协议</h3>
+<p>路由器从与它相连的一条通信链路得到分组，将其向与它相连的另一 条通信链路转发。但是该路由器怎样决定它应当向哪条链路进行转发呢?</p>
+<p>在因特网，每个端系统具有一个称为 IP 地址的地址。当源主机要向目的端系统发送一个分组时，源在该分组的首部包含了目的地的<code>IP地址</code>。当一个分组到达网络中的路由器时，路由器检查该分组的目的地址的一部分，并向一台相邻路由器转发该分组。更特别的是，每台路由器具有一个<strong><code>转发表 (forwarding table)</code></strong>，用于将目的地址(或目的地址的一部分)映射成为输出链路。 当某分组到达一台路由器时，路由器检查该地址，并用这个目的地址搜索其转发表，以发现适当的出链路。路由器则将分组导向该出链路。此外因特网具有一些特殊的<strong><code>路由选择协议 (routing protocol)</code></strong>，用于自动地设置这些转发表。例如，一个路由选择协议可以决定从每台路由器到每个目的地的最短路径，并使用这些最短路径结果来配置路由器中的转发表。</p>
+<h2 id="网络的网络">网络的网络</h2>
+<p>端系统经过一个接人 <code>ISP</code> 与因特网相连。 该<strong>接入ISP</strong> 能够提供有线或无线连接，使用了包括 <code>DSL、电缆、 FITH、 WiFi 和蜂窝等多种接入技术</code>。  但为端用户和内容提供商提供与接人 ISP 的连接仅解 决了连接难题中的很小一部分，因为因特网是由数以亿计的用户构成的。要解决这个难题，接人<code>lSP</code> 自身必须互联。 通过创建网络的网络可以做到这一点，理解这个短语是理解因特网的关键。年复一年，构成因特网的&quot;网络的网络&quot;已经演化成为一个非常复杂的结构。 这种演化很大部分是由经济和国家策略驱动的，而不是由性能考虑驱动的。</p>
+<h3 id="网络结构-0">网络结构 0</h3>
+<p>使每个接人<code>ISP</code> 直接与每个其他接人 ISP 连接。 当然，这样的网状设计 对于接人 <code>ISP</code> 费用太高，因为这将要求每个接人 ISP 与世界上数十万个其他接人 <code>ISP</code> 有一 条单独的通信链路。</p>
+<h3 id="网络结构-1">网络结构 1</h3>
+<p>用单一的全球承载 <code>ISP</code> 互联所有接人 <code>ISP</code>。 我们 假想的<code>全球承载 ISP</code> 是一个由路由器和通信链路构成的网络，该网络不仅跨越全球，而且 至少具有一个路由器靠近数十万接人 <code>ISP</code> 中的每一个 当然，对于全球承载 <code>ISP</code>，建造这 样一个大规模的网络将耗资巨大。 为了有利可图，自然要向每个连接的接人 <code>ISP</code> 收费，其价格反映(并不一定正比于)一个接人 <code>ISP</code> 经过全球 <code>ISP</code> 交换的流量大小。 因为接人 <code>ISP</code> 向全球承载 <code>ISP</code> 付费，故接人 ISP 被认为是<strong><code>客户(customer)</code></strong> .而全球承载 <code>ISP</code> 被认为是<strong><code>提供商(provider)</code></strong> 。</p>
+<h3 id="网络结构-2">网络结构 2</h3>
+<p>它由数十万接人 <code>ISP</code> 和多个全球承载 <code>ISP</code> 组成。 接人 <code>ISP</code> 无疑喜欢网络结构 2 胜过喜欢网络结构 1 , 因为它们现在能够根据价格和服务的函数，在多个竞争的全球承载提供商之间进行选择。值得注意的是，这些全球承载 <code>ISP</code> 之间必须是互联的。不然的话，与某个全球承载 <code>lSP</code> 连接的接人 ISP 将不能与连接到其他全球承载 <code>ISP</code> 的接人 <code>ISP</code> 通信。</p>
+<h3 id="网络结构-3">网络结构 3</h3>
+<p>在任何给定的区域，可能有一个<strong><code>区域 ISP (reginal ISP)</code></strong>，区域中的接入<code>lSP</code>与之连接。每个区域<code>lSP</code> 则与第一层 <code>ISP</code> (tier-1 ISP) 连接。 第一层 <code>ISP</code> 类似于我们假想的全球承载 <code>ISP</code> 尽管第一层 <code>ISP</code> 不 是在世界上每个城市巾都存在，但它确实存在。 有大约十几个第一层 <code>ISP</code>，包括<code>Level3 通信、 AT&amp;T、 SprinL 和 NTT</code>。 有趣的是，没有组织正式认可第一层状态。 俗话说:如果必须 问你是有是一个组织的成员，你可能不是。</p>
+<h3 id="网络结构-35">网络结构 3.5</h3>
+<p>为了建造一个与今天因特网更为相似的网络，我们必须在等级结构的网络结构3上增加<strong><code>存在点 (Point of Presence, PoP)</code></strong> 、多宿、对等和<strong><code>因特网交换点 (Jnternet exchange point , IXP)</code></strong> PoP 存在于等级结构的所有层次，但底层(接人 <code>ISP</code>) 等级除外。一个<code>PoP</code> 只是提 供商网络巾的一台或多台路由器(在相同位置)群组，其中客户ISP 能够与提供商<code>ISP</code>连 接。对于要与提供商<code>PoP</code> 连接的客户网络，它能从第三方通信提供商租用高速链路直接将它的路由器之一连接到位于该<code>PoP</code> 的一台路由器。任何 <code>ISP</code> (除了第一层 <code>ISP</code>)可以选择 为<code>多宿 (multi-home)</code>，即可以与两个或更多提供商<code>ISP</code> 连接。例如，一个接人 ISP 可能与 两个区域 <code>ISP</code> 多宿，或者可以与两个区域 <code>ISP</code> 多宿，也可以与多个第一层 <code>ISP</code> 多宿。当一个 <code>ISP</code> 多宿时，即使它的提供商之一出现故障，它仍然能够继续发送和接收分组。</p>
+<h3 id="网络结构4">网络结构4</h3>
+<p>客户 <code>ISP</code> 向它们的提供商 ISP 付费以获得全球因特网互联能力客户 <code>ISP</code> 支付给提供商 <code>ISP</code> 的费用数额反映了它通过提供商交换的流量，为了减少这些费用，位于相同等级结构层次的邻近一对 ISP 能够对等。当两个 <code>ISP</code> 对等时，通常不进行结算，即任一个 <code>ISP</code> 不向其对等付费如前面提到的那样，第一层 <code>ISP</code> 也与另一个第一层 <code>ISP</code>等，它们之间无结算。沿着这些相同路线，地方公司创建一个<code>因特网交换点 (InLemet Exchange Point)</code> ,<code> IXP</code>是一个汇合点，多个 <code>ISP</code> 能够在这里共同对等。在今天的因特网中有大约300个<code>IXP</code>。我们称这个系统为生态系统，由接人<code>ISP</code>、以区域<code>ISP</code>、第一层<code>ISP</code>、<code>POP</code>、多宿、对等和 <code>IXP</code> 组成，这个系统作为网络结构 4。</p>
+<h3 id="网络结构5">网络结构5</h3>
+<p>我们现在最终到达了网络结构5，它通过在顶部增加<strong><code>内容提供商网络 (conLent provider net work)</code></strong> 构建而成。</p>
+<p><img src="http://image.innoweb.cn/2020-01-30-213822.png" alt="image-20200123162335731"></p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://patrick-prod.github.io/">inno</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/">https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/">自顶向下读书笔记 网络边缘</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/">自顶向下读书笔记 其之一</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/">自顶向下读书笔记 因特网概述</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80'>编程基础</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B'>自顶向下</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://patrick-prod.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://patrick-prod.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/" title="自顶向下读书笔记 层次协议">自顶向下读书笔记 层次协议</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%97%B6%E5%BB%B6%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F/" title="自顶向下读书笔记 时延、丢包和吞吐量">自顶向下读书笔记 时延、丢包和吞吐量</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/" title="自顶向下读书笔记 网络核心">自顶向下读书笔记 网络核心</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/" title="自顶向下读书笔记 网络边缘">自顶向下读书笔记 网络边缘</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/" title="自顶向下读书笔记 其之一">自顶向下读书笔记 其之一</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/" title="自顶向下读书笔记 因特网概述">自顶向下读书笔记 因特网概述</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络 (6)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/">自顶向下</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://blog.fazero.me/" title="fazero的博客">fazero的博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.iamasd.cn/" title="iamasd的博客">iamasd的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://patrick-prod.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://patrick-prod.github.io/">于先森的个人博客 By inno</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

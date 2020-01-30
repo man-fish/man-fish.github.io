@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>自顶向下读书笔记 层次协议 | 于先森的个人博客</title>
+    <meta property="og:title" content="自顶向下读书笔记 层次协议 - 于先森的个人博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-01-31T07:31:27&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-01-31T07:31:27&#43;08:00'>
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,于先森,javascript,nodejs,博客,服务器,前端,小程序">
+    <meta name="description" content="自顶向下读书笔记 层次协议">
+        
+    <meta name="author" content="inno">
+    <meta property="og:url" content="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/my.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://patrick-prod.github.io/">
+                        于先森的个人博客
+                    </a>
+                
+                <p class="description">渣本在校大学生/全栈开发，专注于JavaScript、Golang，科学技术是第一生产力。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://patrick-prod.github.io/">首页</a>
+                    
+                    <a  href="https://patrick-prod.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://patrick-prod.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">自顶向下读书笔记 层次协议</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月31日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <blockquote>
+<p>对于大而复杂且需要不断更新的系统，改变服务的实现而不影响该系统其他组件是分层的另一个重要优点。</p>
+</blockquote>
+<h2 id="协议分层">协议分层</h2>
+<p>网络设计者以<code>分层 (layer)</code> 的方式组织协议以及实现这些协议的网络硬件和软件。每个协议属于这些层次之一，我们再次关注某层向它的上一层提供的<code>服务(service)</code>，即所谓一层的<code>服务模型 (service model)</code>。</p>
+<p>一个协议层能够用软件、硬件或两者的结合来实现。诸如 <strong>HTTP</strong> 和 <strong>SMTP</strong> 这样的应用层协议几乎总是在端系统中用软件实现的，运输层协议也是如此。一个第 <strong>n</strong> 层协议也分布在构成该网络的端系统、分组交换机和其他组件中。 这就是说，第 n 层协议的不同部分常常位于这些网络组件的各部分中。</p>
+<p>不过分层的一个潜在缺点是一层可能冗余较低层的功能。例如，许多协议横在基于每段链路和基于端到端两种情况下，都提供了差错恢复。第二种潜在的缺点是某层的功能可能需要仅在其他某层才出现的信息(如时间戳值)，这违反了层次分离的目标。</p>
+<p>将这些综合起来，各层的所有协议被称为<code>协议枝 (protocol stack)</code> 。因特网的协议由 5 个层次组成:<code>物理层、链路层、网络层、运输层和应用层</code>。</p>
+<p><img src="http://image.innoweb.cn/2020-01-30-213935.png" alt="image-20200125015539920"></p>
+<h3 id="应用层">应用层</h3>
+<p>应用层是网络应用程序及它们的应用层协议存留的地方。因特网的应用层包括许多协议，例如 <strong>HTTP (它提供了 Web 文档的请求和传送)</strong>， <strong>SMTP (它提供了电子邮件报文的传输)</strong> 和 <strong>FTP (它提供两个端系统之间的文件传送)</strong> 。</p>
+<p>应用层协议分布在多个端系统上，一个端系统中的应用程序使用协议与另一个端系统中的应用程序交换信息的分组。我们把这种位于应用层的信息分组称为<code>报文 (message)</code> 。</p>
+<h3 id="运输层">运输层</h3>
+<p>因特网的运输层在应用程序端点之间传送应用层报文。在因特网中，有两个运输协议，即 <strong>TCP</strong> 和 <strong>UDP</strong>，利用其中的任一个都能运输应用层报文。 <strong>TCP</strong> 向它的应用程序提供了面向连接的服务。这种服务包括了应用层报文向目的地的确保传递和流量控制(即发送方 /接收方速率匹配) , TCP 也将长报文划分为短报文，并提供拥塞控制机制，因此当网络拥塞时，源抑制其传输速率。<strong>UDP 协议</strong>向它的应用程序提供无连接服务。这是一种不提供不必要服务的服务，没有可靠性，没有流量控制，也没有拥塞控制。在本书中，我们把运输层分组称为<code>报文段( segment) </code>。</p>
+<h3 id="网络层">网络层</h3>
+<p>因特网的网络层负责将称为<code>数据报(datagram)</code>的网络层分组从一台主机移动到另一台主机。在一台源主机中的因特网<strong>运输层协议 (TCP 或 UDP)</strong> 向网络层递交运输层报文段和目的地址。</p>
+<p>因特网的网络层包括著名的 <strong>IP</strong> 协议，该协议定义了在数据的各个字段以及端系统和路由器如何作用于这些字段。因为仅有一个 <strong>IP</strong> 协议，所有具有网络层的因特网组件必须运行 <strong>IP</strong> 协议。 尽管网络层包括了 <strong>IP</strong> 协议和一些路由选择协议，但通常把它简单地称为 <strong>lP</strong> 层。</p>
+<h3 id="链路层">链路层</h3>
+<p>因特网的网络层通过源和目的地之间的一系列路由器路由数据报。为了将分组从一个结点(主机或路由器)移动到路径上的下一个结点，网络层必须依靠链路层的服务。特别是在每个结点，网络层将数据报下传给链路层，链路层沿着路径将数据报传递给下一个结点。在下个结点，链路层将数据报上传给网络层。</p>
+<p>由链路层提供的服务取决于应用于该链路的特定链路层协议。值得注意的是这种传递服务不同于<strong>TCP协议</strong>的可靠传递服务，<strong>TCP协议</strong>保证一个端到一个端的可交付型。链路层的例子包括<code>以太网、WiFi 和电缆接入网的 DOCS1S 协议</code>。网为数据报从源到目的地传送通常需要经过几条链路，一个数据报可能被沿途不同链路上的不同链路层协议处理。同时，我们把链路层分组称为<code>帧(frame)</code> 。</p>
+<h3 id="物理层">物理层</h3>
+<p>虽然链路层的任务是将整个帧从一个网络元素移动到邻近的网络元素(分组交换机，端系统)，而物理层的任务是将该帧中的一个一个比特从一个结点移动到下一个结点在这层中的协议仍然是链路相关的，并且进一步与该链路(例如:双绞铜线、 单模光纤)的实际传输媒体相关。例如，以太网具有许多物理层协议:一个是关于双绞铜线的，另一个是关于同轴电缆的，还有一个是关于光纤的，等等。在每种场合中，跨越这些链路移动一个比特是以不同的方式进行的。</p>
+<h3 id="osi-模型">OSI 模型</h3>
+<p>讨论过因特网协议校后，我们应当提及它不是唯一的协议栈。 特别是在 20 世纪 70 年代后期，<code>国际标准化组织 (IS0)</code> 提出计算机网络应组织为大约 7 层，称为<strong>开放系统互连(OSI) 模型</strong> 。OSI 参考模型的 7 层是:<code>应用层、表示层、会话层、运输层、网络层、数据链路层和物理层</code>。因特网缺少了在OSI 参考模型中建立的两个层次，这两个层次留给应用程序开发者处理。 应用程序开发者决定一个服务是再是重要的，如果该服务重要，应用程序开发者就应该在应用程序中构建该功能。</p>
+<h2 id="封装">封装</h2>
+<p>路由器和链路层交换机都是分组交换机。与端系统类似，路由器和链路层交换机以多层次的方式组织它们的网络硬件和软件。而路由器和链路层交换机并不实现协议楼中的所有层次。如图所示，链路层交换机实现了第一层和第二层;路由器实现了第一层到第三层。例如，这意味着因特网路由器能够实现 IP 协议(一种第三层协议)，而链路层交换机则不能。我们将在后面看到，尽管链路层交换机不能识别 IP 地址，但它们能够识别第二层地址，如以太网地址。值得注意的是，主机实现了所有 5 个层次，这与因特网体系结构将它的复杂性放在网络边缘的观点是一致的。</p>
+<p><img src="http://image.innoweb.cn/2020-01-30-213941.png" alt="image-20200125021337795"></p>
+<p><code>封装( encapsulation)</code> 。在发送主机端，一个<code>应用层报文 (application-layer message)</code> 被传送给运输层。在最简单的情况下，运输层收取到报文并附上附加信息)，该首部将被接收端的运输层使用。应用层报文和运输层首部信息一道构成了<code>运输层报文段(transportlayer segment)</code>。运输层报文段因此封装了应用层报文。附加的信息也许包括了下列信息: 如允许接收端运输层向上向适当的应用程序交付报文的信息。运输层则向网络层传递该报文段，网络层增加了如源和目的端系统地址等网络层首部信息，产生了网络层数据报<code>(network-layer dagram) </code>。该数据报接下来被传递给链路层，链路层(向然而然地)增加它自己的链路层首部信息并创建<code>链路层帧 (link-layer frame) </code>。所以，我们看到在每一层，一个分组具有两种类型的字段:首部宇段和<code>有效载荷字段 (payload field)</code> 。有效载荷通常是来自上一层的分组。</p>
+<p>封装的过程能够比前面描述的更为复杂。 例如，一个大报文可能被划分为多个运输层 的报文段(这些报文段每个可能被分为多个网络层数据报) 。 在接收端，则必须从其连 续的数据报中重构这样一个报文段。</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://patrick-prod.github.io/">inno</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/">https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%97%B6%E5%BB%B6%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F/">自顶向下读书笔记 时延、丢包和吞吐量</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/">自顶向下读书笔记 网络核心</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/">自顶向下读书笔记 网络边缘</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/">自顶向下读书笔记 其之一</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/">自顶向下读书笔记 因特网概述</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80'>编程基础</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B'>自顶向下</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://patrick-prod.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://patrick-prod.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/" title="自顶向下读书笔记 层次协议">自顶向下读书笔记 层次协议</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%97%B6%E5%BB%B6%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F/" title="自顶向下读书笔记 时延、丢包和吞吐量">自顶向下读书笔记 时延、丢包和吞吐量</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/" title="自顶向下读书笔记 网络核心">自顶向下读书笔记 网络核心</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/" title="自顶向下读书笔记 网络边缘">自顶向下读书笔记 网络边缘</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/" title="自顶向下读书笔记 其之一">自顶向下读书笔记 其之一</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/" title="自顶向下读书笔记 因特网概述">自顶向下读书笔记 因特网概述</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络 (6)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/">自顶向下</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://blog.fazero.me/" title="fazero的博客">fazero的博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.iamasd.cn/" title="iamasd的博客">iamasd的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://patrick-prod.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://patrick-prod.github.io/">于先森的个人博客 By inno</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

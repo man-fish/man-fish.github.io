@@ -6,18 +6,63 @@
     <description>Recent content on 于先森的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 31 Jan 2020 03:55:51 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jan 2020 07:31:27 +0800</lastBuildDate>
     
 	<atom:link href="https://patrick-prod.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>计算机网络 自顶向下读书笔记 其之一</title>
-      <link>https://patrick-prod.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</link>
+      <title>自顶向下读书笔记 层次协议</title>
+      <link>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Fri, 31 Jan 2020 07:31:27 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/</guid>
+      <description>对于大而复杂且需要不断更新的系统，改变服务的实现而不影响该系统其他组件是分层的另一个重要优点。 协议分层 网络设计者以分层 (layer) 的方式组织协议以及实现这些协议的网络硬件和软件。每个协议属于这些层次之一，我们再次关注某层向它的上一层提供的服务(service)，即所谓一层的服务模型 (service mod</description>
+    </item>
+    
+    <item>
+      <title>自顶向下读书笔记 时延、丢包和吞吐量</title>
+      <link>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%97%B6%E5%BB%B6%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F/</link>
+      <pubDate>Fri, 31 Jan 2020 07:30:48 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%97%B6%E5%BB%B6%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F/</guid>
+      <description>计算机网络必定要限制在端系统之间的吞吐量(每秒能够传送的数据盘) ，在端系统之间引入时延，而且实际上能够丢失分组。 时延和丢包 分组交换网中的时延概述 当分组从一个结点(主机或路由器)沿着·后继结点(主机或路由器)，该分组在沿途的每个结点经受了几种不同类型的时延。这些时延最为重要的是结点</description>
+    </item>
+    
+    <item>
+      <title>自顶向下读书笔记 网络核心</title>
+      <link>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/</link>
+      <pubDate>Fri, 31 Jan 2020 07:30:12 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/</guid>
+      <description>即由互联因特网端系统的分组交换机和链路构成的网状网络。 分组交换 在各种网络应用中，端系统彼此交换报文(message)。 报文能够包含协议设计者需要的任何东西。为了从源端系统向目的端系统发送一个报文，将长报文划分为较小的数据块，称之为分组(packet) 。在源和目的之间，每个分组都通</description>
+    </item>
+    
+    <item>
+      <title>自顶向下读书笔记 网络边缘</title>
+      <link>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/</link>
+      <pubDate>Fri, 31 Jan 2020 07:30:04 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/</guid>
+      <description>端系统也称为主机，因为它们容纳(即运行)应用程序，如 Web浏览器程序、 Web 服务器程序、电子邮件阅读程序或电子邮件服务器程序等。本书通篇将交替使用主机和端系统这两个术语，即主机=端系统。主机又被进一步划分为两类:客户(client) 和 服务器 (server) 。 客户非正式地等同于桌面应用、移动PC 和智</description>
+    </item>
+    
+    <item>
+      <title>自顶向下读书笔记 其之一</title>
+      <link>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</link>
       <pubDate>Fri, 31 Jan 2020 03:55:51 +0800</pubDate>
       
-      <guid>https://patrick-prod.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</guid>
-      <description>因特网概述 什么是因特网？ 从具体构成出发： 因特网是一个世界范围的计算机网络，他是一个互联了编辑全球数十亿计算设备的网络。 对于因特网术语而言，所有设接入的设备都被称为主机(host)或者是端系统(end)，端系统通过通信链路(communication link)和分组交换机(pack</description>
+      <guid>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>自顶向下读书笔记 因特网概述</title>
+      <link>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Fri, 31 Jan 2020 03:55:51 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/</guid>
+      <description>什么是因特网？ 从具体构成出发： 因特网是一个世界范围的计算机网络，他是一个互联了编辑全球数十亿计算设备的网络。 对于因特网术语而言，所有设接入的设备都被称为主机(host)或者是端系统(end)，端系统通过通信链路(communication link)和分组交换机(packet swi</description>
     </item>
     
   </channel>
