@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>自顶向下 on 于先森的个人博客</title>
+    <link>https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/</link>
+    <description>Recent content in 自顶向下 on 于先森的个人博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 31 Jan 2020 03:55:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>计算机网络 自顶向下读书笔记 其之一</title>
+      <link>https://patrick-prod.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</link>
+      <pubDate>Fri, 31 Jan 2020 03:55:51 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</guid>
+      <description>因特网概述 什么是因特网？ 从具体构成出发： 因特网是一个世界范围的计算机网络，他是一个互联了编辑全球数十亿计算设备的网络。 对于因特网术语而言，所有设接入的设备都被称为主机(host)或者是端系统(end)，端系统通过通信链路(communication link)和分组交换机(pack</description>
+    </item>
+    
+  </channel>
+</rss>
