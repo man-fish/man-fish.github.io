@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>动态规划模型 | 于先森的个人博客</title>
+    <meta property="og:title" content="动态规划模型 - 于先森的个人博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-01-31T08:33:26&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-01-31T08:33:26&#43;08:00'>
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,于先森,javascript,nodejs,博客,服务器,前端,小程序">
+    <meta name="description" content="动态规划模型">
+        
+    <meta name="author" content="inno">
+    <meta property="og:url" content="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/my.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://patrick-prod.github.io/">
+                        于先森的个人博客
+                    </a>
+                
+                <p class="description">渣本在校大学生/全栈开发，专注于JavaScript、Golang，科学技术是第一生产力。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://patrick-prod.github.io/">首页</a>
+                    
+                    <a  href="https://patrick-prod.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://patrick-prod.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">动态规划模型</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月31日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95'>算法</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="线性模型">线性模型🌾</h2>
+<p>**两个变量之间存在一次方函数关系，就称它们之间存在线性关系。**在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和charge次数。下面拿实际问题来举例子。</p>
+<p><strong>注意</strong>：已知量数组不属于变量，比如说金币面额。</p>
+<h2 id="切木棍">切木棍🌿</h2>
+<p>给定一段长度为n英寸的钢条和一个价格表pi(i=1，2，&hellip;，n)，求解切割钢条方案，使得销售收益rn最大。注意，如果长度为n英寸的钢条价格pn足够大，最优解可能就是完全不需要切割。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-200.jpg" alt="h"></p>
+<h4 id="思路">思路🍀</h4>
+<p>考虑n=4的情况，我们所有可能的切割方案如下</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-4010043-b154f60e0b31a971.jpg" alt="img"></p>
+<p>我们将钢条从左边切割长度为i的一段，只对右边剩下的长度为n-i的一段继续进行切割（递归求解），对左边的一段则不再进行切割。即问题分解为：将长度为n的钢条分解为左边开始一段，以及对剩余部分继续分解的结果。这样，不做任何切割的方案可以描述为：第一段的长度为n，收益为pn，剩余部分长度为0，对应收益为r0=0。</p>
+<h4 id="动态转移方程">动态转移方程🍁</h4>
+<p>$$
+f(l) = max(p^i + f(l-r^i))
+$$</p>
+<h4 id="暴力递归">暴力递归🥀</h4>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">CutSteel</span>(value []<span style="color:#458;font-weight:bold">int</span>, length <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">if</span> length <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span> {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>
+	}
+
+	bestValue <span style="color:#000;font-weight:bold">:=</span> math.MinInt64
+
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; i <span style="color:#000;font-weight:bold">&lt;=</span> length; i<span style="color:#000;font-weight:bold">++</span> {
+		preValue <span style="color:#000;font-weight:bold">:=</span> value[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>]<span style="color:#000;font-weight:bold">+</span><span style="color:#900;font-weight:bold">CutSteel</span>(value,length<span style="color:#000;font-weight:bold">-</span>i)
+		bestValue = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(preValue),<span style="color:#0086b3">float64</span>(bestValue)))
+	}
+	<span style="color:#000;font-weight:bold">return</span> bestValue
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="动态规划写法">动态规划写法🌷</h4>
+<p>对于rn（n<img src="https://math.jianshu.com/math?formula=%5Cgeq" alt="\geq">1）,可以用更短地钢条的最优收割收益来描述它：
+$$
+rn = max(p^n，r^1 + r^n-1 ，r^2 + r^n-2，&hellip;，r^n-1 + r^1)
+$$</p>
+<ul>
+<li>pn对应不切割，直接出售长度为n英寸的钢条方案</li>
+<li>其他n-1个参数对应另外n-1种切割方案：对每个i=1，2，&hellip;，n-1，首先将钢条切割长度为i和n-i的两段，接着求解这两段的最优收益ri和rn-i（每种方案的最优收益为两段的最优收益之和）</li>
+</ul>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">BottomUpCutSteel</span>(v []<span style="color:#458;font-weight:bold">int</span>, n <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	r <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>, n<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+	<span style="color:#998;font-style:italic">/*
+</span><span style="color:#998;font-style:italic">		创建备忘录，用于记录长度为i的时候的最优解。
+</span><span style="color:#998;font-style:italic">		我们只要拿到了上一轮的最优解，下一轮只需要比较之前最优解的组合外加上当前长度不切割的价值就可以了，依此递推，
+</span><span style="color:#998;font-style:italic">	*/</span>
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; i <span style="color:#000;font-weight:bold">&lt;=</span> n; i<span style="color:#000;font-weight:bold">++</span>  {
+		bestChoice <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>
+		<span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; j <span style="color:#000;font-weight:bold">&lt;=</span> i; j<span style="color:#000;font-weight:bold">++</span> {
+			bestChoice = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(bestChoice), <span style="color:#0086b3">float64</span>(v[j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">+</span> r[i<span style="color:#000;font-weight:bold">-</span>j])))
+		}
+		r[i] = bestChoice
+	}
+	<span style="color:#000;font-weight:bold">return</span> r[<span style="color:#0086b3">len</span>(r)<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>]
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="lis">lis🌼</h2>
+<p><code>longest increasing substring</code> 最长递增子序列，给定数组<code>arr</code>，返回<code>arr</code>的最长递增子序列。</p>
+<h4 id="动态转移方程-1">动态转移方程🌽</h4>
+<p>f(n)表示以下标为n结尾的数组的最长递增子序列的长度。
+$$
+f(n) = max(f(n-i) + 1) ~~~~(~arr[n] &gt; arr[n-i]~)
+$$</p>
+<h4 id="暴力递归-1">暴力递归🍏</h4>
+<p>注意最后以为不一定就是最长递增子序列的结尾，所以要遍历每一位。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">lisRecusive</span> (arr []<span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	bestAns <span style="color:#000;font-weight:bold">:=</span> math.MinInt64
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">len</span>(arr)<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>;i <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">0</span> ;i<span style="color:#000;font-weight:bold">--</span>  {
+		bestAns = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(bestAns),<span style="color:#0086b3">float64</span>(<span style="color:#900;font-weight:bold">lis</span>(arr,i))))
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> bestAns
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">lis</span>(arr []<span style="color:#458;font-weight:bold">int</span>,n <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">if</span> n <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span> {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">1</span>
+	}
+
+	bestAns <span style="color:#000;font-weight:bold">:=</span> math.MinInt64
+
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> n ;i &gt; <span style="color:#099">0</span> ;i<span style="color:#000;font-weight:bold">--</span> {
+		<span style="color:#000;font-weight:bold">if</span> arr[n] &gt; arr[n<span style="color:#000;font-weight:bold">-</span>i] {
+			bestAns = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(bestAns),<span style="color:#0086b3">float64</span>(<span style="color:#900;font-weight:bold">lis</span>(arr,n<span style="color:#000;font-weight:bold">-</span>i)<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)))
+		}
+	}
+
+	<span style="color:#000;font-weight:bold">return</span> bestAns
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="动态规划解决">动态规划解决🍐</h4>
+<h4 id="img-srchttpimageinnowebcn2020-01-31-002610png-altimage-20200104120117518-stylezoom67-"><!-- raw HTML omitted --></h4>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">lisDynamic</span> (arr []<span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	memory <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>,<span style="color:#0086b3">len</span>(arr))
+	memory[<span style="color:#099">0</span>] = <span style="color:#099">1</span>
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>;i &lt; <span style="color:#0086b3">len</span>(arr);i<span style="color:#000;font-weight:bold">++</span>  {		<span style="color:#998;font-style:italic">//控制n
+</span><span style="color:#998;font-style:italic"></span>		<span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>;j &lt; i ;j<span style="color:#000;font-weight:bold">++</span>  {		<span style="color:#998;font-style:italic">//控制i
+</span><span style="color:#998;font-style:italic"></span>			<span style="color:#000;font-weight:bold">if</span> arr[j] &lt; arr[i] {
+				memory[i] = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(memory[j]<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>),<span style="color:#0086b3">float64</span>(memory[i])))
+			}
+		}
+	}
+	max <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>
+	<span style="color:#000;font-weight:bold">for</span> _,item <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> memory {
+		max = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(item),<span style="color:#0086b3">float64</span>(max)))
+	}
+	<span style="color:#000;font-weight:bold">return</span> max
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="lcs">lcs🌻</h2>
+<p><code>longest common substring</code> 最长公共子序列   给定数组<code>arr1，arr2</code>， 最长公共子序列。</p>
+<h4 id="动态转移方程-2">动态转移方程🍅</h4>
+<p><!-- raw HTML omitted --></p>
+<h4 id="暴力递归-2">暴力递归🍓</h4>
+<p>根据动态转移方程我们可以很轻松的写出递归方法</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">lcsRecursive</span>(m,n []<span style="color:#458;font-weight:bold">int</span>,i,j <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span> <span style="color:#000;font-weight:bold">||</span> j <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span> {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">1</span>
+	}
+	<span style="color:#000;font-weight:bold">if</span> m[i] <span style="color:#000;font-weight:bold">==</span> n[j] {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">1</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">lcsRecursive</span>(m,n,i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>,j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>)
+	}<span style="color:#000;font-weight:bold">else</span>{
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(<span style="color:#900;font-weight:bold">lcsRecursive</span>(m,n,i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>,j)),<span style="color:#0086b3">float64</span>(<span style="color:#900;font-weight:bold">lcsRecursive</span>(m,n,i,j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>))))
+	}
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="动态规划解决-1">动态规划解决🍒</h4>
+<p>根据我们对dp数组进行分析不难推敲出规律，做出从下而上的动态规划解决方案即可。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-002511.png" alt=""></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">lcsRynamic</span>(m,n []<span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">if</span> <span style="color:#0086b3">len</span>(m) <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span> <span style="color:#000;font-weight:bold">||</span> <span style="color:#0086b3">len</span>(n) <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span> {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>
+	}
+
+	linear_dp <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([][]<span style="color:#458;font-weight:bold">int</span>, <span style="color:#0086b3">len</span>(m)<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+
+	<span style="color:#000;font-weight:bold">for</span> idx <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> linear_dp {
+		linear_dp[idx] = <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>, <span style="color:#0086b3">len</span>(n)<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+	}
+
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; i &lt; <span style="color:#0086b3">len</span>(linear_dp); i<span style="color:#000;font-weight:bold">++</span>  {
+		<span style="color:#000;font-weight:bold">for</span> j <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; j &lt; <span style="color:#0086b3">len</span>(linear_dp[i]); j<span style="color:#000;font-weight:bold">++</span>  {
+			<span style="color:#000;font-weight:bold">if</span> m[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">==</span> n[j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] {
+				linear_dp[i][j] = linear_dp[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>][j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>
+			}<span style="color:#000;font-weight:bold">else</span>{
+				linear_dp[i][j] = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Max</span>(<span style="color:#0086b3">float64</span>(linear_dp[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>][j]),<span style="color:#0086b3">float64</span>(linear_dp[i][j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>])))
+			}
+		}
+	}
+	<span style="color:#000;font-weight:bold">for</span> idx <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> linear_dp {
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(linear_dp[idx])
+	}
+	<span style="color:#000;font-weight:bold">return</span> linear_dp[<span style="color:#0086b3">len</span>(m)][<span style="color:#0086b3">len</span>(n)]
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="区间模型">区间模型🌺</h2>
+<p>所谓区间dp，顾名思义就是在一段区间上的动态规划。它既要满足dp问题的最优子结构和无后效性外，还应该符合在区间上操作的特点。我的理解是往往会对区间进行合并操作。抑或是单个元素（可看成一个小区间）跨区间进行操作。例如括号匹配问题，石子合并问题（通过多次的相邻合并，最后实质上会产生跨区间的合并，如果你把其中的石子看作参考系的话就很容易感觉出来），还有在整数中插入运算符号的问题（利用运算符的优先级以及交换律可看出），这样以来，如果我们要得知一个大区间的情况，由于它必定是由从多个长度不一的小区间转移而来（转移情况未知），我们可以通过求得多个小区间的情况，从而合并信息，得到大区间。</p>
+<p><strong>对于一个长度为n的区间，确定它的子区间需要首尾两个指针，显然子区间数量级为n2，那区间dp的复杂度也就为n2</strong></p>
+<h3 id="范式">范式🌴</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span> len <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">2</span>; len <span style="color:#000;font-weight:bold">&lt;=</span> n; len<span style="color:#000;font-weight:bold">++</span>  {		<span style="color:#998;font-style:italic">/* 区间长度，在这道题里指的就是第1个到第n个。 */</span>
+    <span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; n ; i<span style="color:#000;font-weight:bold">++</span>  {			<span style="color:#998;font-style:italic">/* 枚举起点，从1开始到n，i表示起点下标，j表示终点下标， */</span>
+        j <span style="color:#000;font-weight:bold">:=</span> i <span style="color:#000;font-weight:bold">+</span> len <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>					<span style="color:#998;font-style:italic">/* 计算终点坐标 */</span>
+        <span style="color:#000;font-weight:bold">if</span> j <span style="color:#000;font-weight:bold">&gt;=</span> n {						<span style="color:#998;font-style:italic">/* 省去越界的部分 */</span>
+            <span style="color:#000;font-weight:bold">continue</span>
+        }
+        <span style="color:#000;font-weight:bold">for</span> k <span style="color:#000;font-weight:bold">:=</span> i; k &lt; j ; k<span style="color:#000;font-weight:bold">++</span>  {		<span style="color:#998;font-style:italic">/* 枚举区间分割点 */</span>
+            <span style="color:#998;font-style:italic">//do something
+</span><span style="color:#998;font-style:italic"></span>        }
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="石子合并问题">石子合并问题🌹</h2>
+<p>有N堆石子排成一排，每堆石子有一定的数量。现要将N堆石子并成为一堆。合并的过程只能每次将相邻的两堆石子堆成一堆，每次合并花费的代价为这两堆石子的和，经过N-1次合并后成为一堆。求出总的代价最小值。</p>
+<h4 id="动态转移方程-3">动态转移方程🌳</h4>
+<p>$$
+dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+1][j]+w[i][j]);
+$$</p>
+<h4 id="递归穷举解决">递归穷举解决🍃</h4>
+<p>递归的方法我们通过动态转移方程和容易就能写出来，不过这里我们要注意我注释的部分。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">mergeStoneRecursive</span>(sum []<span style="color:#458;font-weight:bold">int</span>, i, j <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+	<span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">==</span> j {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>
+	}
+
+	<span style="color:#000;font-weight:bold">if</span> j <span style="color:#000;font-weight:bold">==</span> i <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span> {
+		<span style="color:#000;font-weight:bold">return</span> sum[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">-</span> sum[i]
+	}
+
+	bestChoice <span style="color:#000;font-weight:bold">:=</span> math.MaxInt64
+
+	<span style="color:#000;font-weight:bold">for</span> k <span style="color:#000;font-weight:bold">:=</span> i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>; k &lt; j ; k<span style="color:#000;font-weight:bold">++</span> {
+		l <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">mergeStoneRecursive</span>(sum,i,k<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">mergeStoneRecursive</span>(sum,k,j) <span style="color:#000;font-weight:bold">+</span> sum[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">-</span> sum[i]
+		r <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">mergeStoneRecursive</span>(sum,i,k) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">mergeStoneRecursive</span>(sum,k<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>,j) <span style="color:#000;font-weight:bold">+</span> sum[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">-</span> sum[i]
+		cbs <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Min</span>(<span style="color:#0086b3">float64</span>(l),<span style="color:#0086b3">float64</span>(r)))
+		<span style="color:#998;font-style:italic">// 就以2，3，1为例，先合并2和3与先合并3和1的结果是不同的我们要取最小值。
+</span><span style="color:#998;font-style:italic"></span>		bestChoice = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Min</span>(<span style="color:#0086b3">float64</span>(cbs),<span style="color:#0086b3">float64</span>(bestChoice)))
+	}
+
+	<span style="color:#000;font-weight:bold">if</span> bestChoice <span style="color:#000;font-weight:bold">==</span> math.MaxInt64 {
+		<span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>
+	}<span style="color:#000;font-weight:bold">else</span>{
+		<span style="color:#000;font-weight:bold">return</span> bestChoice
+	}
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="备忘录优化">备忘录优化🍂</h4>
+<p>如上文所说区间dp的数组是二维关于i和j的。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">mergeStoneRecursiveMemorized</span>(sum []<span style="color:#458;font-weight:bold">int</span>, memory [][]<span style="color:#458;font-weight:bold">int</span>, i, j <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span> {
+   <span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">==</span> j {
+      <span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>
+   }
+
+   <span style="color:#000;font-weight:bold">if</span> memory[i][j] <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">0</span> {
+      <span style="color:#000;font-weight:bold">return</span> memory[i][j]
+   }
+
+   <span style="color:#000;font-weight:bold">if</span> j <span style="color:#000;font-weight:bold">==</span> i <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span> {
+      memory[i][j] = sum[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">-</span> sum[i]
+      <span style="color:#000;font-weight:bold">return</span> memory[i][j]
+   }
+
+   bestChoice <span style="color:#000;font-weight:bold">:=</span> math.MaxInt64
+
+   <span style="color:#000;font-weight:bold">for</span> k <span style="color:#000;font-weight:bold">:=</span> i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>; k &lt; j ; k<span style="color:#000;font-weight:bold">++</span> {
+      l <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">mergeStoneRecursiveMemorized</span>(sum,memory,i,k<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">mergeStoneRecursiveMemorized</span>(sum,memory,k,j) <span style="color:#000;font-weight:bold">+</span> sum[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">-</span> sum[i]
+      r <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">mergeStoneRecursiveMemorized</span>(sum,memory,i,k) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">mergeStoneRecursiveMemorized</span>(sum,memory,k<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>,j) <span style="color:#000;font-weight:bold">+</span> sum[j<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>] <span style="color:#000;font-weight:bold">-</span> sum[i]
+      cbs <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Min</span>(<span style="color:#0086b3">float64</span>(l),<span style="color:#0086b3">float64</span>(r)))
+      bestChoice = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Min</span>(<span style="color:#0086b3">float64</span>(cbs),<span style="color:#0086b3">float64</span>(bestChoice)))
+   }
+
+   <span style="color:#000;font-weight:bold">if</span> bestChoice <span style="color:#000;font-weight:bold">==</span> math.MaxInt64 {
+      <span style="color:#000;font-weight:bold">return</span> <span style="color:#099">0</span>
+   }<span style="color:#000;font-weight:bold">else</span>{
+      memory[i][j] = bestChoice
+      <span style="color:#000;font-weight:bold">return</span> bestChoice
+   }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="动态规划解决-2">动态规划解决🌱</h4>
+<p>设计动态规划写法之前，我们先分析一下上文的备忘录的结构。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-002528.png" alt="考场案件管理"></p>
+<p>首先<code>i==j</code>时，合并次数为<code>0</code>，<code>j&lt;i</code>时合并次数为<code>0</code>，<code>j = j+1</code>时合并次数为<code>sum[j]-sum[i-1]</code>，我更倾向于让数组最外面留一层作为初始值，所以i的下标从<code>1</code>开始，但是实际上区间是没有必要多出一圈的。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">mergeStone</span>(n <span style="color:#458;font-weight:bold">int</span>,w []<span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">int</span>   {
+	dp <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([][]<span style="color:#458;font-weight:bold">int</span>,n<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+	<span style="color:#000;font-weight:bold">for</span>  i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; n<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span> ; i <span style="color:#000;font-weight:bold">++</span>  {
+		dp[i] = <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>,n<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+	}
+	<span style="color:#998;font-style:italic">/*声明dp数组*/</span>
+	sum <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>, n<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+	<span style="color:#000;font-weight:bold">for</span> idx <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; idx &lt; <span style="color:#0086b3">len</span>(sum); idx<span style="color:#000;font-weight:bold">++</span> {
+		<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; i <span style="color:#000;font-weight:bold">&lt;=</span> idx ; i<span style="color:#000;font-weight:bold">++</span>  {
+			sum[idx] <span style="color:#000;font-weight:bold">+=</span> w[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>]
+		}
+	}
+	<span style="color:#998;font-style:italic">/*计算组合石头花费（从0开始，0表示没有石头）*/</span>
+	<span style="color:#000;font-weight:bold">for</span> len <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">2</span>; len &lt; n<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>; len<span style="color:#000;font-weight:bold">++</span>  {		<span style="color:#998;font-style:italic">/* 区间长度，在这道题里指的就是第1个到第n个。 */</span>
+		<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">1</span>; i &lt; n<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span> ; i<span style="color:#000;font-weight:bold">++</span>  {		<span style="color:#998;font-style:italic">/* 枚举起点，从1开始到n，i表示起点下标，j表示终点下标， */</span>
+			j <span style="color:#000;font-weight:bold">:=</span> i <span style="color:#000;font-weight:bold">+</span> len <span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>					<span style="color:#998;font-style:italic">/* 计算终点坐标 */</span>
+			<span style="color:#000;font-weight:bold">if</span> j &gt; n {						<span style="color:#998;font-style:italic">/* 省去越界的部分 */</span>
+				<span style="color:#000;font-weight:bold">continue</span>
+			}
+			<span style="color:#000;font-weight:bold">for</span> k <span style="color:#000;font-weight:bold">:=</span> i; k &lt; j ; k<span style="color:#000;font-weight:bold">++</span>  {		<span style="color:#998;font-style:italic">/* 枚举区间分割点 */</span>
+				<span style="color:#000;font-weight:bold">if</span> dp[i][j] <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">0</span> {			<span style="color:#998;font-style:italic">/* 这里我们要避免前值为0 */</span>
+					dp[i][j] = dp[i][k]<span style="color:#000;font-weight:bold">+</span>dp[k<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>][j]<span style="color:#000;font-weight:bold">+</span>sum[j]<span style="color:#000;font-weight:bold">-</span>sum[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>]
+				}<span style="color:#000;font-weight:bold">else</span>{
+					dp[i][j] = <span style="color:#0086b3">int</span>(math.<span style="color:#900;font-weight:bold">Min</span>(<span style="color:#0086b3">float64</span>(dp[i][j]),<span style="color:#0086b3">float64</span>(dp[i][k]<span style="color:#000;font-weight:bold">+</span>dp[k<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>][j]<span style="color:#000;font-weight:bold">+</span>sum[j]<span style="color:#000;font-weight:bold">-</span>sum[i<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>])))
+				}
+
+			}
+		}
+	}
+	util.<span style="color:#900;font-weight:bold">Print2DArray</span>(dp)
+	<span style="color:#000;font-weight:bold">return</span> dp[<span style="color:#099">1</span>][n]
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="背包模型">背包模型💐</h2>
+<p>为什么背包模型不属于线性模型？因为在01背包中物品只有一件，拿完之后 物品的种类会随之变化，所以说可以看作是有三个变量存在所以不能使用线性模型。</p>
+<h2 id="01背包问题">01背包问题🌸</h2>
+<p>略</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://patrick-prod.github.io/">inno</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a></li>
+        
+        <li><a href="/post/%E9%80%92%E5%BD%92/">递归</a></li>
+        
+        <li><a href="/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">回溯算法</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/">自顶向下读书笔记 层次协议</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/">自顶向下读书 分组交换</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B'>动态规划模型</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E7%AE%97%E6%B3%95'>算法</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://patrick-prod.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://patrick-prod.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" title="动态规划模型">动态规划模型</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="贪心算法">贪心算法</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E9%80%92%E5%BD%92/" title="递归">递归</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" title="回溯算法">回溯算法</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/" title="自顶向下读书笔记 层次协议">自顶向下读书笔记 层次协议</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/" title="自顶向下读书 分组交换">自顶向下读书 分组交换</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/" title="自顶向下读书笔记 网络核心">自顶向下读书笔记 网络核心</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/" title="自顶向下读书笔记 网络边缘">自顶向下读书笔记 网络边缘</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="自顶向下读书笔记">自顶向下读书笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/" title="自顶向下读书笔记 因特网概述">自顶向下读书笔记 因特网概述</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95/">算法 (4)</a></li>
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络 (6)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">动态规划模型</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/">自顶向下</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/">贪婪算法</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E9%80%92%E5%BD%92/">递归</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://blog.fazero.me/" title="fazero的博客">fazero的博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.iamasd.cn/" title="iamasd的博客">iamasd的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://patrick-prod.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://patrick-prod.github.io/">于先森的个人博客 By inno</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>回溯算法 | 于先森的个人博客</title>
+    <meta property="og:title" content="回溯算法 - 于先森的个人博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-01-31T08:11:15&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-01-31T08:11:15&#43;08:00'>
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,于先森,javascript,nodejs,博客,服务器,前端,小程序">
+    <meta name="description" content="回溯算法">
+        
+    <meta name="author" content="inno">
+    <meta property="og:url" content="https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/my.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://patrick-prod.github.io/">
+                        于先森的个人博客
+                    </a>
+                
+                <p class="description">渣本在校大学生/全栈开发，专注于JavaScript、Golang，科学技术是第一生产力。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://patrick-prod.github.io/">首页</a>
+                    
+                    <a  href="https://patrick-prod.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://patrick-prod.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">回溯算法</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月31日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95'>算法</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。</p>
+<p><strong>所谓的回溯，其实就是利用了for循环的执行先后顺序，比如同一层循环中，某一次循环断裂掉了，那么下一次循环一定会执行，也就是所谓的回溯，回到之前的状态。</strong></p>
+<p>回溯法是一种系统<strong>搜索</strong>问题<strong>解空间</strong>的方法。为了实现回溯，需要给问题定义一个<strong>解空间</strong>。说到底它是一种<strong>搜索算法</strong>。只是这里的搜索是在一个叫做<strong>解空间</strong>的地方搜索。而往往所谓的<strong>dfs</strong>，<strong>bfs</strong>都是在图或者树这种数据结构上的搜索。</p>
+<h2 id="用回溯算法解决问题的一般步骤">用回溯算法解决问题的一般步骤：</h2>
+<p><strong>回溯算法也叫试探法，它是一种系统地搜索问题的解的方法。</strong></p>
+<p>1、 针对所给问题，定义问题的解空间，它至少包含问题的一个（最优）解。</p>
+<p>2 、确定易于搜索的解空间结构,使得能用<a href="https://baike.baidu.com/item/%E5%9B%9E%E6%BA%AF%E6%B3%95">回溯法</a>方便地搜索整个解空间 。</p>
+<p>3 、以<strong>深度优先DFS</strong>的方式搜索解空间，并且在搜索过程中用剪枝函数避免无效搜索。</p>
+<p>确定解空间的组织结构，回溯法就从开始根结点出发，以深度优先的方式搜索整个解空间。这个<code>开始结点</code>就成为一个<code>活结点</code>，同时也成为当前的扩展结点。在当前的<code>扩展结点</code>处，搜索向纵深<code>方向移至一个新结点</code>。这个新结点就成为一个<code>新的活结点</code>，并成为当前扩展结点。如果在当前的扩展结点处不能再向纵深方向移动，则当前扩展结点就成为<code>死结点</code>。此时，应往回移动（回溯）至<code>最近的一个活结点</code>处，并使这个<a href="">活结点成为当前的扩展结点</a>。<a href="https://baike.baidu.com/item/%E5%9B%9E%E6%BA%AF%E6%B3%95">回溯法</a>即以这种工作方式<a href="https://baike.baidu.com/item/%E9%80%92%E5%BD%92">递归</a>地在解空间中搜索，直至找到<code>所要求的解或解空间中已没有活结点</code>时为止。</p>
+<h3 id="什么是解空间">什么是解空间</h3>
+<p>就是形如数组的一个向量**[a1,a2,&hellip;.,an]**。这个向量的每个元素都是问题的部分解，只有当这个数组的每一个元素都**填满**(得到全部解)的时候，才表明这个问题得到了解答，又譬如N皇后问题中的解集（图中显示不全包括死结点level2应该有16种情况）。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-000859.jpg" alt="2014012719413820164"></p>
+<h3 id="如何进行搜索">如何进行搜索</h3>
+<p>搜索直白的说就是有目的的穷尽，最简单的就是for循环，上面的向量有n个维度，因此就是n个for循环。</p>
+<p><strong>形如：</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">for</span>(求a1位置上的解)
+   <span style="color:#000;font-weight:bold">for</span>(求a2位置上的解)
+      <span style="color:#000;font-weight:bold">for</span>(求a3位置上的解)
+       <span style="color:#000;font-weight:bold">...</span><span style="color:#000;font-weight:bold">...</span>
+       <span style="color:#000;font-weight:bold">...</span><span style="color:#000;font-weight:bold">...</span>
+       <span style="color:#000;font-weight:bold">for</span>(求an位置上的解)
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>但是如果n是100？n是100000？那么如何回溯？</strong></p>
+<p>当然也可以写n个for循环，但是这样的程序会惨不忍睹。而且似乎10000个(不过往往回溯的时间复杂度太大，一般n不会这么大)for循环也很难写出来，因此我们需要一种全新的书写回溯的方法。</p>
+<p><strong>形如：</strong></p>
+<p>其实其本质就是一个递归，而且还是很简单的递归，只是为我们省去了书写重复for循环的过程。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">backtrack</span>(i <span style="color:#458;font-weight:bold">int</span>,n <span style="color:#458;font-weight:bold">int</span>,other parameters){
+    <span style="color:#000;font-weight:bold">if</span>( distinct one ){
+        <span style="color:#998;font-style:italic">//最优解条件
+</span><span style="color:#998;font-style:italic"></span>        record answer;
+        <span style="color:#000;font-weight:bold">return</span>;
+    }
+    <span style="color:#998;font-style:italic">//下面的意思是求解空间第i个位置上的下一个解
+</span><span style="color:#998;font-style:italic"></span>    <span style="color:#000;font-weight:bold">for</span> next ans in position i of solution space {
+        <span style="color:#000;font-weight:bold">if</span> other distinct {
+            <span style="color:#998;font-style:italic">//这里的other distinct说的就是上面的剪枝函数。
+</span><span style="color:#998;font-style:italic"></span>        	<span style="color:#900;font-weight:bold">backtrack</span>(i<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>,n,other parameters);
+        }
+    }
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>上面的模板适用于所有&quot;解空间确定&quot;的回溯法的问题！！！</strong></p>
+<h2 id="n皇后问题">N皇后问题</h2>
+<p>八皇后问题在学习回溯算法之前可以说是很难得但是在得到了上面的回溯算法公式之后就再简单不过了。</p>
+<h3 id="概述">概述</h3>
+<p><em>n</em> 皇后问题研究的是如何将 <em>n</em> 个皇后放置在 <em>n</em>×<em>n</em> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p><!-- raw HTML omitted --></p>
+<h3 id="思路分析">思路分析</h3>
+<p>n皇后的解空间很好分析，就是N个循环次数为N的for循环，如果不加上剪枝函数的话那么需要进行搜索的次数就是n的n次幂，不过如下图我们使用了剪枝函数之后搜索的次数就会大大降低，而且我们要知道for循环之间创造的递归都是独立的。</p>
+<p><!-- raw HTML omitted --></p>
+<h3 id="实现">实现</h3>
+<p>calcQueues函数用来计算摆放的所有可能，因为位置关系特殊，所以我们可以使用一个一维数组储存一次排放顺序，通过数组的长度来映射棋盘的行，对应的数据记录数组的列，最后使用一个二维数组来记录所有的解。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">solveNQueens</span>(n <span style="color:#458;font-weight:bold">int</span>) [][]<span style="color:#458;font-weight:bold">string</span> {
+	answers <span style="color:#000;font-weight:bold">:=</span> [][]<span style="color:#458;font-weight:bold">string</span>{}
+    <span style="color:#998;font-style:italic">//储存答案的数组
+</span><span style="color:#998;font-style:italic"></span>	checkboard <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>, n)
+    <span style="color:#998;font-style:italic">//记录棋盘的数组。
+</span><span style="color:#998;font-style:italic"></span>	<span style="color:#900;font-weight:bold">calcQueues</span>(<span style="color:#000;font-weight:bold">&amp;</span>answers,n,checkboard,<span style="color:#099">0</span>)
+	<span style="color:#000;font-weight:bold">return</span> ans
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>确定最优解</strong></p>
+<p>之后就是类似上面的公式了，如果说我们的行数（其实是下标所以计算时要加一）等于了N，那就说明前八行的皇后们成功兼容排列，也就是问题的最优解之一了，我们就把他记录下来，同时也作为递归出口。</p>
+<p><strong>搜索</strong></p>
+<p>然后作为搜索部分，我们使用了一个剪枝函数<code>isValid</code>来在发现皇后位置冲突的时候及时的消去分支，避免无意义的深度遍历。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">calcQueues</span>(ans <span style="color:#000;font-weight:bold">*</span>[][]<span style="color:#458;font-weight:bold">string</span>,n <span style="color:#458;font-weight:bold">int</span>,nums []<span style="color:#458;font-weight:bold">int</span>,row <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">if</span> row <span style="color:#000;font-weight:bold">==</span> n {
+		q <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">printQ</span>(nums, n)
+		<span style="color:#000;font-weight:bold">*</span>ans = <span style="color:#0086b3">append</span>(<span style="color:#000;font-weight:bold">*</span>ans, q)
+		<span style="color:#000;font-weight:bold">return</span>
+	}
+
+	<span style="color:#000;font-weight:bold">for</span> col <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; col &lt; n; col<span style="color:#000;font-weight:bold">++</span> {
+		nums[row] = col
+		<span style="color:#000;font-weight:bold">if</span> <span style="color:#900;font-weight:bold">isValid</span>(nums,row) {
+			<span style="color:#900;font-weight:bold">calcQueues</span>(ans,n,nums,row<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+		}
+	}
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>剪枝函数</strong></p>
+<p>想要判断是皇后位置冲突其实很简单，只要两皇后行列位置之差的绝对值相等或者时在同一列上，就是位置冲突。</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">isValid</span>(nums []<span style="color:#458;font-weight:bold">int</span>,row <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">bool</span> {
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>;i &lt; row; i<span style="color:#000;font-weight:bold">++</span> {
+        <span style="color:#998;font-style:italic">//这里我们注意我传入的是下标所以就不会发生皇后自身和自身的比较。
+</span><span style="color:#998;font-style:italic"></span>		<span style="color:#000;font-weight:bold">if</span> nums[i] <span style="color:#000;font-weight:bold">==</span> nums[row] <span style="color:#000;font-weight:bold">||</span> math.<span style="color:#900;font-weight:bold">Abs</span>(<span style="color:#0086b3">float64</span>(row<span style="color:#000;font-weight:bold">-</span>i)) <span style="color:#000;font-weight:bold">==</span> math.<span style="color:#900;font-weight:bold">Abs</span>(<span style="color:#0086b3">float64</span>(nums[row] <span style="color:#000;font-weight:bold">-</span> nums[i])){
+			<span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">false</span>
+		}
+	}
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span>
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="leetcode题解">leetcode题解</h3>
+<p><code>n 皇后</code>问题研究的是如何将 n 个皇后放置在 <code>n×n</code> 的棋盘上，并且使皇后彼此之间不能相互攻击，给定一个整数 <code>n</code>，返回所有不同的 <code>n 皇后</code>问题的解决方案，每一种解法包含一个明确的 <code>n</code> 皇后问题的棋子放置方案，该方案中 <code>'Q' 和 '.'</code> 分别代表了皇后和空位。</p>
+<p><!-- raw HTML omitted --></p>
+<p><strong>完整代码</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">package</span> main
+
+<span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+	<span style="color:#d14">&#34;math&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">solveNQueens</span>(n <span style="color:#458;font-weight:bold">int</span>) [][]<span style="color:#458;font-weight:bold">string</span> {
+	ans <span style="color:#000;font-weight:bold">:=</span> [][]<span style="color:#458;font-weight:bold">string</span>{}
+	checkboard <span style="color:#000;font-weight:bold">:=</span> <span style="color:#0086b3">make</span>([]<span style="color:#458;font-weight:bold">int</span>, n)
+	<span style="color:#900;font-weight:bold">calcQueues</span>(<span style="color:#000;font-weight:bold">&amp;</span>ans,n,checkboard,<span style="color:#099">0</span>)
+	<span style="color:#000;font-weight:bold">return</span> ans
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">calcQueues</span>(ans <span style="color:#000;font-weight:bold">*</span>[][]<span style="color:#458;font-weight:bold">string</span>,n <span style="color:#458;font-weight:bold">int</span>,nums []<span style="color:#458;font-weight:bold">int</span>,row <span style="color:#458;font-weight:bold">int</span>) {
+	<span style="color:#000;font-weight:bold">if</span> row <span style="color:#000;font-weight:bold">==</span> n {
+		q <span style="color:#000;font-weight:bold">:=</span> <span style="color:#900;font-weight:bold">printQ</span>(nums, n)
+		<span style="color:#000;font-weight:bold">*</span>ans = <span style="color:#0086b3">append</span>(<span style="color:#000;font-weight:bold">*</span>ans, q)
+		<span style="color:#000;font-weight:bold">return</span>
+	}
+
+	<span style="color:#000;font-weight:bold">for</span> col <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; col &lt; n; col<span style="color:#000;font-weight:bold">++</span> {
+		nums[row] = col
+		<span style="color:#000;font-weight:bold">if</span> <span style="color:#900;font-weight:bold">isValid</span>(nums,row) {
+			<span style="color:#900;font-weight:bold">calcQueues</span>(ans,n,nums,row<span style="color:#000;font-weight:bold">+</span><span style="color:#099">1</span>)
+		}
+	}
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">isValid</span>(nums []<span style="color:#458;font-weight:bold">int</span>,row <span style="color:#458;font-weight:bold">int</span>) <span style="color:#458;font-weight:bold">bool</span> {
+	<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>;i &lt; row; i<span style="color:#000;font-weight:bold">++</span> {
+		<span style="color:#000;font-weight:bold">if</span> nums[i] <span style="color:#000;font-weight:bold">==</span> nums[row] <span style="color:#000;font-weight:bold">||</span> math.<span style="color:#900;font-weight:bold">Abs</span>(<span style="color:#0086b3">float64</span>(row<span style="color:#000;font-weight:bold">-</span>i)) <span style="color:#000;font-weight:bold">==</span> math.<span style="color:#900;font-weight:bold">Abs</span>(<span style="color:#0086b3">float64</span>(nums[row] <span style="color:#000;font-weight:bold">-</span> nums[i])){
+			<span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">false</span>
+		}
+	}
+	<span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">printQ</span>(res []<span style="color:#458;font-weight:bold">int</span>, n <span style="color:#458;font-weight:bold">int</span>) []<span style="color:#458;font-weight:bold">string</span> {
+	s <span style="color:#000;font-weight:bold">:=</span> []<span style="color:#458;font-weight:bold">string</span>{}
+	<span style="color:#000;font-weight:bold">for</span> _, v <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> res {
+		str <span style="color:#000;font-weight:bold">:=</span> <span style="color:#d14">&#34;&#34;</span>
+		<span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">:=</span> <span style="color:#099">0</span>; i &lt; n; i<span style="color:#000;font-weight:bold">++</span> {
+			<span style="color:#000;font-weight:bold">if</span> i <span style="color:#000;font-weight:bold">==</span> v {
+				str <span style="color:#000;font-weight:bold">+=</span> <span style="color:#d14">&#34;Q&#34;</span>
+			} <span style="color:#000;font-weight:bold">else</span> {
+				str <span style="color:#000;font-weight:bold">+=</span> <span style="color:#d14">&#34;.&#34;</span>
+			}
+		}
+		s = <span style="color:#0086b3">append</span>(s, str)
+	}
+	<span style="color:#000;font-weight:bold">return</span> s
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>() {
+	<span style="color:#000;font-weight:bold">for</span> _,col <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> <span style="color:#900;font-weight:bold">solveNQueens</span>(<span style="color:#099">4</span>) {
+		<span style="color:#000;font-weight:bold">for</span> _,row <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">range</span> col{
+			fmt.<span style="color:#900;font-weight:bold">Println</span>(row)
+		}
+	}
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="为什么要掌握回溯法">为什么要掌握回溯法？？？</h2>
+<p>因为懂了回溯法之后笔试里的很多题就算AC不了，起码成功运行70%到90%之间是没问题的。
+而且如果笔试题里有的数据集设计的不够好，那么回溯甚至可以比动态规划运行的还快。
+而这对于获得面试机会已经足够了！！！
+并且回溯很优美，很容易理解，因为说到底它不过就是个填格子的游戏罢了。</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://patrick-prod.github.io/">inno</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/">自顶向下读书笔记 层次协议</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/">自顶向下读书 分组交换</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/">自顶向下读书笔记 网络核心</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/">自顶向下读书笔记 网络边缘</a></li>
+        
+        <li><a href="/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">自顶向下读书笔记</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E5%9B%9E%E6%BA%AF'>回溯</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E7%AE%97%E6%B3%95'>算法</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yourdiscussshortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "your github repo"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://patrick-prod.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://patrick-prod.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" title="动态规划模型">动态规划模型</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="贪心算法">贪心算法</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E9%80%92%E5%BD%92/" title="递归">递归</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" title="回溯算法">回溯算法</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/" title="自顶向下读书笔记 层次协议">自顶向下读书笔记 层次协议</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/" title="自顶向下读书 分组交换">自顶向下读书 分组交换</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/" title="自顶向下读书笔记 网络核心">自顶向下读书笔记 网络核心</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/" title="自顶向下读书笔记 网络边缘">自顶向下读书笔记 网络边缘</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="自顶向下读书笔记">自顶向下读书笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/" title="自顶向下读书笔记 因特网概述">自顶向下读书笔记 因特网概述</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95/">算法 (4)</a></li>
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络 (6)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">动态规划模型</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/">自顶向下</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/">贪婪算法</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E9%80%92%E5%BD%92/">递归</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://blog.fazero.me/" title="fazero的博客">fazero的博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.iamasd.cn/" title="iamasd的博客">iamasd的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://patrick-prod.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://patrick-prod.github.io/">于先森的个人博客 By inno</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+
+</html>

@@ -6,10 +6,19 @@
     <description>Recent content in Categories on 于先森的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 31 Jan 2020 07:31:27 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jan 2020 08:33:26 +0800</lastBuildDate>
     
 	<atom:link href="https://patrick-prod.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>算法</title>
+      <link>https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 31 Jan 2020 08:33:26 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>计算机网络</title>

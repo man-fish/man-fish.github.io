@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>递归 on 于先森的个人博客</title>
+    <link>https://patrick-prod.github.io/tags/%E9%80%92%E5%BD%92/</link>
+    <description>Recent content in 递归 on 于先森的个人博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 31 Jan 2020 08:12:41 +0800</lastBuildDate>
+    
+	<atom:link href="https://patrick-prod.github.io/tags/%E9%80%92%E5%BD%92/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>递归</title>
+      <link>https://patrick-prod.github.io/post/%E9%80%92%E5%BD%92/</link>
+      <pubDate>Fri, 31 Jan 2020 08:12:41 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E9%80%92%E5%BD%92/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
