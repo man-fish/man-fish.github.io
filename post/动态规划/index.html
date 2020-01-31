@@ -230,8 +230,8 @@ A :  &quot;所以你不用重新计算,因为你记住了第一个等式的值�
 <blockquote>
 <p><a href="">至此，带备忘录的递归解法的效率已经和动态规划一样了。实际上，这种解法和动态规划的思想已经差不多了，只不过这种方法叫做**「自顶向下」**，动态规划叫做**「自底向上」**。</a></p>
 <ul>
-<li>啥叫**「自顶向下」**？注意我们刚才画的递归树（或者说图），是从上向下延伸，都是从一个规模较大的原问题比如说 f(20)，向下逐渐分解规模，直到 f(1) 和 f(2) 触底，然后逐层返回答案，这就叫「自顶向下」。</li>
-<li>啥叫**「自底向上」**？反过来，我们直接从最底下，最简单，问题规模最小的 f(1) 和 f(2) 开始往上推，直到推到我们想要的答案 f(20)，这就是动态规划的思路，这也是为什么动态规划一般都脱离了递归，而是由循环迭代完成计算。</li>
+<li>啥叫<strong>自顶向下</strong>？注意我们刚才画的递归树（或者说图），是从上向下延伸，都是从一个规模较大的原问题比如说 f(20)，向下逐渐分解规模，直到 f(1) 和 f(2) 触底，然后逐层返回答案，这就叫「自顶向下」。</li>
+<li>啥叫<strong>自底向上</strong>？反过来，我们直接从最底下，最简单，问题规模最小的 f(1) 和 f(2) 开始往上推，直到推到我们想要的答案 f(20)，这就是动态规划的思路，这也是为什么动态规划一般都脱离了递归，而是由循环迭代完成计算。</li>
 </ul>
 </blockquote>
 <h3 id="自上而下的动态规划">自上而下的动态规划🚈</h3>
@@ -277,7 +277,6 @@ A :  &quot;所以你不用重新计算,因为你记住了第一个等式的值�
 <p>记住，要符合「最优子结构」，<strong>子问题间必须互相独立</strong>。什么叫相互独立？对于这个零钱问题来说，我们处理 <code>f(10), f(9), f(6)</code>他们之间都是毫无关系的，没有相互制约，而是互相独立的。所以这个状态转移方程是可以得到正确答案的。</p>
 <h3 id="暴力递归-1">暴力递归🎲</h3>
 <p>拿到状态转移方程之后我们就可以书写递归的程序，要做递归一定要画递归树，太重要了。</p>
-<p><img src="F:%5C%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0%5C53.%E7%AE%97%E6%B3%95%5Cassets%5C16c95abdd4d29a1a" alt="img"></p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
