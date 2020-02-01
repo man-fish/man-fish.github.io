@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>validator on 于先森的个人博客</title>
-    <link>https://patrick-prod.github.io/tags/validator/</link>
+    <link>http://patrick-prod.github.io/tags/validator/</link>
     <description>Recent content in validator on 于先森的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 31 Jan 2020 22:00:26 +0800</lastBuildDate>
     
-	<atom:link href="https://patrick-prod.github.io/tags/validator/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://patrick-prod.github.io/tags/validator/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go校验层go Validator</title>
-      <link>https://patrick-prod.github.io/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</link>
+      <link>http://patrick-prod.github.io/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</link>
       <pubDate>Fri, 31 Jan 2020 22:00:26 +0800</pubDate>
       
-      <guid>https://patrick-prod.github.io/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</guid>
+      <guid>http://patrick-prod.github.io/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</guid>
       <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 1 go get gopkg.in/validator.v2 Import the package into your own code. 1 2 3 import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的校验规则，同时可以使用匿名继承的方式定义结构体。 1 2 3 4 5 6 7 8 9 10 type LoginValidator</description>
     </item>
     
