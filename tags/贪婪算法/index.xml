@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>贪婪算法 on 于先森的个人博客</title>
-    <link>http://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/</link>
+    <link>https://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/</link>
     <description>Recent content in 贪婪算法 on 于先森的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 31 Jan 2020 08:18:46 +0800</lastBuildDate>
     
-	<atom:link href="http://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>贪心算法</title>
-      <link>http://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</link>
+      <link>https://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</link>
       <pubDate>Fri, 31 Jan 2020 08:18:46 +0800</pubDate>
       
-      <guid>http://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</guid>
       <description>简介 贪心算法（英语：greedy algorithm），又称贪婪算法，是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是最好或最优的算法。比如在旅行推销员问题中，如果旅行员每次都选择最近的城市，那这就是一种贪心算法。 例子:最小生成树的算法 (Prim MST</description>
     </item>
     

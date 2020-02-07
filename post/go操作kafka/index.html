@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Go操作kafka | 于先森的个人博客</title>
+    <meta property="og:title" content="Go操作kafka - 于先森的个人博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-02-08T07:04:04&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-02-08T07:04:04&#43;08:00'>
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,于先森,javascript,nodejs,博客,服务器,前端,小程序">
+    <meta name="description" content="Go操作kafka">
+        
+    <meta name="author" content="patrick">
+    <meta property="og:url" content="https://patrick-prod.github.io/post/go%E6%93%8D%E4%BD%9Ckafka/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/my.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://patrick-prod.github.io/">
+                        于先森的个人博客
+                    </a>
+                
+                <p class="description">渣本在校大学生/全栈开发，专注于JavaScript、Golang，科学技术是第一生产力。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://patrick-prod.github.io/">首页</a>
+                    
+                    <a  href="https://patrick-prod.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://patrick-prod.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">Go操作kafka</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年2月8日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/golang'>golang</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <blockquote>
+<p>消息概念部分引自<a href="https://www.liwenzhou.com/posts/Go/go_kafka/">李文周的个人博客</a>。</p>
+</blockquote>
+<h2 id="什么叫消息队列">什么叫消息队列💩</h2>
+<p>消息（<code>Message</code>）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。</p>
+<p>消息队列（<code>Message Queue</code>）是一种应用间的通信方式，消息发送后可以立即返回，由消息系统来确保消息的可靠传递。消息发布者只管把消息发布到 <code>MQ</code> 中而不用管谁来取，消息使用者只管从 MQ 中取消息而不管是谁发布的。这样发布者和使用者都不用知道对方的存在，他们共享的只是消息队列的名称而已。</p>
+<h2 id="为何用消息队列">为何用消息队列🗾</h2>
+<h3 id="异步处理">异步处理</h3>
+<p>参照下图利用消息队列把业务流程中的非关键流程异步化，从而显著降低业务请求的响应时间。</p>
+<p><img src="http://image.innoweb.cn/2020-02-07-190627.png" alt="nsq应用场景1"></p>
+<h3 id="应用解耦">应用解耦</h3>
+<p>通过使用消息队列将不同的业务逻辑解耦，降低系统间的耦合，提高系统的健壮性。后续有其他业务要使用订单数据可直接订阅消息队列，提高系统的灵活性。<img src="http://image.innoweb.cn/2020-02-07-190719.png" alt="nsq应用场景1"></p>
+<h3 id="流量削峰">流量削峰</h3>
+<p>类似秒杀（大秒）等场景下，某一时间可能会产生大量的请求，使用消息队列能够为后端处理请求提供一定的缓冲区，保证后端服务的稳定性。<img src="http://image.innoweb.cn/2020-02-07-190727.png" alt="nsq应用场景1"></p>
+<h2 id="kafka">Kafka</h2>
+<h3 id="介绍">介绍</h3>
+<p>Kafka是一个分布式数据流平台，可以运行在单台服务器上，也可以在多台服务器上部署形成集群。它提供了发布和订阅功能，使用者可以发送数据到Kafka中，也可以从Kafka中读取数据(以便进行后续的处理)。Kafka具有高吞吐、低延迟、高容错等特点。</p>
+<p>Apache Kafka由著名职业社交公司LinkedIn开发，最初是被设计用来解决LinkedIn公司内部海量日志传输等问题。Kafka使用Scala语言 编写，于201 1年开源并进入Apache孵化器，2012年10月正式毕业， 现在为Apache顶级项目。</p>
+<blockquote>
+<p>kafka就相当于我们说的queue集群</p>
+</blockquote>
+<h3 id="概念">概念</h3>
+<ul>
+<li>Kafka作为一个集群，运行在一台或者多台服务器上.</li>
+<li>Kafka 通过 <em>topic</em> 对存储的流数据进行分类。</li>
+<li>每条记录中包含一个key，一个value和一个timestamp（时间戳）。</li>
+</ul>
+<h3 id="组成">组成</h3>
+<p><img src="http://image.innoweb.cn/2020-02-07-200508.png" alt="image-20200208033024243"></p>
+<ul>
+<li>
+<p><strong>Producer:</strong> Producer即生产者，消息的产生者,是消息的入口。</p>
+</li>
+<li>
+<p><strong>kafka cluster</strong>: kafka集群， 1台或多台服务器组成</p>
+<ul>
+<li>
+<p><strong>Broker:</strong> Broker是指部署了Kafka实例的服务器节点。每个服务器.上有一个或多个kafka的实例，我们姑且认为每个broker对应1台服务器。每个kafka集群内的broker都有1个不重复的编号，如图中的broker-0、broker-1等&hellip;.</p>
+</li>
+<li>
+<p><strong>Topic:</strong> 消息的主题，可以理解为消息的分类，kafka的数据就保存在topic。 在每个broker上都可以创建多个topic。实际应用中通常是一个业务线建一个topic。</p>
+</li>
+<li>
+<p><strong>Partition:</strong> Topic的分区， 每个topic可以有多个分区，分区的作用是做负载，提高kafka的吞吐量。同一个topic在不同的分区的数据是不重复的，partition的表现形式就是一个一个的文件夹!</p>
+</li>
+<li>
+<p><strong>Replication</strong>:每一个分区都有多个副本，副本的作用是做备胎。当主分区(Leader) 故障的时候会选择一个备胎(Follower), 上位， 成为Leader。 在kafka中默认副本的最大数量是10个，且副本的数量不能大于Broker的数量，follower和leader绝对是 在不同的机器，同一机器对同一个分区也只可能存放一个副本(包括自己)。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Consumer</strong>:消费者，即消息的消费方，是消息的出口。</p>
+<ul>
+<li>**Consumer Group:**我们可以将多个消费组组成一个消费者组，在kafka的设计中同一个分区的数据只能被消费者组中的某1个消费者消费。同一个消费者组的消费者可以消费同1个topic的不同分区的数据，这也是为了提高kafka的吞吐量!</li>
+</ul>
+</li>
+</ul>
+<h3 id="工作流程">工作流程</h3>
+<p>我们看上面的架构图中，producer就是生产者， 是数据的入口。Producer在写 入数据的时候会把数据写入到leader中，不会直接将数据写入follower!那leader怎 么找呢?写入的流程又是什么样的呢?我们看下图:</p>
+<p><img src="http://image.innoweb.cn/2020-02-07-193940.png" alt="image-20200208033937292"></p>
+<ol>
+<li>
+<p>生产者从Kafka集群获取分区leader信息</p>
+</li>
+<li>
+<p>生产者将消息发送给leader</p>
+</li>
+<li>
+<p>leader将消息写入本地磁盘</p>
+</li>
+<li>
+<p>follower从leader拉取消息数据</p>
+</li>
+<li>
+<p>follower将消息写入本地磁盘后向leader发送ACK</p>
+</li>
+<li>
+<p>leader收到所有的follower的ACK之后向生产者发送ACK</p>
+</li>
+</ol>
+<h3 id="选择partition的原则">选择partition的原则</h3>
+<p>那在kafka中，如果某个topic有多个partition, producer又怎么知道该将数据发往哪个partition呢?kafka中有几个原则:</p>
+<ol>
+<li>
+<p>partition在写入的时候可以指定需要写入的partition, 如果有指定，则写入对应的partition。</p>
+</li>
+<li>
+<p>如果没有指定partition, 但是设置了数据的key,则会根据key的值hash出- - -个partition。</p>
+</li>
+<li>
+<p>如果既没指定partition, 又没有设置key,则会采用轮询方式，即每次取-小段时间的数据写入某个partition，下一小段的时间写入下一个partition。</p>
+</li>
+</ol>
+<blockquote>
+<p>前提是我们设置了多个partition。</p>
+</blockquote>
+<h3 id="ack应答机制">ACK应答机制</h3>
+<p>producer在向kafka写入消息的时候，可以设置参数来确定是否确认kafka接收到数据，这个参数可设置的值为<code>0、1、all</code>。</p>
+<ul>
+<li>
+<p>0代表producer往集群发送数据不需要等到集群的返回，不确保消息发送成功。安全性最低但是效率最高。</p>
+</li>
+<li>
+<p>1代表producer往集群发送数据只要leader应答就可以发送下一 条，只确保leader接收成功。</p>
+</li>
+<li>
+<p>all代表producer往集 群发送数据需要所有的follower都完成从leader的同步才会发送下一条,确保leader发送成功和所有的副本都完成备份。安全性最高，但是效率最低。</p>
+</li>
+</ul>
+<blockquote>
+<p>最后要注意的是，如果往不存在的topic写数据，kafka会 自动创建topic, partition和replication的数量默认配置都是1。</p>
+</blockquote>
+<h3 id="topic和数据日志">Topic和数据日志</h3>
+<p>topic是同1类别的消息记录(record) 的集合。在Kafka中， 一个主题通常有多个订阅者。对于每个主题，Kafka集群维护了一个分区数据日志文件结构如下:</p>
+<p><img src="http://image.innoweb.cn/2020-02-07-194622.png" alt="image-20200208034618236"></p>
+<p>每个partition都是一个有序并且不可变的消息记录集合。当新的数据写入时，就被追加到partition的末尾。在每个partition中，每条消息都会被分配一个顺序的唯一 标识，这个标识被称为offset, 即偏移量。注意，Kafka只保证在同一个partition内部消息是有序的，在不同partition之间，并不能保证消息有序。</p>
+<h3 id="partition结构">Partition结构</h3>
+<p>Partition在服务器上的表现形式就是一个一个的文件夹，文件夹位置为kafka中配置的位置，每个partition的文件夹下面会有多组segment文件，每组segment文件又包含. index文件、. 1og文件、. timeindex文件三个文件，其中.1og文件就是实际存储message的地方，而. index和. timeindex文件为索引文件，用于检索消息。</p>
+<p><!-- raw HTML omitted --></p>
+<h3 id="消费数据">消费数据</h3>
+<p>多个消费者实例可以组成一介消费者组，并用一个标签来标识这个消费者组。</p>
+<p>一个消费者组中的不同消费者实例可以运行在不同的进程甚至不同的服务器上。</p>
+<p>如果所有的消费者实例都在同一个消费者组中，那么消息记录会被很好的均衡的发送到每个消费者实例。</p>
+<p>如果所有的消费者实例都在不同的消费者组，那么每一条消息记录会被广播到每1个消费者实例。</p>
+<p><img src="http://image.innoweb.cn/2020-02-07-200443.png" alt="image-20200208035228677"></p>
+<p>举个例子，如上图所示一个两个节点的Kafka集群上拥有-个四个partition (PO-P3) 的topic。 有两个消费者组都在消费这个topic中的数据，消费者组A有两个消费者实例，消费者组B有四个消费者实例。从图中我们可以看到，在同一个消费者组中，每个消费者实例可以消费多个分区，但是每个分区最多只能被消费者组中的一个实例消费。也就是说，如果有一个4个分区的主题，那么消费者组中最多只能有4个消费者实例去消费，多出来的都不会被分配到分区。其实这也很好理解，如果允许两个消费者实例同时消费同一个分区，那么就无法记录这个分区被这个消费者组消费的offset了。如果在消费者组中动态的上线或下线消费者，那么Kafka集群会自动调整分区与消费者实例间的对应关系。</p>
+<h3 id="kafka有四个核心的api">Kafka有四个核心的API:</h3>
+<ul>
+<li>The <a href="http://kafka.apachecn.org/documentation.html#producerapi">Producer API</a> 允许一个应用程序发布一串流式的数据到一个或者多个Kafka topic。</li>
+<li>The <a href="http://kafka.apachecn.org/documentation.html#consumerapi">Consumer API</a> 允许一个应用程序订阅一个或多个 topic ，并且对发布给他们的流式数据进行处理。</li>
+<li>The <a href="http://kafka.apachecn.org/documentation/streams">Streams API</a> 允许一个应用程序作为一个<em>流处理器</em>，消费一个或者多个topic产生的输入流，然后生产一个输出流到一个或多个topic中去，在输入输出流中进行有效的转换。</li>
+<li>The <a href="http://kafka.apachecn.org/documentation.html#connect">Connector API</a> 允许构建并运行可重用的生产者或者消费者，将Kafka topics连接到已存在的应用程序或者数据系统。比如，连接到一个关系型数据库，捕捉表（table）的所有变更内容。</li>
+</ul>
+<h3 id="kafka配置">Kafka配置</h3>
+<pre><code class="language-properties" data-lang="properties">############################# Server Basics #############################
+#	broker id kafka在集群里的broker id
+broker.id=0
+
+############################# Log Basics #############################
+# A comma separated list of directories under which to store log files，日志文件夹
+log.dirs=/usr/local/var/lib/kafka-logs
+
+# the brokers. partition分区数
+num.partitions=1
+
+############################# Zookeeper #############################
+# Zookeeper connection string (see zookeeper docs for details). zookkeeper 端口
+zookeeper.connect=localhost:2181
+
+# Timeout in ms for connecting to zookeeper
+zookeeper.connection.timeout.ms=6000
+</code></pre><h3 id="命令行">命令行</h3>
+<p>启动</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties &amp; kafka-server-start /usr/local/etc/kafka/server.properties
+</code></pre></td></tr></table>
+</div>
+</div><p>将消费打到命令行</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kafka-console-consumer --bootstrap-server<span style="color:#000;font-weight:bold">=</span>127.0.0.1:9092 --topic<span style="color:#000;font-weight:bold">=</span>web_log --from-beginning
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="go操作kafka">go操作kafka</h2>
+<h3 id="sarama">sarama</h3>
+<p>Go语言中连接kafka使用第三方库:<a href="https://github.com/Shopify/sarama">github.com/Shopify/sarama</a>。</p>
+<h3 id="下载及安装">下载及安装</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go get github.com/Shopify/sarama
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="注意事项">注意事项</h3>
+<p><code>sarama</code> v1.20之后的版本加入了<code>zstd</code>压缩算法，需要用到cgo，在Windows平台编译时会提示类似如下错误：</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#998;font-style:italic"># github.com/DataDog/zstd</span>
+exec: <span style="color:#d14">&#34;gcc&#34;</span>:executable file not found in %PATH%
+</code></pre></td></tr></table>
+</div>
+</div><p>所以在Windows平台请使用v1.19版本的sarama。</p>
+<h3 id="连接kafka发送消息">连接kafka发送消息</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#000;font-weight:bold">import</span> (
+	<span style="color:#d14">&#34;fmt&#34;</span>
+	<span style="color:#d14">&#34;github.com/Shopify/sarama&#34;</span>
+)
+
+<span style="color:#000;font-weight:bold">var</span> (
+	client sarama.SyncProducer
+)
+
+<span style="color:#998;font-style:italic">///
+</span><span style="color:#998;font-style:italic"></span>
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">Init</span>(addrs <span style="color:#000;font-weight:bold">...</span><span style="color:#458;font-weight:bold">string</span>) (err <span style="color:#458;font-weight:bold">error</span>) {
+	<span style="color:#998;font-style:italic">//配置kafka
+</span><span style="color:#998;font-style:italic"></span>	config <span style="color:#000;font-weight:bold">:=</span> sarama.<span style="color:#900;font-weight:bold">NewConfig</span>()  <span style="color:#998;font-style:italic">//生成配置通过属性赋值的方式修改
+</span><span style="color:#998;font-style:italic"></span>	config.Producer.RequiredAcks = sarama.WaitForAll
+	<span style="color:#998;font-style:italic">// 对应kafka的应答机制的三个状态码，这里我们等待所有的follower都同步完成之后producer再发送下一条。
+</span><span style="color:#998;font-style:italic"></span>	config.Producer.Partitioner = sarama.NewRandomPartitioner
+	<span style="color:#998;font-style:italic">// 以轮询的方式随机写入partitioner
+</span><span style="color:#998;font-style:italic"></span>	config.Producer.Return.Successes = <span style="color:#000;font-weight:bold">true</span>
+	<span style="color:#998;font-style:italic">// 成功交付的信息再channel中返回
+</span><span style="color:#998;font-style:italic"></span>
+	client, err = sarama.<span style="color:#900;font-weight:bold">NewSyncProducer</span>(addrs,config)
+	<span style="color:#998;font-style:italic">// 这里接受一个ip地址的切片，相当于是一个集群
+</span><span style="color:#998;font-style:italic"></span>	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;Producer closed, err:&#34;</span>, err)
+		<span style="color:#000;font-weight:bold">return</span>
+	}
+	<span style="color:#000;font-weight:bold">return</span>
+}
+
+<span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">SendToKafka</span>(topic, data <span style="color:#458;font-weight:bold">string</span>) {
+	<span style="color:#998;font-style:italic">//构造消息
+</span><span style="color:#998;font-style:italic"></span>	msg <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&amp;</span>sarama.ProducerMessage{}
+	msg.Topic = topic
+	msg.Value = sarama.<span style="color:#900;font-weight:bold">StringEncoder</span>(data)
+
+	<span style="color:#998;font-style:italic">//发送消息
+</span><span style="color:#998;font-style:italic"></span>	pid, offset, err <span style="color:#000;font-weight:bold">:=</span> client.<span style="color:#900;font-weight:bold">SendMessage</span>(msg)
+	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
+		fmt.<span style="color:#900;font-weight:bold">Println</span>(<span style="color:#d14">&#34;send msg failed, err:&#34;</span>,err)
+	}
+	fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;pid: %v	offset: %v\n&#34;</span>, pid, offset)
+}
+<span style="color:#998;font-style:italic">//main.go
+</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">func</span> <span style="color:#900;font-weight:bold">main</span>(){
+	err = kafka.<span style="color:#900;font-weight:bold">Init</span>([]<span style="color:#458;font-weight:bold">string</span>{cfg.Address}<span style="color:#000;font-weight:bold">...</span>)
+	<span style="color:#000;font-weight:bold">if</span> err <span style="color:#000;font-weight:bold">!=</span> <span style="color:#000;font-weight:bold">nil</span> {
+		fmt.<span style="color:#900;font-weight:bold">Printf</span>(<span style="color:#d14">&#34;Init kafka fail, err:%v&#34;</span>,err)
+		<span style="color:#000;font-weight:bold">return</span>
+	}
+	<span style="color:#000;font-weight:bold">for</span> {
+		<span style="color:#000;font-weight:bold">select</span> {
+			<span style="color:#000;font-weight:bold">case</span> line <span style="color:#000;font-weight:bold">:=</span> <span style="color:#000;font-weight:bold">&lt;-</span>tailLog.<span style="color:#900;font-weight:bold">ReadLog</span>():
+				kafka.<span style="color:#900;font-weight:bold">SendToKafka</span>(topic,line.Text)
+			<span style="color:#000;font-weight:bold">default</span>:
+				time.<span style="color:#900;font-weight:bold">Sleep</span>(time.Second)
+		}
+	}
+}
+</code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://patrick-prod.github.io/">patrick</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://patrick-prod.github.io/post/go%E6%93%8D%E4%BD%9Ckafka/">https://patrick-prod.github.io/post/go%E6%93%8D%E4%BD%9Ckafka/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/">Go校验层go Validator</a></li>
+        
+        <li><a href="/post/go%E5%A4%84%E7%90%86token/">Go处理token</a></li>
+        
+        <li><a href="/post/vue%E5%9F%BA%E7%A1%80-vm%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Vue基础 Vm生命周期</a></li>
+        
+        <li><a href="/post/vue%E5%9F%BA%E7%A1%80-vm%E5%AE%9E%E4%BE%8B/">Vue基础 Vm实例</a></li>
+        
+        <li><a href="/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://patrick-prod.github.io/tags/golang'>golang</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/kafka'>kafka</a></li>
+                
+                <li><a href='https://patrick-prod.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97'>消息队列</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://patrick-prod.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://patrick-prod.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/go%E6%93%8D%E4%BD%9Ckafka/" title="Go操作kafka">Go操作kafka</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/vue%E5%9F%BA%E7%A1%80-vm%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="Vue基础 Vm生命周期">Vue基础 Vm生命周期</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/vue%E5%9F%BA%E7%A1%80-vm%E5%AE%9E%E4%BE%8B/" title="Vue基础 Vm实例">Vue基础 Vm实例</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/" title="Go校验层go Validator">Go校验层go Validator</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/go%E5%A4%84%E7%90%86token/" title="Go处理token">Go处理token</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">动态规划</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" title="动态规划模型">动态规划模型</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="贪心算法">贪心算法</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E9%80%92%E5%BD%92/" title="递归">递归</a>
+    </li>
+    
+    <li>
+        <a href="https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" title="回溯算法">回溯算法</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://patrick-prod.github.io/categories/golang/">golang (3)</a></li>
+    
+    <li><a href="https://patrick-prod.github.io/categories/vue/">vue (2)</a></li>
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95/">算法 (5)</a></li>
+    
+    <li><a href="https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络 (6)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://patrick-prod.github.io/tags/golang/">golang</a>
+    
+    <a href="https://patrick-prod.github.io/tags/kafka/">kafka</a>
+    
+    <a href="https://patrick-prod.github.io/tags/mvvm/">mvvm</a>
+    
+    <a href="https://patrick-prod.github.io/tags/token/">token</a>
+    
+    <a href="https://patrick-prod.github.io/tags/validator/">validator</a>
+    
+    <a href="https://patrick-prod.github.io/tags/vue/">vue</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">动态规划模型</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E6%A0%A1%E9%AA%8C%E5%B1%82/">校验层</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/">自顶向下</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/">贪婪算法</a>
+    
+    <a href="https://patrick-prod.github.io/tags/%E9%80%92%E5%BD%92/">递归</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://blog.fazero.me/" title="fazero的博客">fazero的博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://www.iamasd.cn/" title="iamasd的博客">iamasd的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://patrick-prod.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://patrick-prod.github.io/">于先森的个人博客 By patrick</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/custom.js'></script>
+
+</body>
+
+</html>

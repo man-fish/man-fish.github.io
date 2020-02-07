@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kafka on 于先森的个人博客</title>
+    <link>https://patrick-prod.github.io/tags/kafka/</link>
+    <description>Recent content in kafka on 于先森的个人博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 08 Feb 2020 07:04:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://patrick-prod.github.io/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go操作kafka</title>
+      <link>https://patrick-prod.github.io/post/go%E6%93%8D%E4%BD%9Ckafka/</link>
+      <pubDate>Sat, 08 Feb 2020 07:04:04 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/go%E6%93%8D%E4%BD%9Ckafka/</guid>
+      <description>消息概念部分引自李文周的个人博客。 什么叫消息队列💩 消息（Message）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。 消息队列（Message Queue）是一种应用间的通信方式，消息发送后可以立即返回，由消息系统来确保消息的可靠传</description>
+    </item>
+    
+  </channel>
+</rss>
