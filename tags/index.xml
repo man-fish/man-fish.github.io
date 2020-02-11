@@ -6,7 +6,7 @@
     <description>Recent content in Tags on 于先森的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 08 Feb 2020 07:04:04 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Feb 2020 19:57:37 +0800</lastBuildDate>
     
 	<atom:link href="https://patrick-prod.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>golang</title>
       <link>https://patrick-prod.github.io/tags/golang/</link>
-      <pubDate>Sat, 08 Feb 2020 07:04:04 +0800</pubDate>
+      <pubDate>Tue, 11 Feb 2020 19:57:37 +0800</pubDate>
       
       <guid>https://patrick-prod.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>编程规范</title>
+      <link>https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Tue, 11 Feb 2020 19:57:37 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
       <description></description>
     </item>
     
