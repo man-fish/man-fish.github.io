@@ -102,6 +102,7 @@
         
         <div class="post-content">
             <h2 id="概述">概述</h2>
+<h2 id="概述-1">概述</h2>
 <p><code>广度优先遍历</code>属于图的一种基本遍历算法，其基本思想是尽最大程度辐射能够覆盖的节点，并对其进行访问。</p>
 <p>这里所说的图，不止局限于存储结构上的图，还包括逻辑结构上的图，接下来也会举相对的例子。</p>
 <p>以迷宫为例，深度优先搜索更像是一个人在走迷宫，遇到没有走过就标记，遇到走过就退一步重新走；而广度优先搜索则可以想象成一组人一起朝不同的方向走迷宫，当出现新的未走过的路的时候，这组人分开继续从不同的方向走，当相遇的时候再聚在一起。</p>
@@ -140,7 +141,7 @@ loop <span style="color:#000;font-weight:bold">(</span>queue非空<span style="c
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="图的遍历"><strong>图的遍历</strong></h2>
-<p><!-- raw HTML omitted --></p>
+<p><img src="http://image.innoweb.cn/2020-02-25-091841.png" alt="image-20200225014347840"></p>
 <p>拿这个图举例子，起点为A标记A以访问。第一轮推出A，并且将BCD三个结点访问、入队列并且标记。之后下一轮B出队列，将与其相邻的E访问、入队列并且标记。再下一轮，C出队列，F访问、入队列并且标记。最后几轮D、E、F以此出队列。</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -181,7 +182,7 @@ loop <span style="color:#000;font-weight:bold">(</span>queue非空<span style="c
 </code></pre></td></tr></table>
 </div>
 </div><p>除了一个一个的处理队列中的结点之外，我们还可以一次处理一层的结点，这样方便我们进行一些计数、比较出最优解的操作，在逐层遍历下只有处理完其周围所有结点才会处理下一层，当然图的遍历也可以采用这种方法。</p>
-<p><!-- raw HTML omitted --></p>
+<p><img src="http://image.innoweb.cn/2020-02-25-091854.png" alt="image-20200225014347840"></p>
 <h2 id="逐层bfs">逐层BFS</h2>
 <p>接下来举一个有关逻辑结构上的图的问题：<a href="https://leetcode-cn.com/problems/word-ladder/">leetcode 127. 单词接龙</a></p>
 <p>给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord 的最短转换序列的长度。转换需遵循如下规则：</p>
@@ -222,9 +223,9 @@ loop <span style="color:#000;font-weight:bold">(</span>queue非空<span style="c
 </div>
 </div><p><strong>思路：</strong></p>
 <p>拥有一个 beginWord 和一个 endWord，分别表示图上的 start node 和 end node。我们希望利用一些中间节点（单词）从 start node 到 end node，中间节点是 wordList 给定的单词。我们对这个单词接龙每个步骤的唯一条件是相邻单词只可以改变一个字母。</p>
-<p><!-- raw HTML omitted --></p>
+<p><img src="http://image.innoweb.cn/2020-02-25-105519.png" alt="image-20200225185512656"></p>
 <p>假设可以转换的不同元素组成一张无向图，我们的工作就是将beginWord作为起始点，字符串数组元素作为图的结点，元素之间是否可转换作为结点之间的关系来进行广度优先遍历寻找endWord。</p>
-<p><!-- raw HTML omitted --></p>
+<p><img src="http://image.innoweb.cn/2020-02-25-105536.png" alt="image-20200225185534286"></p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -373,9 +374,9 @@ loop <span style="color:#000;font-weight:bold">(</span>queue1和2都非空<span 
 </div>
 </div><blockquote>
 <p><strong>如何证明连接的两点一定能相遇？</strong></p>
-<p>如果两点可以连通，那下一次逐层遍历不论从queue1开始还是从queue2两点都一定会相遇，因为两边的标记数组是独立的。</p>
+<p>如果两点可以连通，那下一次逐层遍历不论从queue1开始还是从queue2两点都一定会相遇，因为两边的标记数组是独立的。
+<img src="http://image.innoweb.cn/2020-02-25-105601.png" alt="image-20200225185559479"></p>
 </blockquote>
-<p><!-- raw HTML omitted --></p>
 <p>我们回到这道题，很明显我们知道搜索的开始状态和结束状态，而且前面也已经强调了，双向BFS要遵循逐层遍历，而这道题中我们为了拿到最短的转换数，我们也必须使用逐层遍历。这里我使用的是两个bool数组标记已访问元素，效率未必有hashset高，但是结果也足够令人满意。</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -527,8 +528,8 @@ loop <span style="color:#000;font-weight:bold">(</span>queue1和2都非空<span 
 }
 </code></pre></td></tr></table>
 </div>
-</div><p><strong>结论：</strong></p>
-<p><img src="http://image.innoweb.cn/2020-02-25-091929.png" alt="image-20200225014347840"></p>
+</div><p><strong>结论：</strong>
+<img src="http://image.innoweb.cn/2020-02-25-091929.png" alt="image-20200225014347840"></p>
 
         </div>
 
@@ -604,6 +605,10 @@ loop <span style="color:#000;font-weight:bold">(</span>queue1和2都非空<span 
 <ul class="widget-list">
     
     <li>
+        <a href="https://patrick-prod.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/" title="计算机网络 自顶向下读书笔记 其之一">计算机网络 自顶向下读书笔记 其之一</a>
+    </li>
+    
+    <li>
         <a href="https://patrick-prod.github.io/post/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/" title="广度优先遍历与优化">广度优先遍历与优化</a>
     </li>
     
@@ -637,10 +642,6 @@ loop <span style="color:#000;font-weight:bold">(</span>queue1和2都非空<span 
     
     <li>
         <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">动态规划</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" title="动态规划模型">动态规划模型</a>
     </li>
     
 </ul>
