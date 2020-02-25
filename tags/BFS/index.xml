@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BFS on 于先森的个人博客</title>
+    <link>https://patrick-prod.github.io/tags/BFS/</link>
+    <description>Recent content in BFS on 于先森的个人博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 25 Feb 2020 17:20:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://patrick-prod.github.io/tags/BFS/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>广度优先遍历与优化</title>
+      <link>https://patrick-prod.github.io/post/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Tue, 25 Feb 2020 17:20:39 +0800</pubDate>
+      
+      <guid>https://patrick-prod.github.io/post/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/</guid>
+      <description>概述 广度优先遍历属于图的一种基本遍历算法，其基本思想是尽最大程度辐射能够覆盖的节点，并对其进行访问。 这里所说的图，不止局限于存储结构上的图，还包括逻辑结构上的图，接下来也会举相对的例子。 以迷宫为例，深度优先搜索更像是一个人在走迷宫，遇到没有走过就标记，遇到走过就退一步重新走；而广</description>
+    </item>
+    
+  </channel>
+</rss>
