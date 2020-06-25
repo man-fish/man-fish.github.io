@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithm on Fish blog ø</title>
+    <link>http://blog.innoweb.cn/categories/Algorithm/</link>
+    <description>Recent content in Algorithm on Fish blog ø</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 15 Jun 2020 01:31:41 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.innoweb.cn/categories/Algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>大数相加和大数相乘</title>
+      <link>http://blog.innoweb.cn/post/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</link>
+      <pubDate>Mon, 15 Jun 2020 01:31:41 +0800</pubDate>
+      
+      <guid>http://blog.innoweb.cn/post/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</guid>
+      <description>大数相加和大数相乘 所有的语言数字类型都有安全的计算范围，超过范围之后不同语言的处理不同，有可能会报错，也有可能拿不到精确的结果，对javascript来说它的处理是不精确的结果： 1 2 console.log(123456789 * 987654321) // 121932631112635260 错误结果 对于golang来说溢出的计算会抛出错误： 1 2 3 4 5 6 7 package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(1234567890 * 9876543210) // constant</description>
+    </item>
+    
+    <item>
+      <title>递归</title>
+      <link>http://blog.innoweb.cn/post/%E9%80%92%E5%BD%92/</link>
+      <pubDate>Fri, 31 Jan 2020 08:12:41 +0800</pubDate>
+      
+      <guid>http://blog.innoweb.cn/post/%E9%80%92%E5%BD%92/</guid>
+      <description>定义 在数学与计算机科学中，递归(Recursion)是指在函数的定义中使用函数自身的方法。在算法中递归应用之广毋庸置疑回溯，分治，动态规划，贪心算法中都推导的过程中可能用到递归算法。比如实际上，递归，顾名思义，其包含了两个意思：递 和 归，这正是递归思想的精华所在： 递归就是有去（递去</description>
+    </item>
+    
+  </channel>
+</rss>
