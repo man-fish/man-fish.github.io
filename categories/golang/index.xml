@@ -39,14 +39,5 @@
       <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 1 go get gopkg.in/validator.v2 Import the package into your own code. 1 2 3 import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的校验规则，同时可以使用匿名继承的方式定义结构体。 1 2 3 4 5 6 7 8 9 10 type LoginValidator</description>
     </item>
     
-    <item>
-      <title>Go处理token</title>
-      <link>http://blog.innoweb.cn/post/go%E5%A4%84%E7%90%86token/</link>
-      <pubDate>Fri, 31 Jan 2020 21:34:13 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/go%E5%A4%84%E7%90%86token/</guid>
-      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能是从lacalstorage读取并写入请求头。 将tokenstring转化为未解</description>
-    </item>
-    
   </channel>
 </rss>
