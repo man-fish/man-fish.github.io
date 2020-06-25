@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>俄罗斯农民乘法 on Fish blog ø</title>
+    <link>http://blog.innoweb.cn/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</link>
+    <description>Recent content in 俄罗斯农民乘法 on Fish blog ø</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
+    <lastBuildDate>Fri, 15 May 2020 18:12:20 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.innoweb.cn/tags/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>俄罗斯农民乘法</title>
+      <link>http://blog.innoweb.cn/post/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</link>
+      <pubDate>Fri, 15 May 2020 18:12:20 +0800</pubDate>
+      
+      <guid>http://blog.innoweb.cn/post/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</guid>
+      <description>龙鸣乘法 在很久很久以前。。。人们是这样做乘法的。。。这是一种古老的乘法算法，但是在如今的计算机中却还能发现它的身影。它，就是以俄罗斯农民命名的乘法算法！ 我们绝大多数人学的都是这样做大数字乘法的： 1 2 3 4 5 6 7 86 x 57 ------ 602 + 4300 ------ 4902 如果你懂得乘法算式，那么这种“长式相乘”的方法是快速和</description>
+    </item>
+    
+  </channel>
+</rss>

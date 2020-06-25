@@ -4,8 +4,8 @@
 
   
   <meta charset="utf-8">
-  <title>Go校验层go Validator - Fish blog ø</title>
-  <meta name="description" content="Go校验层go Validator">
+  <title>Go校验层go-validator - Fish blog ø</title>
+  <meta name="description" content="Go校验层go-validator">
   <meta name="author" content="FishMan">
 
   
@@ -53,15 +53,7 @@
                 </li>
                 
                 <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/vue" class="pure-menu-link">Vue</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E7%AE%97%E6%B3%95" class="pure-menu-link">算法</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C" class="pure-menu-link">计算机网络</a>
+                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
                 </li>
                 
 				
@@ -86,15 +78,7 @@
                 </li>
                 
                 <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/vue" class="pure-menu-link">Vue</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E7%AE%97%E6%B3%95" class="pure-menu-link">算法</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C" class="pure-menu-link">计算机网络</a>
+                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
                 </li>
                 
 				
@@ -129,12 +113,13 @@
 
                     
                 </p>
-                <h1>DRAFT: Go校验层go Validator</h1>
+                <h1>DRAFT: Go校验层go-validator</h1>
             </div>
 
             <div class="post-content">
                 <p>最近在使用<code>iris</code>框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库<code>go-validator</code>来搭建校验层。</p>
 <h2 id="安装">安装</h2>
+<hr>
 <p>Go get 获取依赖。</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -158,6 +143,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="使用">使用</h2>
+<hr>
 <h4 id="定义校验规则">定义校验规则</h4>
 <p>自定义你的校验规则，同时可以使用匿名继承的方式定义结构体。</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">

@@ -22,12 +22,30 @@
     </item>
     
     <item>
-      <title>计算机网络 自顶向下读书笔记 其之一</title>
-      <link>http://blog.innoweb.cn/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</link>
-      <pubDate>Tue, 25 Feb 2020 18:57:14 +0800</pubDate>
+      <title>位运算</title>
+      <link>http://blog.innoweb.cn/post/%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
+      <pubDate>Thu, 04 Jun 2020 17:13:24 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/</guid>
-      <description></description>
+      <guid>http://blog.innoweb.cn/post/%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
+      <description>位运算基础 位操作 是程序设计中对位模式或二进制数的一元和二元操作。在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。基本的位操作符有与、或、异或、取反、左移、右移这6种，</description>
+    </item>
+    
+    <item>
+      <title>俄罗斯农民乘法</title>
+      <link>http://blog.innoweb.cn/post/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</link>
+      <pubDate>Fri, 15 May 2020 18:12:20 +0800</pubDate>
+      
+      <guid>http://blog.innoweb.cn/post/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</guid>
+      <description>龙鸣乘法 在很久很久以前。。。人们是这样做乘法的。。。这是一种古老的乘法算法，但是在如今的计算机中却还能发现它的身影。它，就是以俄罗斯农民命名的乘法算法！ 我们绝大多数人学的都是这样做大数字乘法的： 1 2 3 4 5 6 7 86 x 57 ------ 602 + 4300 ------ 4902 如果你懂得乘法算式，那么这种“长式相乘”的方法是快速和</description>
+    </item>
+    
+    <item>
+      <title>跳表</title>
+      <link>http://blog.innoweb.cn/post/%E8%B7%B3%E8%A1%A8/</link>
+      <pubDate>Wed, 15 Apr 2020 20:14:51 +0800</pubDate>
+      
+      <guid>http://blog.innoweb.cn/post/%E8%B7%B3%E8%A1%A8/</guid>
+      <description>跳表（skip list） Skip list是一个用于有序元素序列快速搜索的数据结构，由美国计算机科学家William Pugh发明于1989年。它的效率和红黑树以及 AVL 树不相上下，但实现起来比较容易。 作者William Pugh是这样介绍Skip list的: Skip list是一个“概率型”的数据结构</description>
     </item>
     
     <item>
@@ -67,25 +85,7 @@
     </item>
     
     <item>
-      <title>Vue基础 Vm生命周期</title>
-      <link>http://blog.innoweb.cn/post/vue%E5%9F%BA%E7%A1%80-vm%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
-      <pubDate>Sat, 01 Feb 2020 18:38:35 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/vue%E5%9F%BA%E7%A1%80-vm%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
-      <description>起步 每个Vue实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数，这给了用户在不同阶段添加自己的代码的机会。 比如 created 钩子可以用来在一个实例被创建之后执行代码：</description>
-    </item>
-    
-    <item>
-      <title>Vue基础 Vm实例</title>
-      <link>http://blog.innoweb.cn/post/vue%E5%9F%BA%E7%A1%80-vm%E5%AE%9E%E4%BE%8B/</link>
-      <pubDate>Sat, 01 Feb 2020 18:37:02 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/vue%E5%9F%BA%E7%A1%80-vm%E5%AE%9E%E4%BE%8B/</guid>
-      <description>每个 Vue 应用都是通过用 Vue函数创建一个新的 Vue 实例开始的。了解vue实例之前一定要知道MVVM模型， 1 2 3 var vm = new Vue({ // 选项 }) 虽然没有完全遵循 MVVM 模型，但是 Vue 的设计也受到了它的启发。因此在文档中经常会使用 vm(ViewModel 的缩写) 这个变量名表示 Vue 实例。 MVVM模型 MVVM（Model–view–vie</description>
-    </item>
-    
-    <item>
-      <title>Go校验层go Validator</title>
+      <title>Go校验层go-validator</title>
       <link>http://blog.innoweb.cn/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</link>
       <pubDate>Fri, 31 Jan 2020 22:00:26 +0800</pubDate>
       
@@ -108,7 +108,7 @@
       <pubDate>Fri, 31 Jan 2020 09:04:57 +0800</pubDate>
       
       <guid>http://blog.innoweb.cn/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
-      <description>前言✍ 动态规划（Dynamic Programming），求解的问题必须有两个性质：最优子结构和子问题重叠，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问题是重叠的，想要理解一个动态规划就要理解一个它的核心，动态规划算法的核心是下面的</description>
+      <description>前言 ✍ 动态规划（Dynamic Programming），求解的问题必须有两个性质：最优子结构和子问题重叠，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问题是重叠的，想要理解一个动态规划就要理解一个它的核心，动态规划算法的核心是下面的</description>
     </item>
     
     <item>
@@ -117,7 +117,7 @@
       <pubDate>Fri, 31 Jan 2020 08:33:26 +0800</pubDate>
       
       <guid>http://blog.innoweb.cn/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/</guid>
-      <description>线性模型🌾 两个变量之间存在一次方函数关系，就称它们之间存在线性关系。 在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和charge次数。下面拿实际问题来举例子。 注意：已知量数组不属于变量，比如说金币面额。</description>
+      <description>线性模型 🌾 两个变量之间存在一次方函数关系，就称它们之间存在线性关系。 在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和charge次数。下面拿实际问题来举例子。 注意：已知量数组不属于变量，比如说金币面额。</description>
     </item>
     
     <item>
@@ -148,57 +148,12 @@
     </item>
     
     <item>
-      <title>自顶向下读书笔记 层次协议</title>
-      <link>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/</link>
-      <pubDate>Fri, 31 Jan 2020 07:31:27 +0800</pubDate>
+      <title>二叉排序树</title>
+      <link>http://blog.innoweb.cn/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/</guid>
-      <description>对于大而复杂且需要不断更新的系统，改变服务的实现而不影响该系统其他组件是分层的另一个重要优点。 协议分层 网络设计者以分层 (layer) 的方式组织协议以及实现这些协议的网络硬件和软件。每个协议属于这些层次之一，我们再次关注某层向它的上一层提供的服务(service)，即所谓一层的服务模型 (service mod</description>
-    </item>
-    
-    <item>
-      <title>自顶向下读书 分组交换</title>
-      <link>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/</link>
-      <pubDate>Fri, 31 Jan 2020 07:30:48 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/</guid>
-      <description>计算机网络必定要限制在端系统之间的吞吐量(每秒能够传送的数据盘) ，在端系统之间引入时延，而且实际上能够丢失分组。 时延和丢包 分组交换网中的时延概述 当分组从一个结点(主机或路由器)沿着·后继结点(主机或路由器)，该分组在沿途的每个结点经受了几种不同类型的时延。这些时延最为重要的是结点</description>
-    </item>
-    
-    <item>
-      <title>自顶向下读书笔记 网络核心</title>
-      <link>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/</link>
-      <pubDate>Fri, 31 Jan 2020 07:30:12 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/</guid>
-      <description>即由互联因特网端系统的分组交换机和链路构成的网状网络。 分组交换 在各种网络应用中，端系统彼此交换报文(message)。 报文能够包含协议设计者需要的任何东西。为了从源端系统向目的端系统发送一个报文，将长报文划分为较小的数据块，称之为分组(packet) 。在源和目的之间，每个分组都通</description>
-    </item>
-    
-    <item>
-      <title>自顶向下读书笔记 网络边缘</title>
-      <link>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/</link>
-      <pubDate>Fri, 31 Jan 2020 07:30:04 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/</guid>
-      <description>端系统也称为主机，因为它们容纳(即运行)应用程序，如 Web浏览器程序、 Web 服务器程序、电子邮件阅读程序或电子邮件服务器程序等。本书通篇将交替使用主机和端系统这两个术语，即主机=端系统。主机又被进一步划分为两类:客户(client) 和 服务器 (server) 。 客户非正式地等同于桌面应用、移动PC 和智</description>
-    </item>
-    
-    <item>
-      <title>自顶向下读书笔记</title>
-      <link>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Fri, 31 Jan 2020 03:55:51 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>计算机网络是服务器编程的基础，以下是博主阅读《计算机网络-自顶向下》的读书笔记。 第一部分：因特网 因特网概述 网络边缘 网络核心 层次协议 分组交换</description>
-    </item>
-    
-    <item>
-      <title>自顶向下读书笔记 因特网概述</title>
-      <link>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/</link>
-      <pubDate>Fri, 31 Jan 2020 03:55:51 +0800</pubDate>
-      
-      <guid>http://blog.innoweb.cn/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/</guid>
-      <description>什么是因特网？ 从具体构成出发： 因特网是一个世界范围的计算机网络，他是一个互联了编辑全球数十亿计算设备的网络。 对于因特网术语而言，所有设接入的设备都被称为主机(host)或者是端系统(end)，端系统通过通信链路(communication link)和分组交换机(packet swi</description>
+      <guid>http://blog.innoweb.cn/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</guid>
+      <description>二叉排序树 二叉排序树的基础数据结构当然是一棵二叉树，在二叉树的基础上二叉排序树添加了一些特性，让其自身适合于查找的场景。 规则 若二叉排序树的左子树不空，则左子树上所有节点的值均小于它的根节点的值； 若它的右子树不空，则右子树上所有节点的值均大于其根节点的值。 换句话说就是：任何节点的键</description>
     </item>
     
   </channel>

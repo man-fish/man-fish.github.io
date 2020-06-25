@@ -53,15 +53,7 @@
                 </li>
                 
                 <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/vue" class="pure-menu-link">Vue</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E7%AE%97%E6%B3%95" class="pure-menu-link">算法</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C" class="pure-menu-link">计算机网络</a>
+                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
                 </li>
                 
 				
@@ -86,15 +78,7 @@
                 </li>
                 
                 <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/vue" class="pure-menu-link">Vue</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E7%AE%97%E6%B3%95" class="pure-menu-link">算法</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C" class="pure-menu-link">计算机网络</a>
+                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
                 </li>
                 
 				
@@ -124,7 +108,7 @@
                     
 
                     
-                    categories:<a href="http://blog.innoweb.cn/categories/%E7%AE%97%E6%B3%95">算法</a> 
+                    categories:<a href="http://blog.innoweb.cn/categories/Algorithm">Algorithm</a> 
                     
 
                     
@@ -134,6 +118,7 @@
 
             <div class="post-content">
                 <h2 id="概述">概述</h2>
+<hr>
 <p><code>广度优先遍历</code>属于图的一种基本遍历算法，其基本思想是尽最大程度辐射能够覆盖的节点，并对其进行访问。</p>
 <p>这里所说的图，不止局限于存储结构上的图，还包括逻辑结构上的图，接下来也会举相对的例子。</p>
 <p>以迷宫为例，深度优先搜索更像是一个人在走迷宫，遇到没有走过就标记，遇到走过就退一步重新走；而广度优先搜索则可以想象成一组人一起朝不同的方向走迷宫，当出现新的未走过的路的时候，这组人分开继续从不同的方向走，当相遇的时候再聚在一起。</p>
@@ -172,6 +157,7 @@ loop <span style="color:#000;font-weight:bold">(</span>queue非空<span style="c
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="图的遍历"><strong>图的遍历</strong></h2>
+<hr>
 <p><img src="http://image.innoweb.cn/2020-02-25-091841.png" alt="image-20200225014347840"></p>
 <p>拿这个图举例子，起点为A标记A以访问。第一轮推出A，并且将BCD三个结点访问、入队列并且标记。之后下一轮B出队列，将与其相邻的E访问、入队列并且标记。再下一轮，C出队列，F访问、入队列并且标记。最后几轮D、E、F以此出队列。</p>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -215,6 +201,7 @@ loop <span style="color:#000;font-weight:bold">(</span>queue非空<span style="c
 </div><p>除了一个一个的处理队列中的结点之外，我们还可以一次处理一层的结点，这样方便我们进行一些计数、比较出最优解的操作，在逐层遍历下只有处理完其周围所有结点才会处理下一层，当然图的遍历也可以采用这种方法。</p>
 <p><img src="http://image.innoweb.cn/2020-02-25-091854.png" alt="image-20200225014347840"></p>
 <h2 id="逐层bfs">逐层BFS</h2>
+<hr>
 <p>接下来举一个有关逻辑结构上的图的问题：<a href="https://leetcode-cn.com/problems/word-ladder/">leetcode 127. 单词接龙</a></p>
 <p>给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord 的最短转换序列的长度。转换需遵循如下规则：</p>
 <ul>
@@ -338,8 +325,9 @@ loop <span style="color:#000;font-weight:bold">(</span>queue非空<span style="c
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="双向bfs">双向BFS</h2>
+<hr>
 <blockquote>
-<p>**摘自：**<a href="http://blog.sina.com.cn/s/blog_6635898a0100p4wd.html">http://blog.sina.com.cn/s/blog_6635898a0100p4wd.html</a></p>
+<p><strong>摘自：</strong> <a href="http://blog.sina.com.cn/s/blog_6635898a0100p4wd.html">http://blog.sina.com.cn/s/blog_6635898a0100p4wd.html</a></p>
 </blockquote>
 <p>假设每次搜索的分支因子是r，如果最短的路径长为L的话（也就是搜了L层），那么，用一般的BFS算法(不考虑去掉重复状态)，总的搜索状态数是<code>r^L（^表示乘方运算）</code>；而如果采取双向BFS算法，那么，从前往后搜，我们只需要搜索<code>L/2</code>层，从后往前搜，我们也只要搜L/2层，因此，搜索状态数是<code>2*(r^(L/2))</code>，比普通BFS就快了很多了。</p>
 <p><strong>如果已经知道搜索的开始状态和结束状态</strong>，要找一个满足某种条件的一条路径(一般是最短路径)，为了避免无谓的“组合爆炸”产生，就可以采取双向广度搜索算法，也就是从开始状态和结束状态同时开始搜索，一个向前搜，一个向后找。</p>
