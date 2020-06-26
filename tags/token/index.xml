@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>token on Fish blog ø</title>
+    <title>token on Inno`s Blog</title>
     <link>http://blog.innoweb.cn/tags/token/</link>
-    <description>Recent content in token on Fish blog ø</description>
+    <description>Recent content in token on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
@@ -14,11 +14,11 @@
     
     <item>
       <title>Go处理token</title>
-      <link>http://blog.innoweb.cn/post/go%E5%A4%84%E7%90%86token/</link>
+      <link>http://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</link>
       <pubDate>Fri, 31 Jan 2020 21:34:13 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/go%E5%A4%84%E7%90%86token/</guid>
-      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能是从lacalstorage读取并写入请求头。 将tokenstring转化为未解</description>
+      <guid>http://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</guid>
+      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能</description>
     </item>
     
   </channel>

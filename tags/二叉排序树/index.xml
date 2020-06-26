@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>二叉排序树 on Fish blog ø</title>
+    <title>二叉排序树 on Inno`s Blog</title>
     <link>http://blog.innoweb.cn/tags/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</link>
-    <description>Recent content in 二叉排序树 on Fish blog ø</description>
+    <description>Recent content in 二叉排序树 on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
@@ -13,11 +13,11 @@
     
     <item>
       <title>二叉排序树</title>
-      <link>http://blog.innoweb.cn/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</link>
+      <link>http://blog.innoweb.cn/1/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</guid>
-      <description>二叉排序树 二叉排序树的基础数据结构当然是一棵二叉树，在二叉树的基础上二叉排序树添加了一些特性，让其自身适合于查找的场景。 规则 若二叉排序树的左子树不空，则左子树上所有节点的值均小于它的根节点的值； 若它的右子树不空，则右子树上所有节点的值均大于其根节点的值。 换句话说就是：任何节点的键</description>
+      <guid>http://blog.innoweb.cn/1/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</guid>
+      <description>二叉排序树 二叉排序树的基础数据结构当然是一棵二叉树，在二叉树的基础上二叉排序树添加了一些特性，让其自身适合于查找的场景。 规则 若二叉排序树的左子树不空，则左子树上所有节点的值均小于它的根节点的值； 若它的</description>
     </item>
     
   </channel>

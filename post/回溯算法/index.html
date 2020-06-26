@@ -1,123 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="patrick">
+  
+  
+  
+  <link rel="prev" href="https://www.flysnow.org/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/" />
+  <link rel="next" href="https://www.flysnow.org/post/%E9%80%92%E5%BD%92/" />
+  <link rel="canonical" href="https://www.flysnow.org/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           回溯算法 | Fish blog ø
+       
+  </title>
+  <meta name="title" content="回溯算法 | Fish blog ø">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
 
   
-  <meta charset="utf-8">
-  <title>回溯算法 - Fish blog ø</title>
-  <meta name="description" content="回溯算法">
-  <meta name="author" content="FishMan">
+  
+ 
 
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/www.flysnow.org"
+    },
+    "articleSection" : "post",
+    "name" : "回溯算法",
+    "headline" : "回溯算法",
+    "description" : "回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。 所谓的回溯，其实就是利用了for循环的执行先后顺序，比如同一层循环中，某一次循环断裂掉了，那么下一次循环一定会执行，也就是所谓的回溯",
+    "inLanguage" : "zh-CN",
+    "author" : "patrick",
+    "creator" : "patrick",
+    "publisher": "patrick",
+    "accountablePerson" : "patrick",
+    "copyrightHolder" : "patrick",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-01-31 08:11:15 \x2b0800 CST",
+    "dateModified" : "2020-01-31 08:11:15 \x2b0800 CST",
+    "url" : "https:\/\/www.flysnow.org\/post\/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95\/",
+    "wordCount" : "2413",
+    "keywords" : [ "回溯","算法", "Fish blog ø"]
+}
+</script>
 
-  
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="http://blog.innoweb.cn/css/fonts.css">
-  
-  
-  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css" integrity="sha384-CCTZv2q9I9m3UOxRLaJneXrrqKwUNOzZ6NGEUMwHtShDJ+nCoiXJCAgi05KfkLGY" crossorigin="anonymous">
-  
-  
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/grids-responsive-min.css">
-  
-  <link rel="stylesheet" href="http://blog.innoweb.cn/css/custom.css">
-
-  
-  
-  <link rel="stylesheet" href="http://blog.innoweb.cn/highlight/styles/default.css">
-  
-  <script src="http://blog.innoweb.cn/highlight/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
-  <meta name="generator" content="Hugo 0.63.2" />
-  
 </head>
-<body>
 
-<div class="header pure-g">
-    <div class="pure-u-1-24 pure-u-md-5-24"></div>
-    <div class="pure-u-11-12 pure-u-md-5-8">
-        <div class="desktop pure-menu pure-menu-horizontal nav-menu">
-            
-            <a href="http://blog.innoweb.cn/" class="site-title pure-menu-heading">Fish blog ø</a>
-            <ul class="pure-menu-list">
-				
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/Algorithm" class="pure-menu-link">Algorithm</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/golang" class="pure-menu-link">Golang</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
-                </li>
-                
-				
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/about/" class="pure-menu-link">About</a>
-                </li>
-            </ul>
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.flysnow.org">Fish blog ø</a>
         </div>
-        <div class="mobile pure-menu nav-menu">
-            <a href="/" class="pure-menu-heading" id="toggle-home">Fish blog ø</a>
-            <a href="#" id="toggle-btn">&#9776;</a>
-            <ul class="pure-menu-list" id="toggle-content" style="display:none;">
+        <div class="menu navbar-right">
                 
-				
                 
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/Algorithm" class="pure-menu-link">Algorithm</a>
-                </li>
+                <a class="menu-item" href="/posts/" title="">Blog</a>
                 
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/golang" class="pure-menu-link">Golang</a>
-                </li>
+                <a class="menu-item" href="/categories/" title="">Categories</a>
                 
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
-                </li>
+                <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-				
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/about" class="pure-menu-link">About</a>
-                </li>
-            </ul>
+                <a class="menu-item" href="/about/" title="">About</a>
+                
         </div>
     </div>
-    <div class="pure-u-1-24 pure-u-md-1-6"></div>
-</div>
-
-<div class="pure-g">
-    <div class="pure-u-1-24 pure-u-md-5-24"></div>
-	<div class="pure-u-11-12 pure-u-md-5-8">
-        <div class="post">
-
-            <div class="post-title">
-                <p class="footnote">
-                    <time class="">2020-01-31</time>
-		            
-                    
-                    |
-                    
-                    
-                    tags:<a href="http://blog.innoweb.cn/tags/%E5%9B%9E%E6%BA%AF">回溯</a> <a href="http://blog.innoweb.cn/tags/%E7%AE%97%E6%B3%95">算法</a> 
-                    
-
-                    
-                    categories:<a href="http://blog.innoweb.cn/categories/Algorithm">Algorithm</a> 
-                    
-
-                    
-                </p>
-                <h1>DRAFT: 回溯算法</h1>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.flysnow.org">Fish blog ø</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
             </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">回溯算法</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://www.flysnow.org" rel="author">patrick</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-01-31 itemprop="datePublished">January 31, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://www.flysnow.org/categories/Algorithm/"> Algorithm </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
 
-            <div class="post-content">
-                <p>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。</p>
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。</p>
 <p><strong>所谓的回溯，其实就是利用了for循环的执行先后顺序，比如同一层循环中，某一次循环断裂掉了，那么下一次循环一定会执行，也就是所谓的回溯，回到之前的状态。</strong></p>
 <p>回溯法是一种系统<strong>搜索</strong>问题<strong>解空间</strong>的方法。为了实现回溯，需要给问题定义一个<strong>解空间</strong>。说到底它是一种<strong>搜索算法</strong>。只是这里的搜索是在一个叫做<strong>解空间</strong>的地方搜索。而往往所谓的<strong>dfs</strong>，<strong>bfs</strong>都是在图或者树这种数据结构上的搜索。</p>
 <h2 id="用回溯算法解决问题的一般步骤">用回溯算法解决问题的一般步骤：</h2>
@@ -428,73 +459,98 @@
 而这对于获得面试机会已经足够了！！！
 并且回溯很优美，很容易理解，因为说到底它不过就是个填格子的游戏罢了。</p>
 
-            </div>
-        </div>
-	</div>
-    <div class="pure-u-1-24 pure-u-md-1-6"></div>
-</div>
+    </div>
 
-<div class="footer pure-g">
-    <div class="pure-u-1-24 pure-u-md-5-24"></div>
-    <div class="pure-u-11-12 pure-u-md-5-8">
-        <div class="footer-content">
-		  <div class="pure-menu pure-menu-horizontal">
-              <ul>
-			      
-                  <li class="pure-menu-heading" id="foot-name">FishMan:</li>
-                  
-				  
-                  
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>patrick </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://www.flysnow.org/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/>https://www.flysnow.org/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</span>
+            </p>
+            
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://www.flysnow.org/tags/%E5%9B%9E%E6%BA%AF/">
+                    #回溯</a></span>
+            
+            <span class="tag"><a href="https://www.flysnow.org/tags/%E7%AE%97%E6%B3%95/">
+                    #算法</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://www.flysnow.org">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://www.flysnow.org/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/" class="prev" rel="prev" title="二叉排序树"><i class="iconfont icon-left"></i>&nbsp;二叉排序树</a>
+         
+        
+        <a href="https://www.flysnow.org/post/%E9%80%92%E5%BD%92/" class="next" rel="next" title="递归">递归&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
           
-                  
-                  <li class="pure-menu-item">
-                      <a href="https://github.com/https://github.com/patrick-prod" class="pure-menu-link">GitHub</a>
-                  </li>
-                  
+                 
           
-                  
-                  <li class="pure-menu-item">
-                      <a href="https://www.linkedin.com/in/YOUR%20LINKEDIN%20ID" class="pure-menu-link">LinkedIn</a>
-                  </li>
-                  
-          
-                  
-          
-                  
-          
-              </ul>
-              <a href="#" class="pure-menu-heading pull-right" id="gototop-btn">↑↑</a>
+    </div>
+</article>
           </div>
-		  
-		  <p id="foot-copyright">Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</p>
-		  
-		</div>
-	  </div>
-      <div class="pure-u-1-24 pure-u-md-1-6"></div>
-</div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://www.flysnow.org">patrick</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
 
 
-<script src="http://blog.innoweb.cn/js/jquery.min.js" type="text/javascript"></script>
-<script src="http://blog.innoweb.cn/js/jquery.timeago.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(function(){
-    $("time.timeago").timeago();
-  })
-  $("#toggle-btn").click(function(){
-    $("#toggle-content").toggle();
-    if($(this).html() === "☰") {
-        $(this).html("X")
-    } else {
-        $(this).html("☰")
-    }
-  });
-  $(window).resize(function(){
-    if(window.innerWidth > 768) {
-      $(".desktop").removeAttr("style");
-    }
-  });
-</script>
 
-</body>
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
 </html>
-

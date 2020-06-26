@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>回溯 on Fish blog ø</title>
+    <title>回溯 on Inno`s Blog</title>
     <link>http://blog.innoweb.cn/tags/%E5%9B%9E%E6%BA%AF/</link>
-    <description>Recent content in 回溯 on Fish blog ø</description>
+    <description>Recent content in 回溯 on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
@@ -14,11 +14,11 @@
     
     <item>
       <title>回溯算法</title>
-      <link>http://blog.innoweb.cn/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</link>
+      <link>http://blog.innoweb.cn/2020/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</link>
       <pubDate>Fri, 31 Jan 2020 08:11:15 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</guid>
-      <description>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。 所谓的回溯，其实就是利用了for循环的执行先后顺序，比如同一层循环中，某一次循环断裂掉了，那么下一次循环一定会执行，也就是所谓的回溯</description>
+      <guid>http://blog.innoweb.cn/2020/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</guid>
+      <description>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。 所谓的回溯，其实就是利用了for循环的执行先后顺序，</description>
     </item>
     
   </channel>

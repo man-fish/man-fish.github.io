@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>跳表 on Fish blog ø</title>
+    <title>跳表 on Inno`s Blog</title>
     <link>http://blog.innoweb.cn/tags/%E8%B7%B3%E8%A1%A8/</link>
-    <description>Recent content in 跳表 on Fish blog ø</description>
+    <description>Recent content in 跳表 on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>跳表</title>
-      <link>http://blog.innoweb.cn/post/%E8%B7%B3%E8%A1%A8/</link>
+      <title>跳表的原理与实现</title>
+      <link>http://blog.innoweb.cn/2020/%E8%B7%B3%E8%A1%A8/</link>
       <pubDate>Wed, 15 Apr 2020 20:14:51 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E8%B7%B3%E8%A1%A8/</guid>
-      <description>跳表（skip list） Skip list是一个用于有序元素序列快速搜索的数据结构，由美国计算机科学家William Pugh发明于1989年。它的效率和红黑树以及 AVL 树不相上下，但实现起来比较容易。 作者William Pugh是这样介绍Skip list的: Skip list是一个“概率型”的数据结构</description>
+      <guid>http://blog.innoweb.cn/2020/%E8%B7%B3%E8%A1%A8/</guid>
+      <description>跳表（skip list） Skip list是一个用于有序元素序列快速搜索的数据结构，由美国计算机科学家William Pugh发明于1989年。它的效率和红黑树以及 AVL 树不相上下，但实现起来比较容易。 作者Will</description>
     </item>
     
   </channel>

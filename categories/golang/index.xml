@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>golang on Fish blog ø</title>
+    <title>golang on Inno`s Blog</title>
     <link>http://blog.innoweb.cn/categories/golang/</link>
-    <description>Recent content in golang on Fish blog ø</description>
+    <description>Recent content in golang on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
@@ -14,38 +14,38 @@
     
     <item>
       <title>Go编程规范</title>
-      <link>http://blog.innoweb.cn/post/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <link>http://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
       <pubDate>Tue, 11 Feb 2020 19:57:37 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
-      <description>要使用好你的语言，重要的是要了解它的特性和约定。 了解Go编程中已建立的约定（如命名，格式设置，程序构造等）非常重要，这样您编写的程序将易于其他Go程序员理解。以下我们介绍了惯用的Go代码的技巧和语言规范。 注释 Go提供了C样式/ * * /块注释和C ++样式//行注释。 行注释是常态。 块注</description>
+      <guid>http://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
+      <description>要使用好你的语言，重要的是要了解它的特性和约定。 了解Go编程中已建立的约定（如命名，格式设置，程序构造等）非常重要，这样您编写的程序将易于其他Go程序员理解。以下我们介绍了惯用的Go代码的技巧和语言规</description>
     </item>
     
     <item>
       <title>Go操作kafka</title>
-      <link>http://blog.innoweb.cn/post/go%E6%93%8D%E4%BD%9Ckafka/</link>
+      <link>http://blog.innoweb.cn/2020/go%E6%93%8D%E4%BD%9Ckafka/</link>
       <pubDate>Sat, 08 Feb 2020 07:04:04 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/go%E6%93%8D%E4%BD%9Ckafka/</guid>
-      <description>消息概念部分引自李文周的个人博客。 什么叫消息队列💩 消息（Message）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。 消息队列（Message Queue）是一种应用间的通信方式，消息发送后可以立即返回，由消息系统来确保消息的可靠传</description>
+      <guid>http://blog.innoweb.cn/2020/go%E6%93%8D%E4%BD%9Ckafka/</guid>
+      <description>消息概念部分引自李文周的个人博客。 什么叫消息队列💩 消息（Message）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。 消息队列（Message Queu</description>
     </item>
     
     <item>
       <title>Go校验层go-validator</title>
-      <link>http://blog.innoweb.cn/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</link>
+      <link>http://blog.innoweb.cn/2020/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</link>
       <pubDate>Fri, 31 Jan 2020 22:00:26 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</guid>
-      <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 1 go get gopkg.in/validator.v2 Import the package into your own code. 1 2 3 import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的校验规则，同时可以使用匿名继承的方式定义结构体。 1 2 3 4 5 6 7 8 9 10 type LoginValidator</description>
+      <guid>http://blog.innoweb.cn/2020/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</guid>
+      <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 go get gopkg.in/validator.v2 Import the package into your own code. import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的</description>
     </item>
     
     <item>
       <title>Go处理token</title>
-      <link>http://blog.innoweb.cn/post/go%E5%A4%84%E7%90%86token/</link>
+      <link>http://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</link>
       <pubDate>Fri, 31 Jan 2020 21:34:13 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/go%E5%A4%84%E7%90%86token/</guid>
-      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能是从lacalstorage读取并写入请求头。 将tokenstring转化为未解</description>
+      <guid>http://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</guid>
+      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能</description>
     </item>
     
   </channel>

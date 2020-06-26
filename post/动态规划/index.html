@@ -1,123 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="patrick">
+  
+  
+  
+  <link rel="prev" href="https://www.flysnow.org/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" />
+  <link rel="next" href="https://www.flysnow.org/post/go%E5%A4%84%E7%90%86token/" />
+  <link rel="canonical" href="https://www.flysnow.org/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           动态规划 | Fish blog ø
+       
+  </title>
+  <meta name="title" content="动态规划 | Fish blog ø">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
 
   
-  <meta charset="utf-8">
-  <title>动态规划 - Fish blog ø</title>
-  <meta name="description" content="动态规划">
-  <meta name="author" content="FishMan">
+  
+ 
 
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/www.flysnow.org"
+    },
+    "articleSection" : "post",
+    "name" : "动态规划",
+    "headline" : "动态规划",
+    "description" : "前言 ✍ 动态规划（Dynamic Programming），求解的问题必须有两个性质：最优子结构和子问题重叠，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问题是重叠的，想要理解一个动态规划就要理解一个它的核心，动态规划算法的核心是下面的",
+    "inLanguage" : "zh-CN",
+    "author" : "patrick",
+    "creator" : "patrick",
+    "publisher": "patrick",
+    "accountablePerson" : "patrick",
+    "copyrightHolder" : "patrick",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-01-31 09:04:57 \x2b0800 CST",
+    "dateModified" : "2020-01-31 09:04:57 \x2b0800 CST",
+    "url" : "https:\/\/www.flysnow.org\/post\/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92\/",
+    "wordCount" : "3925",
+    "keywords" : [ "动态规划","算法", "Fish blog ø"]
+}
+</script>
 
-  
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="http://blog.innoweb.cn/css/fonts.css">
-  
-  
-  <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css" integrity="sha384-CCTZv2q9I9m3UOxRLaJneXrrqKwUNOzZ6NGEUMwHtShDJ+nCoiXJCAgi05KfkLGY" crossorigin="anonymous">
-  
-  
-    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/grids-responsive-min.css">
-  
-  <link rel="stylesheet" href="http://blog.innoweb.cn/css/custom.css">
-
-  
-  
-  <link rel="stylesheet" href="http://blog.innoweb.cn/highlight/styles/default.css">
-  
-  <script src="http://blog.innoweb.cn/highlight/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
-  <meta name="generator" content="Hugo 0.63.2" />
-  
 </head>
-<body>
 
-<div class="header pure-g">
-    <div class="pure-u-1-24 pure-u-md-5-24"></div>
-    <div class="pure-u-11-12 pure-u-md-5-8">
-        <div class="desktop pure-menu pure-menu-horizontal nav-menu">
-            
-            <a href="http://blog.innoweb.cn/" class="site-title pure-menu-heading">Fish blog ø</a>
-            <ul class="pure-menu-list">
-				
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/Algorithm" class="pure-menu-link">Algorithm</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/golang" class="pure-menu-link">Golang</a>
-                </li>
-                
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
-                </li>
-                
-				
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/about/" class="pure-menu-link">About</a>
-                </li>
-            </ul>
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.flysnow.org">Fish blog ø</a>
         </div>
-        <div class="mobile pure-menu nav-menu">
-            <a href="/" class="pure-menu-heading" id="toggle-home">Fish blog ø</a>
-            <a href="#" id="toggle-btn">&#9776;</a>
-            <ul class="pure-menu-list" id="toggle-content" style="display:none;">
+        <div class="menu navbar-right">
                 
-				
                 
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/Algorithm" class="pure-menu-link">Algorithm</a>
-                </li>
+                <a class="menu-item" href="/posts/" title="">Blog</a>
                 
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/golang" class="pure-menu-link">Golang</a>
-                </li>
+                <a class="menu-item" href="/categories/" title="">Categories</a>
                 
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/categories/leetcode" class="pure-menu-link">Leetcode</a>
-                </li>
+                <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-				
-                <li class="pure-menu-item">
-                    <a href="http://blog.innoweb.cn/about" class="pure-menu-link">About</a>
-                </li>
-            </ul>
+                <a class="menu-item" href="/about/" title="">About</a>
+                
         </div>
     </div>
-    <div class="pure-u-1-24 pure-u-md-1-6"></div>
-</div>
-
-<div class="pure-g">
-    <div class="pure-u-1-24 pure-u-md-5-24"></div>
-	<div class="pure-u-11-12 pure-u-md-5-8">
-        <div class="post">
-
-            <div class="post-title">
-                <p class="footnote">
-                    <time class="">2020-01-31</time>
-		            
-                    
-                    |
-                    
-                    
-                    tags:<a href="http://blog.innoweb.cn/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</a> <a href="http://blog.innoweb.cn/tags/%E7%AE%97%E6%B3%95">算法</a> 
-                    
-
-                    
-                    categories:<a href="http://blog.innoweb.cn/categories/Algorithm">Algorithm</a> 
-                    
-
-                    
-                </p>
-                <h1>DRAFT: 动态规划</h1>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.flysnow.org">Fish blog ø</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
             </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">动态规划</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://www.flysnow.org" rel="author">patrick</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-01-31 itemprop="datePublished">January 31, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://www.flysnow.org/categories/Algorithm/"> Algorithm </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
 
-            <div class="post-content">
-                <h2 id="前言-">前言 ✍</h2>
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h2 id="前言-">前言 ✍</h2>
 <hr>
 <p>动态规划<code>（Dynamic Programming）</code>，求解的问题必须有两个性质：<code>最优子结构</code>和<code>子问题重叠</code>，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问题是重叠的，想要理解一个动态规划就要理解一个它的核心，动态规划算法的核心是下面的一张图片和一个小故事。</p>
 <p><!-- raw HTML omitted --></p>
@@ -460,73 +491,98 @@ A :  &quot;所以你不用重新计算,因为你记住了第一个等式的值�
 <h4 id="-重叠子问题">② 重叠子问题</h4>
 <p>在斐波拉契数列和钢条切割结构图中，可以看到大量的重叠子问题，比如说在求fib（6）的时候，fib（2）被调用了5次，在求cut（4）的时候cut（0）被调用了4次。如果使用递归算法的时候会反复的求解相同的子问题，不停的调用函数，而不是生成新的子问题。如果递归算法反复求解相同的子问题，就称为具有重叠子问题（overlapping subproblems）性质。在动态规划算法中使用数组来保存子问题的解，这样子问题多次求解的时候可以直接查表不用调用函数递归。</p>
 
-            </div>
-        </div>
-	</div>
-    <div class="pure-u-1-24 pure-u-md-1-6"></div>
-</div>
+    </div>
 
-<div class="footer pure-g">
-    <div class="pure-u-1-24 pure-u-md-5-24"></div>
-    <div class="pure-u-11-12 pure-u-md-5-8">
-        <div class="footer-content">
-		  <div class="pure-menu pure-menu-horizontal">
-              <ul>
-			      
-                  <li class="pure-menu-heading" id="foot-name">FishMan:</li>
-                  
-				  
-                  
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>patrick </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://www.flysnow.org/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/>https://www.flysnow.org/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</span>
+            </p>
+            
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://www.flysnow.org/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                    #动态规划</a></span>
+            
+            <span class="tag"><a href="https://www.flysnow.org/tags/%E7%AE%97%E6%B3%95/">
+                    #算法</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://www.flysnow.org">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://www.flysnow.org/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" class="prev" rel="prev" title="动态规划模型"><i class="iconfont icon-left"></i>&nbsp;动态规划模型</a>
+         
+        
+        <a href="https://www.flysnow.org/post/go%E5%A4%84%E7%90%86token/" class="next" rel="next" title="Go处理token">Go处理token&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
           
-                  
-                  <li class="pure-menu-item">
-                      <a href="https://github.com/https://github.com/patrick-prod" class="pure-menu-link">GitHub</a>
-                  </li>
-                  
+                 
           
-                  
-                  <li class="pure-menu-item">
-                      <a href="https://www.linkedin.com/in/YOUR%20LINKEDIN%20ID" class="pure-menu-link">LinkedIn</a>
-                  </li>
-                  
-          
-                  
-          
-                  
-          
-              </ul>
-              <a href="#" class="pure-menu-heading pull-right" id="gototop-btn">↑↑</a>
+    </div>
+</article>
           </div>
-		  
-		  <p id="foot-copyright">Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</p>
-		  
-		</div>
-	  </div>
-      <div class="pure-u-1-24 pure-u-md-1-6"></div>
-</div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://www.flysnow.org">patrick</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
 
 
-<script src="http://blog.innoweb.cn/js/jquery.min.js" type="text/javascript"></script>
-<script src="http://blog.innoweb.cn/js/jquery.timeago.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $(function(){
-    $("time.timeago").timeago();
-  })
-  $("#toggle-btn").click(function(){
-    $("#toggle-content").toggle();
-    if($(this).html() === "☰") {
-        $(this).html("X")
-    } else {
-        $(this).html("☰")
-    }
-  });
-  $(window).resize(function(){
-    if(window.innerWidth > 768) {
-      $(".desktop").removeAttr("style");
-    }
-  });
-</script>
 
-</body>
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
 </html>
-

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>大数操作 on Fish blog ø</title>
+    <title>大数操作 on Inno`s Blog</title>
     <link>http://blog.innoweb.cn/tags/%E5%A4%A7%E6%95%B0%E6%93%8D%E4%BD%9C/</link>
-    <description>Recent content in 大数操作 on Fish blog ø</description>
+    <description>Recent content in 大数操作 on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
@@ -14,11 +14,11 @@
     
     <item>
       <title>大数相加和大数相乘</title>
-      <link>http://blog.innoweb.cn/post/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</link>
+      <link>http://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</link>
       <pubDate>Mon, 15 Jun 2020 01:31:41 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</guid>
-      <description>大数相加和大数相乘 所有的语言数字类型都有安全的计算范围，超过范围之后不同语言的处理不同，有可能会报错，也有可能拿不到精确的结果，对javascript来说它的处理是不精确的结果： 1 2 console.log(123456789 * 987654321) // 121932631112635260 错误结果 对于golang来说溢出的计算会抛出错误： 1 2 3 4 5 6 7 package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(1234567890 * 9876543210) // constant</description>
+      <guid>http://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</guid>
+      <description>大数相加和大数相乘 所有的语言数字类型都有安全的计算范围，超过范围之后不同语言的处理不同，有可能会报错，也有可能拿不到精确的结果，对javascript来说它的处理是不精确的结果： console.log(123456789 * 987654321) // 121932631112635260 错误结果 对于</description>
     </item>
     
   </channel>

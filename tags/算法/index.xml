@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>算法 on Fish blog ø</title>
+    <title>算法 on Inno`s Blog</title>
     <link>http://blog.innoweb.cn/tags/%E7%AE%97%E6%B3%95/</link>
-    <description>Recent content in 算法 on Fish blog ø</description>
+    <description>Recent content in 算法 on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
@@ -14,128 +14,128 @@
     
     <item>
       <title>大数相加和大数相乘</title>
-      <link>http://blog.innoweb.cn/post/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</link>
+      <link>http://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</link>
       <pubDate>Mon, 15 Jun 2020 01:31:41 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</guid>
-      <description>大数相加和大数相乘 所有的语言数字类型都有安全的计算范围，超过范围之后不同语言的处理不同，有可能会报错，也有可能拿不到精确的结果，对javascript来说它的处理是不精确的结果： 1 2 console.log(123456789 * 987654321) // 121932631112635260 错误结果 对于golang来说溢出的计算会抛出错误： 1 2 3 4 5 6 7 package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(1234567890 * 9876543210) // constant</description>
+      <guid>http://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</guid>
+      <description>大数相加和大数相乘 所有的语言数字类型都有安全的计算范围，超过范围之后不同语言的处理不同，有可能会报错，也有可能拿不到精确的结果，对javascript来说它的处理是不精确的结果： console.log(123456789 * 987654321) // 121932631112635260 错误结果 对于</description>
     </item>
     
     <item>
-      <title>位运算</title>
-      <link>http://blog.innoweb.cn/post/%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
+      <title>位运算技巧总结</title>
+      <link>http://blog.innoweb.cn/2020/%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
       <pubDate>Thu, 04 Jun 2020 17:13:24 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
-      <description>位运算基础 位操作 是程序设计中对位模式或二进制数的一元和二元操作。在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。基本的位操作符有与、或、异或、取反、左移、右移这6种，</description>
+      <guid>http://blog.innoweb.cn/2020/%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
+      <description>位运算基础 位操作 是程序设计中对位模式或二进制数的一元和二元操作。在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算</description>
     </item>
     
     <item>
       <title>俄罗斯农民乘法</title>
-      <link>http://blog.innoweb.cn/post/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</link>
+      <link>http://blog.innoweb.cn/2020/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</link>
       <pubDate>Fri, 15 May 2020 18:12:20 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</guid>
-      <description>龙鸣乘法 在很久很久以前。。。人们是这样做乘法的。。。这是一种古老的乘法算法，但是在如今的计算机中却还能发现它的身影。它，就是以俄罗斯农民命名的乘法算法！ 我们绝大多数人学的都是这样做大数字乘法的： 1 2 3 4 5 6 7 86 x 57 ------ 602 + 4300 ------ 4902 如果你懂得乘法算式，那么这种“长式相乘”的方法是快速和</description>
+      <guid>http://blog.innoweb.cn/2020/%E4%BF%84%E7%BD%97%E6%96%AF%E5%86%9C%E6%B0%91%E4%B9%98%E6%B3%95/</guid>
+      <description>龙鸣乘法 在很久很久以前。。。人们是这样做乘法的。。。这是一种古老的乘法算法，但是在如今的计算机中却还能发现它的身影。它，就是以俄罗斯农民命名的乘法算法！ 我们绝大多数人学的都是这样做大数字乘法的： 86 x 57</description>
     </item>
     
     <item>
-      <title>跳表</title>
-      <link>http://blog.innoweb.cn/post/%E8%B7%B3%E8%A1%A8/</link>
+      <title>跳表的原理与实现</title>
+      <link>http://blog.innoweb.cn/2020/%E8%B7%B3%E8%A1%A8/</link>
       <pubDate>Wed, 15 Apr 2020 20:14:51 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E8%B7%B3%E8%A1%A8/</guid>
-      <description>跳表（skip list） Skip list是一个用于有序元素序列快速搜索的数据结构，由美国计算机科学家William Pugh发明于1989年。它的效率和红黑树以及 AVL 树不相上下，但实现起来比较容易。 作者William Pugh是这样介绍Skip list的: Skip list是一个“概率型”的数据结构</description>
+      <guid>http://blog.innoweb.cn/2020/%E8%B7%B3%E8%A1%A8/</guid>
+      <description>跳表（skip list） Skip list是一个用于有序元素序列快速搜索的数据结构，由美国计算机科学家William Pugh发明于1989年。它的效率和红黑树以及 AVL 树不相上下，但实现起来比较容易。 作者Will</description>
     </item>
     
     <item>
       <title>Leetcode刷题记录150-200</title>
-      <link>http://blog.innoweb.cn/post/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95150-200/</link>
+      <link>http://blog.innoweb.cn/2020/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95150-200/</link>
       <pubDate>Wed, 15 Apr 2020 18:12:57 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95150-200/</guid>
-      <description>102. 二叉树的层次遍历 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。 例如: 1 2 3 4 5 6 7 8 9 10 11 12 // 给定二叉树: [3,9,20,null,null,15,7] 3 / \ 9 20 / \ 15 7 // 返回其层次遍历结果： [ [3], [9,20], [15,7] ] 我的解法： 层级BFS，做题的时候忘了queue能看容量了，写的有点傻。 1 2 3 4 5 6 7 8 9</description>
+      <guid>http://blog.innoweb.cn/2020/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95150-200/</guid>
+      <description>102. 二叉树的层次遍历 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。 例如: // 给定二叉树: [3,9,20,null,null,15,7] 3 / \ 9 20 / \ 15 7 // 返回其层次遍历结果： [ [3], [9,20], [15,7] ] 我的解法： 层级BFS，做题的时候</description>
     </item>
     
     <item>
       <title>Leetcode刷题记录051 100</title>
-      <link>http://blog.innoweb.cn/post/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95051-100/</link>
+      <link>http://blog.innoweb.cn/2020/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95051-100/</link>
       <pubDate>Sat, 14 Mar 2020 22:19:17 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95051-100/</guid>
-      <description>56.区间合并 力扣（LeetCode）链接 题目描述： 给出一个区间的集合，请合并所有重叠的区间。 示例: 1 2 3 4 5 6 7 输入: [[1,3],[2,6],[8,10],[15,18]] 输出: [[1,6],[8,10],[15,18]] 解释: 区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6]. 输入: [[1,4],[4,5]] 输出: [[1,5]] 解释: 区间 [1,4] 和 [4,5] 可被视为重叠区间。 我的解法： 递归 1 2 3 4 5 6 7 8 9 10 11 12 13 func merge(intervals [][]int) [][]int { if len(intervals) == 1 { return intervals</description>
+      <guid>http://blog.innoweb.cn/2020/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95051-100/</guid>
+      <description>56.区间合并 力扣（LeetCode）链接 题目描述： 给出一个区间的集合，请合并所有重叠的区间。 示例: 输入: [[1,3],[2,6],[8,10],[15,18]] 输出: [[1,6],[8,10],[15,18]] 解释: 区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6]. 输入: [[1,4],[4,5]] 输出: [[1,5]] 解释: 区间 [1,4] 和 [4,5] 可被视为重叠区间</description>
     </item>
     
     <item>
       <title>广度优先遍历与优化</title>
-      <link>http://blog.innoweb.cn/post/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.innoweb.cn/2020/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/</link>
       <pubDate>Tue, 25 Feb 2020 17:20:39 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/</guid>
-      <description>概述 广度优先遍历属于图的一种基本遍历算法，其基本思想是尽最大程度辐射能够覆盖的节点，并对其进行访问。 这里所说的图，不止局限于存储结构上的图，还包括逻辑结构上的图，接下来也会举相对的例子。 以迷宫为例，深度优先搜索更像是一个人在走迷宫，遇到没有走过就标记，遇到走过就退一步重新走；而广</description>
+      <guid>http://blog.innoweb.cn/2020/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/</guid>
+      <description>概述 广度优先遍历属于图的一种基本遍历算法，其基本思想是尽最大程度辐射能够覆盖的节点，并对其进行访问。 这里所说的图，不止局限于存储结构上的图，还包括逻辑结构上的图，接下来也会举相对的例子。 以迷宫为例，深</description>
     </item>
     
     <item>
       <title>Leetcode刷题记录001-050</title>
-      <link>http://blog.innoweb.cn/post/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95001-050/</link>
+      <link>http://blog.innoweb.cn/2020/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95001-050/</link>
       <pubDate>Wed, 19 Feb 2020 22:49:56 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95001-050/</guid>
-      <description>1.两数之和 力扣（LeetCode）链接 题目描述： 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例: 1 2 3 给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1]</description>
+      <guid>http://blog.innoweb.cn/2020/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95001-050/</guid>
+      <description>1.两数之和 力扣（LeetCode）链接 题目描述： 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，</description>
     </item>
     
     <item>
       <title>动态规划</title>
-      <link>http://blog.innoweb.cn/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
+      <link>http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
       <pubDate>Fri, 31 Jan 2020 09:04:57 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
-      <description>前言 ✍ 动态规划（Dynamic Programming），求解的问题必须有两个性质：最优子结构和子问题重叠，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问题是重叠的，想要理解一个动态规划就要理解一个它的核心，动态规划算法的核心是下面的</description>
+      <guid>http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
+      <description>前言 ✍ 动态规划（Dynamic Programming），求解的问题必须有两个性质：最优子结构和子问题重叠，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问</description>
     </item>
     
     <item>
       <title>动态规划模型</title>
-      <link>http://blog.innoweb.cn/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/</link>
+      <link>http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Fri, 31 Jan 2020 08:33:26 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/</guid>
-      <description>线性模型 🌾 两个变量之间存在一次方函数关系，就称它们之间存在线性关系。 在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和charge次数。下面拿实际问题来举例子。 注意：已知量数组不属于变量，比如说金币面额。</description>
+      <guid>http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/</guid>
+      <description>线性模型 🌾 两个变量之间存在一次方函数关系，就称它们之间存在线性关系。 在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和cha</description>
     </item>
     
     <item>
       <title>贪心算法</title>
-      <link>http://blog.innoweb.cn/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</link>
+      <link>http://blog.innoweb.cn/2020/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</link>
       <pubDate>Fri, 31 Jan 2020 08:18:46 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</guid>
-      <description>简介 贪心算法（英语：greedy algorithm），又称贪婪算法，是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是最好或最优的算法。比如在旅行推销员问题中，如果旅行员每次都选择最近的城市，那这就是一种贪心算法。 例子:最小生成树的算法 (Prim MST</description>
+      <guid>http://blog.innoweb.cn/2020/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</guid>
+      <description>简介 贪心算法（英语：greedy algorithm），又称贪婪算法，是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是最好或最优的算法。比如在旅行推销员问题中，如果</description>
     </item>
     
     <item>
       <title>递归</title>
-      <link>http://blog.innoweb.cn/post/%E9%80%92%E5%BD%92/</link>
+      <link>http://blog.innoweb.cn/2020/%E9%80%92%E5%BD%92/</link>
       <pubDate>Fri, 31 Jan 2020 08:12:41 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E9%80%92%E5%BD%92/</guid>
-      <description>定义 在数学与计算机科学中，递归(Recursion)是指在函数的定义中使用函数自身的方法。在算法中递归应用之广毋庸置疑回溯，分治，动态规划，贪心算法中都推导的过程中可能用到递归算法。比如实际上，递归，顾名思义，其包含了两个意思：递 和 归，这正是递归思想的精华所在： 递归就是有去（递去</description>
+      <guid>http://blog.innoweb.cn/2020/%E9%80%92%E5%BD%92/</guid>
+      <description>定义 在数学与计算机科学中，递归(Recursion)是指在函数的定义中使用函数自身的方法。在算法中递归应用之广毋庸置疑回溯，分治，动态规划，贪心算法中都推导的过程中可能用到递归算法。比如实际上，递归，</description>
     </item>
     
     <item>
       <title>回溯算法</title>
-      <link>http://blog.innoweb.cn/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</link>
+      <link>http://blog.innoweb.cn/2020/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</link>
       <pubDate>Fri, 31 Jan 2020 08:11:15 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</guid>
-      <description>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。 所谓的回溯，其实就是利用了for循环的执行先后顺序，比如同一层循环中，某一次循环断裂掉了，那么下一次循环一定会执行，也就是所谓的回溯</description>
+      <guid>http://blog.innoweb.cn/2020/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</guid>
+      <description>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。 所谓的回溯，其实就是利用了for循环的执行先后顺序，</description>
     </item>
     
     <item>
       <title>二叉排序树</title>
-      <link>http://blog.innoweb.cn/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</link>
+      <link>http://blog.innoweb.cn/1/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.innoweb.cn/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</guid>
-      <description>二叉排序树 二叉排序树的基础数据结构当然是一棵二叉树，在二叉树的基础上二叉排序树添加了一些特性，让其自身适合于查找的场景。 规则 若二叉排序树的左子树不空，则左子树上所有节点的值均小于它的根节点的值； 若它的右子树不空，则右子树上所有节点的值均大于其根节点的值。 换句话说就是：任何节点的键</description>
+      <guid>http://blog.innoweb.cn/1/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/</guid>
+      <description>二叉排序树 二叉排序树的基础数据结构当然是一棵二叉树，在二叉树的基础上二叉排序树添加了一些特性，让其自身适合于查找的场景。 规则 若二叉排序树的左子树不空，则左子树上所有节点的值均小于它的根节点的值； 若它的</description>
     </item>
     
   </channel>

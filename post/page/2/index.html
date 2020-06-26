@@ -1,539 +1,232 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Posts | 于先森的个人博客</title>
-    <meta property="og:title" content="Posts - 于先森的个人博客">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="golang,go语言,go语言笔记,于先森,javascript,nodejs,博客,服务器,前端,小程序">
-    <meta name="description" content="Posts">
-        
-    <meta name="author" content="patrick">
-    <meta property="og:url" content="https://patrick-prod.github.io/post/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://patrick-prod.github.io/post/index.xml" title="于先森的个人博客" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="patrick">
+  
+  
+  
+  
+  
+  <link rel="canonical" href="https://www.flysnow.org/post/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Posts | Fish blog ø
+       
+  </title>
+  <meta name="title" content="Posts | Fish blog ø">
     
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-4031353640611810",
-        enable_page_level_ads: true
-    });
-    </script>
-    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
 
 
-    
-    
-        <link rel="stylesheet" href='/css/my.css'>
-    
+  
+    <link href="https://www.flysnow.org/post/index.xml" rel="alternate" type="application/rss+xml" title="Fish blog ø" />
+    <link href="https://www.flysnow.org/post/index.xml" rel="feed" type="application/rss+xml" title="Fish blog ø" />
+  
+  
+ 
+
 </head>
 
+  
 
-<body>
-    <header id="header" class="clearfix">
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
     <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.flysnow.org">Fish blog ø</a>
+        </div>
+        <div class="menu navbar-right">
                 
-                    <a id="logo" href="https://patrick-prod.github.io/">
-                        于先森的个人博客
-                    </a>
                 
-                <p class="description">渣本在校大学生/全栈开发，专注于JavaScript、Golang，科学技术是第一生产力。</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://patrick-prod.github.io/">首页</a>
-                    
-                    <a  href="https://patrick-prod.github.io/archives/" title="归档">归档</a>
-                    
-                    <a  href="https://patrick-prod.github.io/about/" title="关于">关于</a>
-                    
-                </nav>
-            </div>
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
         </div>
     </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" title="动态规划模型">动态规划模型</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95'>算法</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            线性模型🌾 两个变量之间存在一次方函数关系，就称它们之间存在线性关系。 在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和charge次数。下面拿实际问题来举例子。 注意：已知量数组不属于变量，比如说金币面额。……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="贪心算法">贪心算法</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95'>算法</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            简介 贪心算法（英语：greedy algorithm），又称贪婪算法，是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是最好或最优的算法。比如在旅行推销员问题中，如果旅行员每次都选择最近的城市，那这就是一种贪心算法。 例子:最小生成树的算法 (Prim MST……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E9%80%92%E5%BD%92/" title="递归">递归</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95'>算法</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            定义 在数学与计算机科学中，递归(Recursion)是指在函数的定义中使用函数自身的方法。在算法中递归应用之广毋庸置疑回溯，分治，动态规划，贪心算法中都推导的过程中可能用到递归算法。比如实际上，递归，顾名思义，其包含了两个意思：递 和 归，这正是递归思想的精华所在： 递归就是有去（递去……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E9%80%92%E5%BD%92/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" title="回溯算法">回溯算法</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95'>算法</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。 所谓的回溯，其实就是利用了for循环的执行先后顺序，比如同一层循环中，某一次循环断裂掉了，那么下一次循环一定会执行，也就是所谓的回溯……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/" title="自顶向下读书笔记 层次协议">自顶向下读书笔记 层次协议</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            对于大而复杂且需要不断更新的系统，改变服务的实现而不影响该系统其他组件是分层的另一个重要优点。 协议分层 网络设计者以分层 (layer) 的方式组织协议以及实现这些协议的网络硬件和软件。每个协议属于这些层次之一，我们再次关注某层向它的上一层提供的服务(service)，即所谓一层的服务模型 (service mod……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%B1%82%E6%AC%A1%E5%8D%8F%E8%AE%AE/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/" title="自顶向下读书 分组交换">自顶向下读书 分组交换</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            计算机网络必定要限制在端系统之间的吞吐量(每秒能够传送的数据盘) ，在端系统之间引入时延，而且实际上能够丢失分组。 时延和丢包 分组交换网中的时延概述 当分组从一个结点(主机或路由器)沿着·后继结点(主机或路由器)，该分组在沿途的每个结点经受了几种不同类型的时延。这些时延最为重要的是结点……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/" title="自顶向下读书笔记 网络核心">自顶向下读书笔记 网络核心</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            即由互联因特网端系统的分组交换机和链路构成的网状网络。 分组交换 在各种网络应用中，端系统彼此交换报文(message)。 报文能够包含协议设计者需要的任何东西。为了从源端系统向目的端系统发送一个报文，将长报文划分为较小的数据块，称之为分组(packet) 。在源和目的之间，每个分组都通……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/" title="自顶向下读书笔记 网络边缘">自顶向下读书笔记 网络边缘</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            端系统也称为主机，因为它们容纳(即运行)应用程序，如 Web浏览器程序、 Web 服务器程序、电子邮件阅读程序或电子邮件服务器程序等。本书通篇将交替使用主机和端系统这两个术语，即主机=端系统。主机又被进一步划分为两类:客户(client) 和 服务器 (server) 。 客户非正式地等同于桌面应用、移动PC 和智……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/" title="自顶向下读书笔记 因特网概述">自顶向下读书笔记 因特网概述</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            什么是因特网？ 从具体构成出发： 因特网是一个世界范围的计算机网络，他是一个互联了编辑全球数十亿计算设备的网络。 对于因特网术语而言，所有设接入的设备都被称为主机(host)或者是端系统(end)，端系统通过通信链路(communication link)和分组交换机(packet swi……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="自顶向下读书笔记">自顶向下读书笔记</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2020年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C'>计算机网络</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            计算机网络是服务器编程的基础，以下是博主阅读《计算机网络-自顶向下》的读书笔记。 第一部分：因特网 因特网概述 网络边缘 网络核心 层次协议 分组交换……
-        </div>
-        <p class="readmore"><a href="https://patrick-prod.github.io/post/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">阅读全文</a></p>
-    </article>
-    
-    
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="https://patrick-prod.github.io/post/">上一页</a>
-    </li>
-    
-
-    
-    <li >
-        <a href="https://patrick-prod.github.io/post/">1</a>
-    </li>
-    
-    <li  class="current">
-        <a href="https://patrick-prod.github.io/post/page/2/">2</a>
-    </li>
-    
-
-    
-</ol>
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='https://patrick-prod.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://patrick-prod.github.io/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%85%B6%E4%B9%8B%E4%B8%80/" title="计算机网络 自顶向下读书笔记 其之一">计算机网络 自顶向下读书笔记 其之一</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E4%B8%8E%E4%BC%98%E5%8C%96/" title="广度优先遍历与优化">广度优先遍历与优化</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/leetcode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="Leetcode刷题记录">Leetcode刷题记录</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" title="Go编程规范">Go编程规范</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/go%E6%93%8D%E4%BD%9Ckafka/" title="Go操作kafka">Go操作kafka</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/vue%E5%9F%BA%E7%A1%80-vm%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="Vue基础 Vm生命周期">Vue基础 Vm生命周期</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/vue%E5%9F%BA%E7%A1%80-vm%E5%AE%9E%E4%BE%8B/" title="Vue基础 Vm实例">Vue基础 Vm实例</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/" title="Go校验层go Validator">Go校验层go Validator</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/go%E5%A4%84%E7%90%86token/" title="Go处理token">Go处理token</a>
-    </li>
-    
-    <li>
-        <a href="https://patrick-prod.github.io/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">动态规划</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="https://patrick-prod.github.io/categories/golang/">golang (5)</a></li>
-    
-    <li><a href="https://patrick-prod.github.io/categories/vue/">vue (2)</a></li>
-    
-    <li><a href="https://patrick-prod.github.io/categories/%E7%AE%97%E6%B3%95/">算法 (6)</a></li>
-    
-    <li><a href="https://patrick-prod.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络 (6)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://patrick-prod.github.io/tags/BFS/">BFS</a>
-    
-    <a href="https://patrick-prod.github.io/tags/golang/">golang</a>
-    
-    <a href="https://patrick-prod.github.io/tags/kafka/">kafka</a>
-    
-    <a href="https://patrick-prod.github.io/tags/leetcode/">leetcode</a>
-    
-    <a href="https://patrick-prod.github.io/tags/mvvm/">mvvm</a>
-    
-    <a href="https://patrick-prod.github.io/tags/token/">token</a>
-    
-    <a href="https://patrick-prod.github.io/tags/validator/">validator</a>
-    
-    <a href="https://patrick-prod.github.io/tags/vue/">vue</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">动态规划模型</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E5%8F%8C%E5%90%91BFS/">双向BFS</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E5%9B%9E%E6%BA%AF/">回溯</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/">广度优先遍历</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E6%A0%A1%E9%AA%8C%E5%B1%82/">校验层</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">编程基础</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">编程规范</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B/">自顶向下</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/">贪婪算法</a>
-    
-    <a href="https://patrick-prod.github.io/tags/%E9%80%92%E5%BD%92/">递归</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://blog.fazero.me/" title="fazero的博客">fazero的博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="https://www.iamasd.cn/" title="iamasd的博客">iamasd的博客</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://patrick-prod.github.io/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://www.flysnow.org">Fish blog ø</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
             </div>
         </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
     </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="https://patrick-prod.github.io/">于先森的个人博客 By patrick</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+
+<div class="post-warp archive">
+    <h2 class="post-title" style="text-align:right;padding-bottom:2em">-&nbsp;&nbsp;·&nbsp;Posts&nbsp;-</h2>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/" class="archive-item-link hvr-underline-from-center">Go校验层go-validator</a>
+        <span class="archive-item-date">
+            January 31, 2020
+        </span>
+    </article>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/go%E5%A4%84%E7%90%86token/" class="archive-item-link hvr-underline-from-center">Go处理token</a>
+        <span class="archive-item-date">
+            January 31, 2020
+        </span>
+    </article>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="archive-item-link hvr-underline-from-center">动态规划</a>
+        <span class="archive-item-date">
+            January 31, 2020
+        </span>
+    </article>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" class="archive-item-link hvr-underline-from-center">动态规划模型</a>
+        <span class="archive-item-date">
+            January 31, 2020
+        </span>
+    </article>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="archive-item-link hvr-underline-from-center">贪心算法</a>
+        <span class="archive-item-date">
+            January 31, 2020
+        </span>
+    </article>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/%E9%80%92%E5%BD%92/" class="archive-item-link hvr-underline-from-center">递归</a>
+        <span class="archive-item-date">
+            January 31, 2020
+        </span>
+    </article>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" class="archive-item-link hvr-underline-from-center">回溯算法</a>
+        <span class="archive-item-date">
+            January 31, 2020
+        </span>
+    </article>
+    
+    <article class="archive-item">
+        <a href="https://www.flysnow.org/post/%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91/" class="archive-item-link hvr-underline-from-center">二叉排序树</a>
+        <span class="archive-item-date">
+            January 1, 0001
+        </span>
+    </article>
+     
+    
+
+<ul class="pagination">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
+        
+    
+    
+    <li class="page-item ">
+        <span class="page-link">
+            <a href="/post/">1</a></li>
+        </span>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active">
+        <span class="page-link">
+            <a href="/post/page/2/">2</a></li>
+        </span>
+    
+    
+    
+    
+</ul>
+
+</div>
+
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://www.flysnow.org">patrick</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
 </footer>
 
 
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-
-
-    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
 
 
 
 
-    <script src='/js/custom.js'></script>
 
-</body>
 
+
+
+    
+    <script src="/js/vendor_main.min.js" async=""></script>
+
+
+
+     </div>
+  </body>
 </html>

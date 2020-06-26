@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Inno">
+  
+  
+  
+  <link rel="prev" href="http://blog.innoweb.cn/2020/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" />
+  <link rel="next" href="http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" />
+  <link rel="canonical" href="http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           动态规划模型 | Inno`s Blog
+       
+  </title>
+  <meta name="title" content="动态规划模型 | Inno`s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.innoweb.cn\/"
+    },
+    "articleSection" : "posts",
+    "name" : "动态规划模型",
+    "headline" : "动态规划模型",
+    "description" : "线性模型 🌾 两个变量之间存在一次方函数关系，就称它们之间存在线性关系。 在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和cha",
+    "inLanguage" : "zh-CN",
+    "author" : "Inno",
+    "creator" : "Inno",
+    "publisher": "Inno",
+    "accountablePerson" : "Inno",
+    "copyrightHolder" : "Inno",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-01-31 08:33:26 \x2b0800 CST",
+    "dateModified" : "2020-01-31 08:33:26 \x2b0800 CST",
+    "url" : "http:\/\/blog.innoweb.cn\/2020\/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B\/",
+    "wordCount" : "4904",
+    "keywords" : [ "动态规划模型","算法", "Inno`s Blog"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.innoweb.cn/">Inno`s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+        
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+    <div class="top-scroll-bar"></div>
+    
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.innoweb.cn/">Inno`s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">动态规划模型</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.innoweb.cn/" rel="author">Inno</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-01-31 itemprop="datePublished">January 31, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.innoweb.cn/categories/Algorithm/"> Algorithm </a>
+                        
+                </span>
+                <span class="post-word-count" style="float: right;">Total <code>4904</code> words</span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="线性模型-">线性模型 🌾</h1>
+<p><strong>两个变量之间存在一次方函数关系，就称它们之间存在线性关系</strong>。 在线性结构上进行状态转移DP，统称线性DP，注意问题中的未知数只有两个那就是n和f(n)，比如说分金币问题中的coins总数和charge次数。下面拿实际问题来举例子。</p>
+<p><strong>注意</strong>：已知量数组不属于变量，比如说金币面额。</p>
+<h2 id="切木棍-">切木棍 🌿</h2>
+<hr>
+<p>给定一段长度为n英寸的钢条和一个价格表pi(i=1，2，&hellip;，n)，求解切割钢条方案，使得销售收益rn最大。注意，如果长度为n英寸的钢条价格pn足够大，最优解可能就是完全不需要切割。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-200.jpg" alt="h"></p>
+<h4 id="思路">思路🍀</h4>
+<p>考虑n=4的情况，我们所有可能的切割方案如下</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-4010043-b154f60e0b31a971.jpg" alt="img"></p>
+<p>我们将钢条从左边切割长度为i的一段，只对右边剩下的长度为n-i的一段继续进行切割（递归求解），对左边的一段则不再进行切割。即问题分解为：将长度为n的钢条分解为左边开始一段，以及对剩余部分继续分解的结果。这样，不做任何切割的方案可以描述为：第一段的长度为n，收益为pn，剩余部分长度为0，对应收益为r0=0。</p>
+<h4 id="动态转移方程">动态转移方程🍁</h4>
+<p>$$
+f(l) = max(p^i + f(l-r^i))
+$$</p>
+<h4 id="暴力递归">暴力递归🥀</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">CutSteel</span>(<span style="color:#a6e22e">value</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">length</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">length</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+	}
+
+	<span style="color:#a6e22e">bestValue</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt64</span>
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">preValue</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#a6e22e">CutSteel</span>(<span style="color:#a6e22e">value</span>,<span style="color:#a6e22e">length</span><span style="color:#f92672">-</span><span style="color:#a6e22e">i</span>)
+		<span style="color:#a6e22e">bestValue</span> = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">preValue</span>),float64(<span style="color:#a6e22e">bestValue</span>)))
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bestValue</span>
+}
+</code></pre></div><h4 id="动态规划写法">动态规划写法🌷</h4>
+<p>对于rn（n &gt;= 1）,可以用更短地钢条的最优收割收益来描述它：
+$$
+rn = max(p^n，r^1 + r^n-1 ，r^2 + r^n-2，&hellip;，r^n-1 + r^1)
+$$</p>
+<ul>
+<li>pn对应不切割，直接出售长度为n英寸的钢条方案</li>
+<li>其他n-1个参数对应另外n-1种切割方案：对每个i=1，2，&hellip;，n-1，首先将钢条切割长度为i和n-i的两段，接着求解这两段的最优收益ri和rn-i（每种方案的最优收益为两段的最优收益之和）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BottomUpCutSteel</span>(<span style="color:#a6e22e">v</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+	<span style="color:#75715e">/*
+</span><span style="color:#75715e">		创建备忘录，用于记录长度为i的时候的最优解。
+</span><span style="color:#75715e">		我们只要拿到了上一轮的最优解，下一轮只需要比较之前最优解的组合外加上当前长度不切割的价值就可以了，依此递推，
+</span><span style="color:#75715e">	*/</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>  {
+		<span style="color:#a6e22e">bestChoice</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">i</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span> {
+			<span style="color:#a6e22e">bestChoice</span> = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">bestChoice</span>), float64(<span style="color:#a6e22e">v</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#a6e22e">r</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#a6e22e">j</span>])))
+		}
+		<span style="color:#a6e22e">r</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#a6e22e">bestChoice</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">r</span>[len(<span style="color:#a6e22e">r</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+}
+</code></pre></div><h2 id="lis-">lis 🌼</h2>
+<hr>
+<p><code>longest increasing substring</code> 最长递增子序列，给定数组<code>arr</code>，返回<code>arr</code>的最长递增子序列。</p>
+<h4 id="动态转移方程-1">动态转移方程🌽</h4>
+<p>f(n)表示以下标为n结尾的数组的最长递增子序列的长度。
+$$
+f(n) = max(f(n-i) + 1) ~~~~(~arr[n] &gt; arr[n-i]~)
+$$</p>
+<h4 id="暴力递归-1">暴力递归🍏</h4>
+<p>注意最后以为不一定就是最长递增子序列的结尾，所以要遍历每一位。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">lisRecusive</span> (<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">bestAns</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt64</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">arr</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;<span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> ;<span style="color:#a6e22e">i</span><span style="color:#f92672">--</span>  {
+		<span style="color:#a6e22e">bestAns</span> = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">bestAns</span>),float64(<span style="color:#a6e22e">lis</span>(<span style="color:#a6e22e">arr</span>,<span style="color:#a6e22e">i</span>))))
+	}
+
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bestAns</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">lis</span>(<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">int</span>,<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+	}
+
+	<span style="color:#a6e22e">bestAns</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MinInt64</span>
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">n</span> ;<span style="color:#a6e22e">i</span> &gt; <span style="color:#ae81ff">0</span> ;<span style="color:#a6e22e">i</span><span style="color:#f92672">--</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">n</span>] &gt; <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#a6e22e">i</span>] {
+			<span style="color:#a6e22e">bestAns</span> = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">bestAns</span>),float64(<span style="color:#a6e22e">lis</span>(<span style="color:#a6e22e">arr</span>,<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#a6e22e">i</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)))
+		}
+	}
+
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bestAns</span>
+}
+</code></pre></div><h4 id="动态规划解决">动态规划解决🍐</h4>
+<h4 id="img-srchttpimageinnowebcn2020-01-31-002610png-altimage-20200104120117518-stylezoom67-"><img src="http://image.innoweb.cn/2020-01-31-002610.png" alt="image-20200104120117518" style="zoom:67%;" /></h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">lisDynamic</span> (<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">memory</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>,len(<span style="color:#a6e22e">arr</span>))
+	<span style="color:#a6e22e">memory</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#ae81ff">1</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>;<span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">arr</span>);<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>  {		<span style="color:#75715e">//控制n
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">j</span> &lt; <span style="color:#a6e22e">i</span> ;<span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>  {		<span style="color:#75715e">//控制i
+</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">j</span>] &lt; <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>] {
+				<span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">i</span>] = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">j</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>),float64(<span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">i</span>])))
+			}
+		}
+	}
+	<span style="color:#a6e22e">max</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>,<span style="color:#a6e22e">item</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">memory</span> {
+		<span style="color:#a6e22e">max</span> = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">item</span>),float64(<span style="color:#a6e22e">max</span>)))
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">max</span>
+}
+</code></pre></div><h2 id="lcs-">lcs 🌻</h2>
+<hr>
+<p><code>longest common substring</code> 最长公共子序列   给定数组<code>arr1，arr2</code>， 最长公共子序列。</p>
+<h4 id="动态转移方程-2">动态转移方程🍅</h4>
+<p><img src="http://image.innoweb.cn/2020-01-31-002451.png" alt="image-20200104120155955" style="zoom:67%;" /></p>
+<h4 id="暴力递归-2">暴力递归🍓</h4>
+<p>根据动态转移方程我们可以很轻松的写出递归方法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">lcsRecursive</span>(<span style="color:#a6e22e">m</span>,<span style="color:#a6e22e">n</span> []<span style="color:#66d9ef">int</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+	}
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">m</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">n</span>[<span style="color:#a6e22e">j</span>] {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lcsRecursive</span>(<span style="color:#a6e22e">m</span>,<span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+	}<span style="color:#66d9ef">else</span>{
+		<span style="color:#66d9ef">return</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">lcsRecursive</span>(<span style="color:#a6e22e">m</span>,<span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">j</span>)),float64(<span style="color:#a6e22e">lcsRecursive</span>(<span style="color:#a6e22e">m</span>,<span style="color:#a6e22e">n</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))))
+	}
+}
+</code></pre></div><h4 id="动态规划解决-1">动态规划解决🍒</h4>
+<p>根据我们对dp数组进行分析不难推敲出规律，做出从下而上的动态规划解决方案即可。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-002511.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">lcsRynamic</span>(<span style="color:#a6e22e">m</span>,<span style="color:#a6e22e">n</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">m</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> len(<span style="color:#a6e22e">n</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+	}
+
+	<span style="color:#a6e22e">linear_dp</span> <span style="color:#f92672">:=</span> make([][]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">m</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">linear_dp</span> {
+		<span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">idx</span>] = make([]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">n</span>)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+	}
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">linear_dp</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>  {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">j</span> &lt; len(<span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">i</span>]); <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>  {
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">m</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#a6e22e">n</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] {
+				<span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+			}<span style="color:#66d9ef">else</span>{
+				<span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(float64(<span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">j</span>]),float64(<span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])))
+			}
+		}
+	}
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">linear_dp</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">linear_dp</span>[<span style="color:#a6e22e">idx</span>])
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">linear_dp</span>[len(<span style="color:#a6e22e">m</span>)][len(<span style="color:#a6e22e">n</span>)]
+}
+</code></pre></div><h1 id="区间模型-">区间模型 🌺</h1>
+<p>所谓区间dp，顾名思义就是在一段区间上的动态规划。它既要满足dp问题的最优子结构和无后效性外，还应该符合在区间上操作的特点。我的理解是往往会对区间进行合并操作。抑或是单个元素（可看成一个小区间）跨区间进行操作。例如括号匹配问题，石子合并问题（通过多次的相邻合并，最后实质上会产生跨区间的合并，如果你把其中的石子看作参考系的话就很容易感觉出来），还有在整数中插入运算符号的问题（利用运算符的优先级以及交换律可看出），这样以来，如果我们要得知一个大区间的情况，由于它必定是由从多个长度不一的小区间转移而来（转移情况未知），我们可以通过求得多个小区间的情况，从而合并信息，得到大区间。</p>
+<p><strong>对于一个长度为n的区间，确定它的子区间需要首尾两个指针，显然子区间数量级为n2，那区间dp的复杂度也就为n2</strong></p>
+<h3 id="范式-">范式 🌴</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">len</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">len</span><span style="color:#f92672">++</span>  {		<span style="color:#75715e">/* 区间长度，在这道题里指的就是第1个到第n个。 */</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span> ; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>  {			<span style="color:#75715e">/* 枚举起点，从1开始到n，i表示起点下标，j表示终点下标， */</span>
+        <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>					<span style="color:#75715e">/* 计算终点坐标 */</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">n</span> {						<span style="color:#75715e">/* 省去越界的部分 */</span>
+            <span style="color:#66d9ef">continue</span>
+        }
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span>; <span style="color:#a6e22e">k</span> &lt; <span style="color:#a6e22e">j</span> ; <span style="color:#a6e22e">k</span><span style="color:#f92672">++</span>  {		<span style="color:#75715e">/* 枚举区间分割点 */</span>
+            <span style="color:#75715e">//do something
+</span><span style="color:#75715e"></span>        }
+    }
+}
+</code></pre></div><h2 id="石子合并问题">石子合并问题🌹</h2>
+<hr>
+<p>有N堆石子排成一排，每堆石子有一定的数量。现要将N堆石子并成为一堆。合并的过程只能每次将相邻的两堆石子堆成一堆，每次合并花费的代价为这两堆石子的和，经过N-1次合并后成为一堆。求出总的代价最小值。</p>
+<h4 id="动态转移方程-3">动态转移方程🌳</h4>
+<p>$$
+<code>dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+1][j]+w[i][j]);</code>
+$$</p>
+<h4 id="递归穷举解决">递归穷举解决🍃</h4>
+<p>递归的方法我们通过动态转移方程和容易就能写出来，不过这里我们要注意我注释的部分。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mergeStoneRecursive</span>(<span style="color:#a6e22e">sum</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">j</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span>]
+	}
+
+	<span style="color:#a6e22e">bestChoice</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt64</span>
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">k</span> &lt; <span style="color:#a6e22e">j</span> ; <span style="color:#a6e22e">k</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">l</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mergeStoneRecursive</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">k</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">mergeStoneRecursive</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">k</span>,<span style="color:#a6e22e">j</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span>]
+		<span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mergeStoneRecursive</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">k</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">mergeStoneRecursive</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">k</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">j</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span>]
+		<span style="color:#a6e22e">cbs</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Min</span>(float64(<span style="color:#a6e22e">l</span>),float64(<span style="color:#a6e22e">r</span>)))
+		<span style="color:#75715e">// 就以2，3，1为例，先合并2和3与先合并3和1的结果是不同的我们要取最小值。
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">bestChoice</span> = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Min</span>(float64(<span style="color:#a6e22e">cbs</span>),float64(<span style="color:#a6e22e">bestChoice</span>)))
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">bestChoice</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt64</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+	}<span style="color:#66d9ef">else</span>{
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bestChoice</span>
+	}
+}
+</code></pre></div><h4 id="备忘录优化">备忘录优化🍂</h4>
+<p>如上文所说区间dp的数组是二维关于i和j的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mergeStoneRecursiveMemorized</span>(<span style="color:#a6e22e">sum</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">memory</span> [][]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+   <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">j</span> {
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+   }
+
+   <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>]
+   }
+
+   <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> {
+      <span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span>]
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>]
+   }
+
+   <span style="color:#a6e22e">bestChoice</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt64</span>
+
+   <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">k</span> &lt; <span style="color:#a6e22e">j</span> ; <span style="color:#a6e22e">k</span><span style="color:#f92672">++</span> {
+      <span style="color:#a6e22e">l</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mergeStoneRecursiveMemorized</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">memory</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">k</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">mergeStoneRecursiveMemorized</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">memory</span>,<span style="color:#a6e22e">k</span>,<span style="color:#a6e22e">j</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span>]
+      <span style="color:#a6e22e">r</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mergeStoneRecursiveMemorized</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">memory</span>,<span style="color:#a6e22e">i</span>,<span style="color:#a6e22e">k</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">mergeStoneRecursiveMemorized</span>(<span style="color:#a6e22e">sum</span>,<span style="color:#a6e22e">memory</span>,<span style="color:#a6e22e">k</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">j</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span>]
+      <span style="color:#a6e22e">cbs</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Min</span>(float64(<span style="color:#a6e22e">l</span>),float64(<span style="color:#a6e22e">r</span>)))
+      <span style="color:#a6e22e">bestChoice</span> = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Min</span>(float64(<span style="color:#a6e22e">cbs</span>),float64(<span style="color:#a6e22e">bestChoice</span>)))
+   }
+
+   <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">bestChoice</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">MaxInt64</span> {
+      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+   }<span style="color:#66d9ef">else</span>{
+      <span style="color:#a6e22e">memory</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">bestChoice</span>
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">bestChoice</span>
+   }
+}
+</code></pre></div><h4 id="动态规划解决-2">动态规划解决🌱</h4>
+<p>设计动态规划写法之前，我们先分析一下上文的备忘录的结构。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-002528.png" alt="考场案件管理"></p>
+<p>首先<code>i==j</code>时，合并次数为<code>0</code>，<code>j&lt;i</code>时合并次数为<code>0</code>，<code>j = j+1</code>时合并次数为<code>sum[j]-sum[i-1]</code>，我更倾向于让数组最外面留一层作为初始值，所以i的下标从<code>1</code>开始，但是实际上区间是没有必要多出一圈的。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mergeStone</span>(<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>,<span style="color:#a6e22e">w</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span>   {
+	<span style="color:#a6e22e">dp</span> <span style="color:#f92672">:=</span> make([][]<span style="color:#66d9ef">int</span>,<span style="color:#a6e22e">n</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+	<span style="color:#66d9ef">for</span>  <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> ; <span style="color:#a6e22e">i</span> <span style="color:#f92672">++</span>  {
+		<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>] = make([]<span style="color:#66d9ef">int</span>,<span style="color:#a6e22e">n</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+	}
+	<span style="color:#75715e">/*声明dp数组*/</span>
+	<span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">idx</span> &lt; len(<span style="color:#a6e22e">sum</span>); <span style="color:#a6e22e">idx</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">idx</span> ; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>  {
+			<span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">idx</span>] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">w</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+		}
+	}
+	<span style="color:#75715e">/*计算组合石头花费（从0开始，0表示没有石头）*/</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">len</span> &lt; <span style="color:#a6e22e">n</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">len</span><span style="color:#f92672">++</span>  {		<span style="color:#75715e">/* 区间长度，在这道题里指的就是第1个到第n个。 */</span>
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> ; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>  {		<span style="color:#75715e">/* 枚举起点，从1开始到n，i表示起点下标，j表示终点下标， */</span>
+			<span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>					<span style="color:#75715e">/* 计算终点坐标 */</span>
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">j</span> &gt; <span style="color:#a6e22e">n</span> {						<span style="color:#75715e">/* 省去越界的部分 */</span>
+				<span style="color:#66d9ef">continue</span>
+			}
+			<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">i</span>; <span style="color:#a6e22e">k</span> &lt; <span style="color:#a6e22e">j</span> ; <span style="color:#a6e22e">k</span><span style="color:#f92672">++</span>  {		<span style="color:#75715e">/* 枚举区间分割点 */</span>
+				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {			<span style="color:#75715e">/* 这里我们要避免前值为0 */</span>
+					<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>]<span style="color:#f92672">+</span><span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">k</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">j</span>]<span style="color:#f92672">+</span><span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span>]<span style="color:#f92672">-</span><span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+				}<span style="color:#66d9ef">else</span>{
+					<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Min</span>(float64(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>]),float64(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>]<span style="color:#f92672">+</span><span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">k</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">j</span>]<span style="color:#f92672">+</span><span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">j</span>]<span style="color:#f92672">-</span><span style="color:#a6e22e">sum</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])))
+				}
+
+			}
+		}
+	}
+	<span style="color:#a6e22e">util</span>.<span style="color:#a6e22e">Print2DArray</span>(<span style="color:#a6e22e">dp</span>)
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">dp</span>[<span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">n</span>]
+}
+</code></pre></div><h1 id="非递归模型">非递归模型</h1>
+<p>非递归模型即指不易于用递归的方式推敲出答案的动态规划问题，之前我们的动态规划解法都是由递归方法的dp数组推出来的，这里我们来看看如何直接对状态进行枚举。</p>
+<h2 id="123-买卖股票的最佳时机-iiihttpsleetcode-cncomproblemsbest-time-to-buy-and-sell-stock-iii"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/">123. 买卖股票的最佳时机 III</a></h2>
+<hr>
+<p>给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格，设计一个算法来计算你所能获取的最大利润。你最多可以完成 两笔交易。</p>
+<blockquote>
+<p>注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+</blockquote>
+<p><strong>示例 1:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">输入</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>]
+<span style="color:#a6e22e">输出</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">6</span>
+<span style="color:#a6e22e">解释</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">在第</span> <span style="color:#ae81ff">4</span> <span style="color:#a6e22e">天</span><span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">股票价格</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">）</span><span style="color:#a6e22e">的时候买入</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">在第</span> <span style="color:#ae81ff">6</span> <span style="color:#a6e22e">天</span><span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">股票价格</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">）</span><span style="color:#a6e22e">的时候卖出</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">这笔交易所能获得利润</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#960050;background-color:#1e0010">。</span>
+     <span style="color:#a6e22e">随后</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">在第</span> <span style="color:#ae81ff">7</span> <span style="color:#a6e22e">天</span><span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">股票价格</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">）</span><span style="color:#a6e22e">的时候买入</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">在第</span> <span style="color:#ae81ff">8</span> <span style="color:#a6e22e">天</span> <span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">股票价格</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">）</span><span style="color:#a6e22e">的时候卖出</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">这笔交易所能获得利润</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> <span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><h3 id="1-穷举框架">1. 穷举框架</h3>
+<p>首先，还是一样的思路：如何穷举？这里的穷举思路和递归的思想不太一样。</p>
+<p>递归其实是符合我们思考的逻辑的，一步步推进，遇到无法解决的就丢给递归，一不小心就做出来了，可读性还很好。缺点就是一旦出错，你也不容易找到错误出现的原因。比如上篇文章的递归解法，肯定还有计算冗余，但确实不容易找到。</p>
+<p>而这里，我们不用递归思想进行穷举，而是利用「状态」进行穷举。我们具体到每一天，看看总共有几种可能的「状态」，再找出每个「状态」对应的「选择」。我们要穷举所有「状态」，穷举的目的是根据对应的「选择」更新状态。听起来抽象，你只要记住「状态」和「选择」两个词就行，下面实操一下就很容易明白了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">状态1</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">状态1的所有取值</span><span style="color:#960050;background-color:#1e0010">：</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">状态2</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">状态2的所有取值</span><span style="color:#960050;background-color:#1e0010">：</span>
+        <span style="color:#66d9ef">for</span> ...
+            <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">状态1</span>][<span style="color:#a6e22e">状态2</span>][...] <span style="color:#f92672">=</span> <span style="color:#a6e22e">择优</span>(<span style="color:#a6e22e">选择1</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">选择2</span>...)
+</code></pre></div><p>比如说这个问题，每天都有三种「选择」：买入、卖出、无操作，我们用 buy, sell, rest 表示这三种选择。但问题是，并不是每天都可以任意选择这三种选择的，因为 sell 必须在 buy 之后，buy 必须在 sell 之后。那么 rest 操作还应该分两种状态，一种是 buy 之后的 rest（持有了股票），一种是 sell 之后的 rest（没有持有股票）。而且别忘了，我们还有交易次数 k 的限制，就是说你 buy 还只能在 k &gt; 0 的前提下操作。</p>
+<p>很复杂对吧，不要怕，我们现在的目的只是穷举，你有再多的状态，老夫要做的就是一把梭全部列举出来。这个问题的「状态」有三个，第一个是天数，第二个是允许交易的最大次数，第三个是当前的持有状态（即之前说的 rest 的状态，我们不妨用 1 表示持有，0 表示没有持有）。然后我们用一个三维数组就可以装下这几种状态的全部组合：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span> <span style="color:#a6e22e">or</span> <span style="color:#ae81ff">1</span>]
+<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">K</span>
+<span style="color:#a6e22e">n</span> <span style="color:#a6e22e">为天数</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">大</span> <span style="color:#a6e22e">K</span> <span style="color:#a6e22e">为最多交易数</span>
+<span style="color:#a6e22e">此问题共</span> <span style="color:#a6e22e">n</span> <span style="color:#960050;background-color:#1e0010">×</span> <span style="color:#a6e22e">K</span> <span style="color:#960050;background-color:#1e0010">×</span> <span style="color:#ae81ff">2</span> <span style="color:#a6e22e">种状态</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">全部穷举就能搞定</span><span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">n</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">K</span><span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">s</span> <span style="color:#66d9ef">in</span> {<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>}<span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#a6e22e">s</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">buy</span>, <span style="color:#a6e22e">sell</span>, <span style="color:#a6e22e">rest</span>)
+</code></pre></div><p>而且我们可以用自然语言描述出每一个状态的含义，比如说 dp[3][2][1] 的含义就是：今天是第三天，我现在手上持有着股票，至今最多进行 2 次交易。再比如 dp[2][3][0] 的含义：今天是第二天，我现在手上没有持有股票，至今最多进行 3 次交易。很容易理解，对吧？</p>
+<p>我们想求的最终答案是 dp[n - 1][K][0]，即最后一天，最多允许 K 次交易，最多获得多少利润。读者可能问为什么不是 dp[n - 1][K][1]？因为 [1] 代表手上还持有股票，[0] 表示手上的股票已经卖出去了，很显然后者得到的利润一定大于前者。</p>
+<p>记住如何解释「状态」，一旦你觉得哪里不好理解，把它翻译成自然语言就容易理解了。</p>
+<h3 id="2-状态转移框架">2. 状态转移框架</h3>
+<p>现在，我们完成了「状态」的穷举，我们开始思考每种「状态」有哪些「选择」，应该如何更新「状态」。只看「持有状态」，可以画个状态转移图。</p>
+<p><img src="http://image.innoweb.cn/2020-06-25-125235.png" alt="image-20200608122324089"></p>
+<p>通过这个图可以很清楚地看到，每种状态（0 和 1）是如何转移而来的。根据这个图，我们来写一下状态转移方程：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#a6e22e">prices</span>[<span style="color:#a6e22e">i</span>])
+              <span style="color:#a6e22e">max</span>(   <span style="color:#a6e22e">选择</span> <span style="color:#a6e22e">rest</span>  ,           <span style="color:#a6e22e">选择</span> <span style="color:#a6e22e">sell</span>      )
+
+<span style="color:#a6e22e">解释</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">今天我没有持有股票</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">有两种可能</span><span style="color:#960050;background-color:#1e0010">：</span>
+<span style="color:#a6e22e">要么是我昨天就没有持有</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">然后今天选择</span> <span style="color:#a6e22e">rest</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">所以我今天还是没有持有</span><span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#a6e22e">要么是我昨天持有股票</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">但是今天我</span> <span style="color:#a6e22e">sell</span> <span style="color:#a6e22e">了</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">所以我今天没有持有股票了</span><span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">prices</span>[<span style="color:#a6e22e">i</span>])
+              <span style="color:#a6e22e">max</span>(   <span style="color:#a6e22e">选择</span> <span style="color:#a6e22e">rest</span>  ,           <span style="color:#a6e22e">选择</span> <span style="color:#a6e22e">buy</span>         )
+
+<span style="color:#a6e22e">解释</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">今天我持有着股票</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">有两种可能</span><span style="color:#960050;background-color:#1e0010">：</span>
+<span style="color:#a6e22e">要么我昨天就持有着股票</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">然后今天选择</span> <span style="color:#a6e22e">rest</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">所以我今天还持有着股票</span><span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#a6e22e">要么我昨天本没有持有</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">但今天我选择</span> <span style="color:#a6e22e">buy</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">所以今天我就持有股票了</span><span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><p>这个解释应该很清楚了，如果 buy，就要从利润中减去 prices[i]，如果 sell，就要给利润增加 prices[i]。今天的最大利润就是这两种可能选择中较大的那个。而且注意 k 的限制，我们在选择 buy 的时候，把 k 减小了 1，很好理解吧，当然你也可以在 sell 的时候减 1，一样的。</p>
+<p>现在，我们已经完成了动态规划中最困难的一步：状态转移方程。如果之前的内容你都可以理解，那么你已经可以秒杀所有问题了，只要套这个框架就行了。不过还差最后一点点，就是定义 base case，即最简单的情况。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">dp</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">解释</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">因为</span> <span style="color:#a6e22e">i</span> <span style="color:#a6e22e">是从</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">开始的</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">所以</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#a6e22e">意味着还没有开始</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">这时候的利润当然是</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">。</span>
+<span style="color:#a6e22e">dp</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">infinity</span>
+<span style="color:#a6e22e">解释</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">还没开始的时候</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">是不可能持有股票的</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">用负无穷表示这种不可能</span><span style="color:#960050;background-color:#1e0010">。</span>
+<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">解释</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">因为</span> <span style="color:#a6e22e">k</span> <span style="color:#a6e22e">是从</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">开始的</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">所以</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">意味着根本不允许交易</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">这时候利润当然是</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">。</span>
+<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">infinity</span>
+<span style="color:#a6e22e">解释</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">不允许交易的情况下</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">是不可能持有股票的</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">用负无穷表示这种不可能</span><span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><p>把上面的状态转移方程总结一下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">base</span> <span style="color:#66d9ef">case</span><span style="color:#960050;background-color:#1e0010">：</span>
+<span style="color:#a6e22e">dp</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+<span style="color:#a6e22e">dp</span>[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">infinity</span>
+
+<span style="color:#a6e22e">状态转移方程</span><span style="color:#960050;background-color:#1e0010">：</span>
+<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#a6e22e">prices</span>[<span style="color:#a6e22e">i</span>])
+<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">prices</span>[<span style="color:#a6e22e">i</span>])
+</code></pre></div><p>读者可能会问，这个数组索引是 -1 怎么编程表示出来呢，负无穷怎么表示呢？这都是细节问题，有很多方法实现。现在完整的框架已经完成，下面开始具体化。</p>
+<h3 id="3-题解">3. 题解</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">maxProfit</span>(<span style="color:#a6e22e">prices</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">prices</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+    }
+	<span style="color:#a6e22e">max_k</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>
+	<span style="color:#a6e22e">dp</span> <span style="color:#f92672">:=</span> make([][][]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">n</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">idx</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">dp</span> {
+		<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">idx</span>] = make([][]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">max_k</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">iidx</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">idx</span>] {
+			<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">idx</span>][<span style="color:#a6e22e">iidx</span>] = make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">2</span>)
+		}
+	}
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">max_k</span>; <span style="color:#a6e22e">k</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">k</span><span style="color:#f92672">--</span> {		<span style="color:#75715e">// 这里 k 从 0 开始 表示 0 交易利润为 0。
+</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+        <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>] = <span style="color:#ae81ff">0</span>							<span style="color:#75715e">// basecase	max(0, -∞)
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] = <span style="color:#f92672">-</span><span style="color:#a6e22e">prices</span>[<span style="color:#a6e22e">i</span>]		<span style="color:#75715e">// basecase	max(-price[i], -∞)
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">continue</span>;
+			}
+			<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>] = <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#a6e22e">prices</span>[<span style="color:#a6e22e">i</span>])
+			<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>] = <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span>][<span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">k</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span><span style="color:#a6e22e">prices</span>[<span style="color:#a6e22e">i</span>])
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">dp</span>[<span style="color:#a6e22e">n</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#a6e22e">max_k</span>][<span style="color:#ae81ff">0</span>]
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span> &gt; <span style="color:#a6e22e">b</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>
+}
+
+</code></pre></div><h1 id="背包模型">背包模型💐</h1>
+<hr>
+<p>为什么背包模型不属于线性模型？因为在01背包中物品只有一件，拿完之后 物品的种类会随之变化，所以说可以看作是有三个变量存在所以不能使用线性模型。</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Inno </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/>http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.innoweb.cn/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%A8%A1%E5%9E%8B/">
+                    #动态规划模型</a></span>
+            
+            <span class="tag"><a href="http://blog.innoweb.cn/tags/%E7%AE%97%E6%B3%95/">
+                    #算法</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.innoweb.cn/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.innoweb.cn/2020/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="prev" rel="prev" title="贪心算法"><i class="iconfont icon-left"></i>&nbsp;贪心算法</a>
+         
+        
+        <a href="http://blog.innoweb.cn/2020/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="next" rel="next" title="动态规划">动态规划&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+          
+<div id="gitalk-container/" style="border: 0;"></div>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/gitalk/dist/gitalk.css/"
+  style="border: 0;"
+/>
+<script
+  src="https://unpkg.com/gitalk/dist/gitalk.min.js/"
+  style="border: 0;"
+></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: "11370a73f2287b478b63",
+    clientSecret: "02280a77fa3c4b78089a907c1cff0cdf4cb5853f]",
+    repo: "blog.innoweb.cn",
+    owner: "patrick-prod",
+    admin: ["patrick-prod"],
+    id: location.pathname, 
+    distractionFreeMode: false, 
+  });
+  (function () {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById("gitalk-container").innerHTML =
+        "Gitalk comments not available by default when the website is previewed locally.";
+      return;
+    }
+    gitalk.render("gitalk-container");
+  })();
+</script>
+
+
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.innoweb.cn/">Inno</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+
+
+     </div>
+  </body>
+</html>
