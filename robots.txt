@@ -63,4 +63,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: http://blog.innoweb.cn/sitemap.xml
+Sitemap: https://blog.innoweb.cn/sitemap.xml

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>编程规范 on Inno`s Blog</title>
-    <link>http://blog.innoweb.cn/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+    <link>https://blog.innoweb.cn/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
     <description>Recent content in 编程规范 on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
     <lastBuildDate>Tue, 11 Feb 2020 19:57:37 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.innoweb.cn/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.innoweb.cn/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go编程规范</title>
-      <link>http://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <link>https://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
       <pubDate>Tue, 11 Feb 2020 19:57:37 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
+      <guid>https://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
       <description>要使用好你的语言，重要的是要了解它的特性和约定。 了解Go编程中已建立的约定（如命名，格式设置，程序构造等）非常重要，这样您编写的程序将易于其他Go程序员理解。以下我们介绍了惯用的Go代码的技巧和语言规</description>
     </item>
     

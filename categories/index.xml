@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Inno`s Blog</title>
-    <link>http://blog.innoweb.cn/categories/</link>
+    <link>https://blog.innoweb.cn/categories/</link>
     <description>Recent content in Categories on Inno`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
     <lastBuildDate>Mon, 15 Jun 2020 01:31:41 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.innoweb.cn/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.innoweb.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Algorithm</title>
-      <link>http://blog.innoweb.cn/categories/Algorithm/</link>
+      <link>https://blog.innoweb.cn/categories/Algorithm/</link>
       <pubDate>Mon, 15 Jun 2020 01:31:41 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/categories/Algorithm/</guid>
+      <guid>https://blog.innoweb.cn/categories/Algorithm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>leetcode</title>
-      <link>http://blog.innoweb.cn/categories/leetcode/</link>
+      <link>https://blog.innoweb.cn/categories/leetcode/</link>
       <pubDate>Wed, 15 Apr 2020 18:12:57 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/categories/leetcode/</guid>
+      <guid>https://blog.innoweb.cn/categories/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>http://blog.innoweb.cn/categories/golang/</link>
+      <link>https://blog.innoweb.cn/categories/golang/</link>
       <pubDate>Tue, 11 Feb 2020 19:57:37 +0800</pubDate>
       
-      <guid>http://blog.innoweb.cn/categories/golang/</guid>
+      <guid>https://blog.innoweb.cn/categories/golang/</guid>
       <description></description>
     </item>
     
