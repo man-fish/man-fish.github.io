@@ -65,7 +65,7 @@
     "datePublished": "2020-06-27 04:56:33 \x2b0800 CST",
     "dateModified" : "2020-06-27 04:56:33 \x2b0800 CST",
     "url" : "https:\/\/blog.innoweb.cn\/2020\/%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E6%98%AF%E6%80%8E%E4%B9%88%E6%90%AD%E5%87%BA%E6%9D%A5%E7%9A%84\/",
-    "wordCount" : "3090",
+    "wordCount" : "3120",
     "keywords" : [ "hugo","blog", "Inno`s Blog"]
 }
 </script>
@@ -146,7 +146,7 @@
                         <a href="https://blog.innoweb.cn/categories/%E5%8D%9A%E5%AE%A2%E7%9E%8E%E6%8A%98%E8%85%BE/"> 博客瞎折腾 </a>
                         
                 </span>
-                <span class="post-word-count" style="float: right;">Total <code>3090</code> words</span>
+                <span class="post-word-count" style="float: right;">Total <code>3120</code> words</span>
         </div>
     </header>
     <div class="post-content">
@@ -373,9 +373,10 @@ $ chown -R git:git /home/git/repository
 <p><strong>在初始化远程仓库时最好使用 git &ndash;bare init  而不要使用：git init</strong></p>
 <p>如果使用了git init初始化，则远程仓库的目录下，也包含work tree，当本地仓库向远程仓库push时,  如果远程仓库正在push的分支上（如果当时不在push的分支，就没有问题）, 那么push后的结果不会反应在work tree上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用git reset &ndash;hard才能看到push后的内容.</p>
 </blockquote>
-<p>在服务器上创建好之后我们回到本地来进行推送：</p>
+<p>在服务器上创建好之后我们回到本地来进行推送，这个时候他会问你要密码，就是刚刚给<code>git</code>用户设置的密码：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git remote add ali git@你服务器的公网ip:/home/git/repository/hugo-blog.git
 $ git push -u ali master
+git@xx.xx.xx.xx<span style="color:#960050;background-color:#1e0010">&#39;</span>s password: 
 </code></pre></div><p>这个时候可能会出现如下错误：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>remote rejected<span style="color:#f92672">]</span> master -&gt; master <span style="color:#f92672">(</span>branch is currently checked out<span style="color:#f92672">)</span>
 remote: error: refusing to update checked out branch: refs/heads/master
