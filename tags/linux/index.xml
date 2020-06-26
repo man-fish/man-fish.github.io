@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on Inno`s Blog</title>
+    <link>https://blog.innoweb.cn/tags/linux/</link>
+    <description>Recent content in linux on Inno`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
+    <lastBuildDate>Sat, 27 Jun 2020 07:36:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.innoweb.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux系统服务</title>
+      <link>https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Sat, 27 Jun 2020 07:36:08 +0800</pubDate>
+      
+      <guid>https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</guid>
+      <description>最近发现自己service 、chkconfig、systemd这几个命令傻傻分不清，于是就给自己好好科普了一下。 Linux 系统服务 Linux 系统服务也称为守护进程，是在Linux启动时自动加载并在Linux退出时自动</description>
+    </item>
+    
+  </channel>
+</rss>

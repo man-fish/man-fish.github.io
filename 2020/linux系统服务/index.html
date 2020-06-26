@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  <meta name="author" content="Inno">
+  
+  <meta name="description" content="inno的个人博客网站，关注Javascript，Golang，Nodejs，Deno，微信小程序等web开发常用技术。">
+  
+  <meta name="keywords" content="leetcode,golang,javascript,typescript,deno,nodejs,算法,前端,后端">
+  
+  
+  <link rel="prev" href="https://blog.innoweb.cn/2020/%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E6%98%AF%E6%80%8E%E4%B9%88%E6%90%AD%E5%87%BA%E6%9D%A5%E7%9A%84/" />
+  
+  <link rel="canonical" href="https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="/favicon.ico" rel="icon" type="image/x-icon">
+  <link href="https://blog.innoweb.cn/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+    
+    
+    Linux系统服务 | Inno`s Blog
+    
+  </title>
+  <meta name="title"
+    content="Linux系统服务 | Inno`s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/blog.innoweb.cn\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Linux系统服务",
+    "headline" : "Linux系统服务",
+    "description" : "linux系统服务，SysV和Systemd的区别，Service、chkconfig、Systemclt的关系。",
+    "inLanguage" : "zh-CN",
+    "author" : "Inno",
+    "creator" : "Inno",
+    "publisher": "Inno",
+    "accountablePerson" : "Inno",
+    "copyrightHolder" : "Inno",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-27 07:36:08 \x2b0800 CST",
+    "dateModified" : "2020-06-27 07:36:08 \x2b0800 CST",
+    "url" : "https:\/\/blog.innoweb.cn\/2020\/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1\/",
+    "wordCount" : "1669",
+    "keywords" : [ "linux","系统服务", "Inno`s Blog"]
+}
+</script>
+
+</head>
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.innoweb.cn/">Inno`s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+        
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+    <div class="top-scroll-bar"></div>
+    
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.innoweb.cn/">Inno`s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Linux系统服务</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://blog.innoweb.cn/" rel="author">Inno</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-06-27 itemprop="datePublished">June 27, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://blog.innoweb.cn/categories/linux/"> linux </a>
+                        
+                </span>
+                <span class="post-word-count" style="float: right;">Total <code>1669</code> words</span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <blockquote>
+<p>最近发现自己<code>service 、chkconfig、systemd</code>这几个命令傻傻分不清，于是就给自己好好科普了一下。</p>
+</blockquote>
+<h2 id="linux-系统服务">Linux 系统服务</h2>
+<p><code>Linux</code> 系统服务也称为守护进程，是在<code>Linux</code>启动时自动加载并在<code>Linux</code>退出时自动停止的系统任务。<code>7.0</code>开始，<code>CentOS</code>使用<code> systemd</code> 服务来代替 <code>Sysvinit</code> ，原来管理系统启动和管理系统服务的相关命令全部由 <code>systemctl</code> 命令来代替，不过，在 <code>centos7.0</code> 中<code>systemd</code> 和<code>Sysvint</code>仍然同时存在。</p>
+<p>仍然支持的命令还有<code>systemctl</code>、<code>service</code>、<code>chkconfig</code>命令，<code>systemctl</code>命令是<code>systemd</code>的管理命令，而 <code>service</code> 和 <code>chkconfig</code> 这两个命令是原来<code>Sysvinit</code>的管理命令。</p>
+<h2 id="sysv-init-服务管理">SysV init 服务管理</h2>
+<p><code>centos7</code>之前系统采用<code>initd</code>进程作为<code>pid1</code>的进程来启动服务，这种启动方式逐渐成为了过去式，因为<code>init</code>进程是串行启动，只有前一个进程启动完，才会启动下一个进程。同时，<code>init</code>进程只是执行启动脚本，不管其他事情。脚本需要自己处理各种情况，这往往使得脚本变得复杂。</p>
+<h3 id="service">Service</h3>
+<p><code>service</code>命令的常用格式为<code>SERVICE + COMMAND</code>，拿nginx的启动脚本来举例：<code>service nginx start</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">service nginx start
+</code></pre></div><p><code>sevice</code> 就会去<code>/etc/init.d</code>下找到<code>nginx</code>脚本，<code>start</code>是<code>nginx</code>脚本里的一个参数，然后系统运行<code>ngix</code>，之后就是编写的脚本的活了，下面截取了一段<code>nginx</code>的启动脚本：👇</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/sh 
+</span><span style="color:#75715e"></span>nginx<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/local/nginx/sbin/nginx&#34;</span> 
+prog<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename $nginx<span style="color:#66d9ef">)</span> 
+ 
+NGINX_CONF_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/usr/local/nginx/conf/nginx.conf&#34;</span> 
+
+<span style="color:#f92672">[</span> -f /etc/sysconfig/nginx <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> . /etc/sysconfig/nginx 
+ 
+lockfile<span style="color:#f92672">=</span>/var/lock/subsys/nginx 
+ 
+start<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span> 
+    <span style="color:#f92672">[</span> -x $nginx <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> exit <span style="color:#ae81ff">5</span> 
+    <span style="color:#f92672">[</span> -f $NGINX_CONF_FILE <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> exit <span style="color:#ae81ff">6</span> 
+    echo -n $<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Starting </span>$prog<span style="color:#e6db74">: </span><span style="color:#e6db74">&#34;</span> 
+    daemon $nginx -c $NGINX_CONF_FILE 
+    retval<span style="color:#f92672">=</span>$? 
+    echo 
+    <span style="color:#f92672">[</span> $retval -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> touch $lockfile 
+    <span style="color:#66d9ef">return</span> $retval 
+<span style="color:#f92672">}</span>
+</code></pre></div><blockquote>
+<p><code>service</code>这个命令往往是即时生效，不会将服务添加为系统服务。</p>
+</blockquote>
+<h3 id="chkconfig">Chkconfig</h3>
+<p>仅仅跑了上面的<code>service</code>命令，相当于通过一段脚本打开<code>nginx</code>，如果要开机自启动要用<code>chkconfig</code>命令。<code>chkconfig</code>用于把服务添加到开机自动启动列表里</p>
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>This output shows SysV services only and does not include native systemd services. SysV configuration data might be overridden by native systemd configuration. If you want to list systemd services use &lsquo;systemctl list-unit-files</p>
+<p><code>chkconfig</code>命令用于管理<code>SysV</code>服务，如果需要管理<code>Systemd</code>服务需要使用<code>Systemctl</code>命令。</p>
+</blockquote>
+<p><strong>命令参数：</strong></p>
+<ul>
+<li>
+<p><code>chkconfig --list</code>：列出所有的系统服务。</p>
+<ul>
+<li><code>chkconfig --list nginx</code>：列出 nginx 服务设置。</li>
+</ul>
+</li>
+<li>
+<p><code>chkconfig --add nginx</code>：添加 nginx 服务到系统服务。</p>
+</li>
+<li>
+<p><code>chkconfig --del nginx</code>：删除 nginx 系统服务。</p>
+</li>
+<li>
+<p><code>chkconfig nginx on</code>：开启nginx自启动，默认级别2、3、4、5。</p>
+<ul>
+<li><code>chkconfig --level 234 nginx on</code>：设置 nginx 在运行级别为2、3、4的情况下为开启状态。</li>
+</ul>
+</li>
+</ul>
+<p><strong>操作实例：</strong></p>
+<p>添加 nginx 服务到系统服务，默认全部模式为off：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>root@inno echo<span style="color:#f92672">]</span><span style="color:#75715e"># chkconfig --add nginx</span>
+</code></pre></div><p>列出所有的系统服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>root@inno echo<span style="color:#f92672">]</span><span style="color:#75715e"># chkconfig --list</span>
+
+Note: This output shows SysV services only and does not include native
+      systemd services. SysV configuration data might be overridden by native
+      systemd configuration.
+
+      If you want to list systemd services use <span style="color:#e6db74">&#39;systemctl list-unit-files&#39;</span>.
+
+aegis           0:off   1:off   2:on    3:on    4:on    5:on    6:off
+netconsole      0:off   1:off   2:off   3:off   4:off   5:off   6:off
+</code></pre></div><p>在默认模式下开启 nginx 服务：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>root@inno echo<span style="color:#f92672">]</span><span style="color:#75715e"># chkconfig nginx on</span>
+<span style="color:#f92672">[</span>root@inno echo<span style="color:#f92672">]</span><span style="color:#75715e"># chkconfig --list | grep &#34;nginx&#34;</span>
+nginx           0:off   1:off   2:on    3:on    4:on    5:on    6:off
+</code></pre></div><blockquote>
+<p><strong>这里补充一点知识，Centos6.5中存在7中运行级别/模式：</strong></p>
+<ul>
+<li>0 — 表示关机级别（不要将默认的运行级别设置成这个值）</li>
+<li>1 — 单用户模式</li>
+<li>2 — 多用户模式，不带NFS（Network File Syetem）</li>
+<li>3 — 多用户模式，完全的多用户模式（不带桌面的，纯命令行模式）</li>
+<li>4 — 没有被使用的模式（被保留模式）</li>
+<li>5 — X11，完整的图形化界面模式</li>
+<li>6 — 表示重启级别（不要将默认的运行级别设置成这个值）</li>
+</ul>
+</blockquote>
+<h2 id="systemd-服务管理">Systemd 服务管理</h2>
+<p>随着版本更新，<code>Sysv</code>成为了过去时，<code>Systemd</code>是一个系统管理守护进程、工具和库的集合，其用于取代<code>System V</code>的初始进程<code>initd</code>，使用了 <code>Systemd</code>，就不需要再用<code>init</code>了。<code>Systemd</code> 取代了<code>initd</code>，成为系统的第一个进程（<code>PID=1</code>），其他进程都是它的子进程。</p>
+<h3 id="systemctl">Systemctl</h3>
+<p><code>Systemctl</code>是一个 <code>systemd</code> 工具，主要负责控制 <code>systemd</code> 系统和服务管理器。</p>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>旧指令</th>
+<th>新指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使某服务自动启动</td>
+<td>chkconfig &ndash;level 3 <a href="http://man.linuxde.net/httpd">httpd</a> on</td>
+<td>systemctl <a href="http://man.linuxde.net/enable">enable</a> httpd.service</td>
+</tr>
+<tr>
+<td>使某服务不自动启动</td>
+<td>chkconfig &ndash;level 3 httpd off</td>
+<td>systemctl disable httpd.service</td>
+</tr>
+<tr>
+<td>检查服务状态</td>
+<td>service httpd status</td>
+<td>systemctl status httpd.service</td>
+</tr>
+<tr>
+<td>显示所有已启动的服务</td>
+<td>chkconfig &ndash;list</td>
+<td>systemctl list-units &ndash;<a href="http://man.linuxde.net/type">type</a>=service</td>
+</tr>
+<tr>
+<td>启动某服务</td>
+<td>service httpd start</td>
+<td>systemctl start httpd.service</td>
+</tr>
+<tr>
+<td>停止某服务</td>
+<td>service httpd stop</td>
+<td>systemctl stop httpd.service</td>
+</tr>
+<tr>
+<td>重启某服务</td>
+<td>service httpd restart</td>
+<td>systemctl restart httpd.service</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>Systemd</code>启动脚本的位置不同于initd，存放在<code>/lib/systemd/system</code>和<code>/etc/systemd/system</code>目录。</p>
+</blockquote>
+<p><strong>操作实例：</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>root@inno echo<span style="color:#f92672">]</span><span style="color:#75715e"># systemctl list-units --type=service</span>
+  UNIT                                   LOAD   ACTIVE SUB     DESCRIPTION
+  aegis.service                          loaded active running LSB: aegis update.
+  aliyun.service                         loaded active running aliyun-assist
+  atd.service                            loaded active running Job spooling tools
+  auditd.service                         loaded active running Security Auditing Service
+</code></pre></div><blockquote>
+<p>System 我了解的不多，以后再做补充。</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Inno </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/>https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/linux/">
+                    #linux</a></span>
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
+                    #系统服务</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://blog.innoweb.cn/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://blog.innoweb.cn/2020/%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E6%98%AF%E6%80%8E%E4%B9%88%E6%90%AD%E5%87%BA%E6%9D%A5%E7%9A%84/" class="prev" rel="prev" title="这个博客是怎么搭出来的"><i class="iconfont icon-left"></i>&nbsp;这个博客是怎么搭出来的</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+          
+<div id="gitalk-container/" style="border: 0;"></div>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.css" style="border: 0;" />
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.js" style="border: 0;"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: "11370a73f2287b478b63",
+    clientSecret: "02280a77fa3c4b78089a907c1cff0cdf4cb5853f]",
+    repo: "blog.innoweb.cn",
+    owner: "patrick-prod",
+    admin: ["patrick-prod"],
+    id: location.pathname, 
+    distractionFreeMode: false, 
+  });
+  (function () {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById("gitalk-container").innerHTML =
+        "Gitalk comments not available by default when the website is previewed locally.";
+      return;
+    }
+    gitalk.render("gitalk-container");
+  })();
+</script>
+
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://blog.innoweb.cn/">Inno</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+     </div>
+  </body>
+</html>
