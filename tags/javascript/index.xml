@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on Inno`s Blog</title>
+    <link>https://blog.innoweb.cn/tags/javascript/</link>
+    <description>Recent content in javascript on Inno`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
+    <lastBuildDate>Thu, 02 Jul 2020 23:44:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.innoweb.cn/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JavaScript模块化-AMD</title>
+      <link>https://blog.innoweb.cn/2020/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96-AMD/</link>
+      <pubDate>Thu, 02 Jul 2020 23:44:17 +0800</pubDate>
+      
+      <guid>https://blog.innoweb.cn/2020/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96-AMD/</guid>
+      <description>最近写一个小游戏的时候用的是RequireJs构建项目，顺便补了一下RequireJs，下面讲解一些基础和进阶的用法。 AMD AMDAsync Module Definition代表的意思为异步模块定义，是Javascript模块化的</description>
+    </item>
+    
+  </channel>
+</rss>

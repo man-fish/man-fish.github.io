@@ -2,9 +2,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
+      <loc>https://blog.innoweb.cn/tags/AMD/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>https://blog.innoweb.cn/categories/</loc>
       
-      <lastmod>2020-06-27T07:36:08+08:00</lastmod>
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
       
       
       
@@ -14,7 +24,77 @@
     <url>
       <loc>https://blog.innoweb.cn/</loc>
       
-      <lastmod>2020-06-27T07:36:08+08:00</lastmod>
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/categories/javascript/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/javascript/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/2020/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96-AMD/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/posts/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/requirejs/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/</loc>
+      
+      <lastmod>2020-07-02T23:44:17+08:00</lastmod>
       
       
       
@@ -43,26 +123,6 @@
   
     <url>
       <loc>https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</loc>
-      
-      <lastmod>2020-06-27T07:36:08+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://blog.innoweb.cn/posts/</loc>
-      
-      <lastmod>2020-06-27T07:36:08+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://blog.innoweb.cn/tags/</loc>
       
       <lastmod>2020-06-27T07:36:08+08:00</lastmod>
       
@@ -252,7 +312,7 @@
     </url>
   
     <url>
-      <loc>https://blog.innoweb.cn/categories/leetcode/</loc>
+      <loc>https://blog.innoweb.cn/tags/leetcode/</loc>
       
       <lastmod>2020-04-15T18:12:57+08:00</lastmod>
       
@@ -262,7 +322,7 @@
     </url>
   
     <url>
-      <loc>https://blog.innoweb.cn/tags/leetcode/</loc>
+      <loc>https://blog.innoweb.cn/categories/leetcode/</loc>
       
       <lastmod>2020-04-15T18:12:57+08:00</lastmod>
       
