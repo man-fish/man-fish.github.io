@@ -64,7 +64,7 @@
     "datePublished": "2020-07-02 23:44:17 \x2b0800 CST",
     "dateModified" : "2020-07-02 23:44:17 \x2b0800 CST",
     "url" : "https:\/\/blog.innoweb.cn\/2020\/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96-AMD\/",
-    "wordCount" : "2350",
+    "wordCount" : "2351",
     "keywords" : [ "javascript","模块化","requirejs","AMD", "Inno`s Blog"]
 }
 </script>
@@ -145,7 +145,7 @@
                         <a href="https://blog.innoweb.cn/categories/javascript/"> javascript </a>
                         
                 </span>
-                <span class="post-word-count" style="float: right;">Total <code>2350</code> words</span>
+                <span class="post-word-count" style="float: right;">Total <code>2351</code> words</span>
         </div>
     </header>
     <div class="post-content">
@@ -170,7 +170,7 @@
 <p><img src="http://image.innoweb.cn/2020-07-02-154317.png" alt="image-20200702234124624"></p>
 <h2 id="amd">AMD</h2>
 <p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a><code>Async Module Definition</code>代表的意思为异步模块定义，是<code>Javascript</code>模块化的浏览器解决方案，它采用异步的方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在回调函数中，等到加载完成之后，这个回调函数才会运行。</p>
-<p><img src="assets/image-20200702233814576.png" alt="image-20200702233814576"></p>
+<p><img src="http://image.innoweb.cn/2020-07-02-154840.png" alt="image-20200702233814576"></p>
 <p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a>规范定义了一个函数<code>define</code>，通过<code>define</code>方法定义模块：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"> <span style="color:#a6e22e">define</span>(<span style="color:#a6e22e">id</span><span style="color:#f92672">?</span>, <span style="color:#a6e22e">dependencies</span><span style="color:#f92672">?</span>, <span style="color:#a6e22e">factory</span>);
 </code></pre></div><p>并且采用<code>require()</code>语句加载模块：</p>
@@ -202,7 +202,7 @@
     &lt;/<span style="color:#f92672">body</span>&gt;
 &lt;/<span style="color:#f92672">html</span>&gt;
 </code></pre></div><blockquote>
-<p>如果 <strong><script/></strong> 标签引入 <strong>require.js</strong> 时没有指定 <strong>data-main</strong> 属性，则以引入该 <strong>js</strong> 的 <strong>html</strong> 文件所在的路径为根路径，如果有指定 <strong>data-main</strong> 属性，也就是有指定入口文件，则以入口文件所在的路径为根路径。</p>
+<p>如果 <strong><code>&lt;script/&gt;</code></strong> 标签引入 <strong>require.js</strong> 时没有指定 <strong>data-main</strong> 属性，则以引入该 <strong>js</strong> 的 <strong>html</strong> 文件所在的路径为根路径，如果有指定 <strong>data-main</strong> 属性，也就是有指定入口文件，则以入口文件所在的路径为根路径。</p>
 </blockquote>
 <p><strong>2. app.js</strong></p>
 <p><code>Main.js</code>加载主模块并且配置项目依赖，要改变 <code>RequireJS</code>的默认配置，可以使用<code>require.config</code>函数传入一个可选参数对象。下面是一些可以使用的配置：</p>
