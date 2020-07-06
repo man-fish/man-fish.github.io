@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>deno on Inno`s Blog</title>
+    <link>https://blog.innoweb.cn/tags/deno/</link>
+    <description>Recent content in deno on Inno`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 06 Jul 2020 21:08:07 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.innoweb.cn/tags/deno/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用deno来快速运行ts代码</title>
+      <link>https://blog.innoweb.cn/2020/%E7%94%A8deno%E6%9D%A5%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8Cts%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Mon, 06 Jul 2020 21:08:07 +0800</pubDate>
+      
+      <guid>https://blog.innoweb.cn/2020/%E7%94%A8deno%E6%9D%A5%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8Cts%E4%BB%A3%E7%A0%81/</guid>
+      <description>最近博主在用TypeScript来刷题，一开始的时候先通过tsconfig.json配置编译再拿到node里去运行，这个过程不适合很巴适。前一阵子nodejs作者发布的deno可以直接跑ts的语法，配</description>
+    </item>
+    
+  </channel>
+</rss>
