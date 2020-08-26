@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 06 Jul 2020 21:08:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2020 20:58:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.innoweb.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>React&#43;Typescript踩坑集</title>
+      <link>https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/</link>
+      <pubDate>Wed, 26 Aug 2020 20:58:13 +0800</pubDate>
+      
+      <guid>https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/</guid>
+      <description>最近把自己开发的一个react项目用typescript重构了一遍，使用的技术栈为react+react-redux+react-router，迁移的过程中遇到了很多坑，这就来和大家分享一下。 项目地址</description>
+    </item>
     
     <item>
       <title>用deno来快速运行ts代码</title>

@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 06 Jul 2020 21:08:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2020 20:58:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.innoweb.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>react</title>
+      <link>https://blog.innoweb.cn/tags/react/</link>
+      <pubDate>Wed, 26 Aug 2020 20:58:13 +0800</pubDate>
+      
+      <guid>https://blog.innoweb.cn/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ts</title>
+      <link>https://blog.innoweb.cn/tags/ts/</link>
+      <pubDate>Wed, 26 Aug 2020 20:58:13 +0800</pubDate>
+      
+      <guid>https://blog.innoweb.cn/tags/ts/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>deno</title>
@@ -18,15 +36,6 @@
       <pubDate>Mon, 06 Jul 2020 21:08:07 +0800</pubDate>
       
       <guid>https://blog.innoweb.cn/tags/deno/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ts</title>
-      <link>https://blog.innoweb.cn/tags/ts/</link>
-      <pubDate>Mon, 06 Jul 2020 21:08:07 +0800</pubDate>
-      
-      <guid>https://blog.innoweb.cn/tags/ts/</guid>
       <description></description>
     </item>
     

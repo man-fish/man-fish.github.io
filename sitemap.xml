@@ -4,17 +4,7 @@
     <url>
       <loc>https://blog.innoweb.cn/categories/</loc>
       
-      <lastmod>2020-07-06T21:08:07+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://blog.innoweb.cn/tags/deno/</loc>
-      
-      <lastmod>2020-07-06T21:08:07+08:00</lastmod>
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
       
       
       
@@ -24,7 +14,7 @@
     <url>
       <loc>https://blog.innoweb.cn/</loc>
       
-      <lastmod>2020-07-06T21:08:07+08:00</lastmod>
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
       
       
       
@@ -34,7 +24,27 @@
     <url>
       <loc>https://blog.innoweb.cn/posts/</loc>
       
-      <lastmod>2020-07-06T21:08:07+08:00</lastmod>
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/react/</loc>
+      
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/</loc>
+      
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
       
       
       
@@ -44,7 +54,7 @@
     <url>
       <loc>https://blog.innoweb.cn/tags/</loc>
       
-      <lastmod>2020-07-06T21:08:07+08:00</lastmod>
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
       
       
       
@@ -54,7 +64,7 @@
     <url>
       <loc>https://blog.innoweb.cn/tags/ts/</loc>
       
-      <lastmod>2020-07-06T21:08:07+08:00</lastmod>
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
       
       
       
@@ -63,6 +73,16 @@
   
     <url>
       <loc>https://blog.innoweb.cn/categories/TypeScript/</loc>
+      
+      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/deno/</loc>
       
       <lastmod>2020-07-06T21:08:07+08:00</lastmod>
       
@@ -352,7 +372,7 @@
     </url>
   
     <url>
-      <loc>https://blog.innoweb.cn/categories/leetcode/</loc>
+      <loc>https://blog.innoweb.cn/tags/leetcode/</loc>
       
       <lastmod>2020-04-15T18:12:57+08:00</lastmod>
       
@@ -362,7 +382,7 @@
     </url>
   
     <url>
-      <loc>https://blog.innoweb.cn/tags/leetcode/</loc>
+      <loc>https://blog.innoweb.cn/categories/leetcode/</loc>
       
       <lastmod>2020-04-15T18:12:57+08:00</lastmod>
       

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  <meta name="author" content="Inno">
+  
+  <meta name="description" content="inno的个人博客网站，关注Javascript，Golang，Nodejs，Deno，微信小程序等web开发常用技术。">
+  
+  <meta name="keywords" content="leetcode,golang,javascript,typescript,deno,nodejs,算法,前端,后端">
+  
+  
+  <link rel="prev" href="https://blog.innoweb.cn/2020/%E7%94%A8deno%E6%9D%A5%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8Cts%E4%BB%A3%E7%A0%81/" />
+  
+  <link rel="canonical" href="https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="/favicon.ico" rel="icon" type="image/x-icon">
+  <link href="https://blog.innoweb.cn/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+    
+    
+    React&#43;Typescript踩坑集 | Inno`s Blog
+    
+  </title>
+  <meta name="title"
+    content="React&#43;Typescript踩坑集 | Inno`s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/blog.innoweb.cn\/"
+    },
+    "articleSection" : "posts",
+    "name" : "React\x2bTypescript踩坑集",
+    "headline" : "React\x2bTypescript踩坑集",
+    "description" : "在React中使用Typescript踩坑记录",
+    "inLanguage" : "zh-CN",
+    "author" : "Inno",
+    "creator" : "Inno",
+    "publisher": "Inno",
+    "accountablePerson" : "Inno",
+    "copyrightHolder" : "Inno",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-08-26 20:58:13 \x2b0800 CST",
+    "dateModified" : "2020-08-26 20:58:13 \x2b0800 CST",
+    "url" : "https:\/\/blog.innoweb.cn\/2020\/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86\/",
+    "wordCount" : "1582",
+    "keywords" : [ "react","ts", "Inno`s Blog"]
+}
+</script>
+
+</head>
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.innoweb.cn/">Inno`s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+        
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+    <div class="top-scroll-bar"></div>
+    
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.innoweb.cn/">Inno`s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">React&#43;Typescript踩坑集</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://blog.innoweb.cn/" rel="author">Inno</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-08-26 itemprop="datePublished">August 26, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://blog.innoweb.cn/categories/TypeScript/"> TypeScript </a>
+                        
+                </span>
+                <span class="post-word-count" style="float: right;">Total <code>1582</code> words</span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>最近把自己开发的一个<code>react</code>项目用<code>typescript</code>重构了一遍，使用的技术栈为<code>react+react-redux+react-router</code>，迁移的过程中遇到了很多坑，这就来和大家分享一下。</p>
+<p><img src="http://image.innoweb.cn/2020-08-26-130158.png" alt="react and ts"></p>
+<blockquote>
+<p>项目地址为：</p>
+</blockquote>
+<h2 id="安装">安装</h2>
+<p>我是用的<code>create-react-app</code>来创建的项目，不管是新建一个<code>react+ts</code>项目，还是在原有项目中添加ts官方文档都有详细说明：</p>
+<h4 id="新建">新建</h4>
+<p>要使用<code>TypeScript</code>启动一个新的<code>Create React App</code>项目，可以运行：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npx create-react-app my-app --template typescript
+</code></pre></div><h4 id="添加">添加</h4>
+<p>要将<code>TypeScript</code>添加到<code>Create React</code>应用程序项目中，首先要安装<code>node，react，react-dom，jest</code>的声明文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+</code></pre></div><p>接下来，将任何文件重命名为<code>TypeScript</code>文件（例如，将<code>src/index.js</code>更改为<code>src/index.tsx</code>），然后重新启动开发服务器，因为默认的<code>tsconfig</code>配置是严格模式所以我们接下来需要对代码进行一些更改。</p>
+<h2 id="react-for-ts">React for Ts</h2>
+<p><code>ts </code>已经成功添加到我们的项目中了，接下来我们以一个<code>HelloTs</code>应用为例子演示一下如何用<code>ts</code>编写一个组件，首先我们要将所有使用到<code>jsx</code>语法的文件重命名为<code>xxx.tsx</code>，然后组件声明时使用 <code>Component&lt;P, S&gt;</code> 泛型参数声明。</p>
+<h4 id="props-and-state">Props and State</h4>
+<p>首先组件声明时使用 <code>Component&lt;P, S&gt;</code> 泛型参数声明，拿我项目中的代码片段为例，我们需要声明<code>state</code>和<code>prop</code>并且暴露<code>prop</code>类型来代替<code>PropType</code>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IGameProps</span> {
+    <span style="color:#a6e22e">title</span>: <span style="color:#66d9ef">string</span>;
+    <span style="color:#a6e22e">img</span>: <span style="color:#66d9ef">string</span>;
+    <span style="color:#a6e22e">completed</span>: <span style="color:#66d9ef">number</span>;
+  	<span style="color:#a6e22e">selectGame</span><span style="color:#f92672">:</span> () <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span>;
+}
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IGameState</span> {
+  	<span style="color:#a6e22e">pageName</span>: <span style="color:#66d9ef">string</span>;
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Game</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">IGameProps</span>, <span style="color:#a6e22e">IGameState</span><span style="color:#f92672">&gt;</span> {
+  	<span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">IGameProps</span>) {
+      	<span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">props</span>)
+      	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">total</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;game&#34;</span> }
+    }
+    <span style="color:#a6e22e">render() {</span>
+        <span style="color:#66d9ef">let</span> { <span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">completed</span>, <span style="color:#a6e22e">img</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>;
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">imgUrl</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">url(&#34;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">img</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;)</span><span style="color:#e6db74">`</span>;
+        <span style="color:#66d9ef">return</span> (
+            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;g-home__box&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span>{{ <span style="color:#a6e22e">backgroundImage</span>: <span style="color:#66d9ef">imgUrl</span> }} <span style="color:#a6e22e">onCick</span><span style="color:#f92672">=</span>{<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">selectGame</span>}<span style="color:#f92672">&gt;</span>
+                <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">title</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">1</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+                    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Progress</span> <span style="color:#a6e22e">completed</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">completed</span>}<span style="color:#f92672">&gt;</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">P</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">g</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+                <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">v</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+            <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">v</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+        );
+    }
+}
+</code></pre></div><h2 id="redux-for-ts">Redux for Ts</h2>
+<h4 id="插件安装">插件安装</h4>
+<p>安装<code>redux</code>和<code>react-redux</code>以及它们的类型文件做为依赖。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install -S redux react-redux @types/react-redux
+</code></pre></div><blockquote>
+<p>这里我们不需要安装<code>@types/redux</code>，因为<code>Redux</code>已经自带了声明文件（.d.ts文件）。</p>
+</blockquote>
+<h4 id="开启-devtools">开启 devtools</h4>
+<p><code>TypeScript</code>并不知道<code>__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</code>属性的类型，因此，我们需要向全局添加类型声明：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">declare</span> <span style="color:#a6e22e">global</span> {
+  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Window</span> {
+    <span style="color:#a6e22e">__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">compose</span>;
+  }
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">composeEnhancers</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">compose</span>;
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">store</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createStore</span>(<span style="color:#a6e22e">reducer</span>, <span style="color:#a6e22e">composeEnhancers</span>())
+</code></pre></div><h4 id="定义-action-type">定义 action type</h4>
+<p>之后我们要在<code>store</code>文件夹中创建<code>constants.ts</code>，用于定义<code>action</code>类型。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// store constants.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">UPDATE_GAMES</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;home/UPDATE_GAMES&#34;</span>;
+<span style="color:#66d9ef">export</span> <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">UPDATE_GAMES</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">UPDATE_GAMES</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">GET_GAMES</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;home/GET_GAMES&#34;</span>;
+<span style="color:#66d9ef">export</span> <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">GET_GAMES</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">GET_GAMES</span>;
+</code></pre></div><blockquote>
+<p><code>const/type</code>模式允许重构TypeScript的字符串字面量类型。</p>
+</blockquote>
+<h4 id="创建-action-creator">创建 action creator</h4>
+<p>首先我们要为<code>actionCreator</code>创建的<code>action</code>定义类型，之后编写好<code>actionCreator</code>之后我们需要将<code>action</code>类型合并并且暴露，之后再<code>reducer</code>中使用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IGetGameAction</span> {
+    <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">GET_GAMES</span>;
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getGames</span> <span style="color:#f92672">=</span> ()<span style="color:#f92672">:</span> <span style="color:#a6e22e">IGetGameAction</span> <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">GET_GAMES</span>,
+    };
+};
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IUpdateGamesAction</span> {
+    <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">UPDATE_GAMES</span>;
+    <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">IGameList</span>;
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">updateGames</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">IGameList</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">IUpdateGamesAction</span> <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">UPDATE_GAMES</span>,
+        <span style="color:#a6e22e">data</span>,
+    };
+};
+
+<span style="color:#66d9ef">export</span> <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">IGameAction</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">IUpdateGamesAction</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">IUpdateGamesAction</span>
+</code></pre></div><h4 id="编写-reducer">编写 reducer</h4>
+<p>编写<code>reducer</code>的过程很简单，我们只需要为<code>action</code>添加刚刚我们定义的类型即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">actionTypes</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./constants&#34;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">IUpdateGamesAction</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./actionCreator&#34;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">defaultState</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">games</span><span style="color:#f92672">:</span> [],
+};
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> (<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">defaultState</span>, <span style="color:#a6e22e">action</span>: <span style="color:#66d9ef">IUpdateGamesAction</span>) <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">type</span>) {
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">actionTypes.UPDATE_GAMES</span>:
+            <span style="color:#66d9ef">return</span> Object.<span style="color:#a6e22e">assign</span>({}, <span style="color:#a6e22e">state</span>, {
+                <span style="color:#a6e22e">games</span>: <span style="color:#66d9ef">action.data</span>,
+            });
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">state</span>;
+    }
+};
+</code></pre></div><h4 id="在组件中使用">在组件中使用</h4>
+<p>下面的组件中使用了上面定义的<code>gameinfopanel</code>用于展示已存在的游戏项，引用了上面的<code>IGameProps</code>，我们主要需要注意的就是<code>dispatch</code>和<code>state</code>的类型声明，以及在<code>mapDispatchToProps</code>定义的函数类型也要在<code>Prop</code>中声明。</p>
+<p>要注意<code>Dispatch</code>是一个泛型函数，泛型参数就是你的<code>actionCreator</code>的返回值类型。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Game</span>, { <span style="color:#a6e22e">IGameProps</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./components/Game&#34;</span>;
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IHomeListItem</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">IGameProps</span> {
+    <span style="color:#a6e22e">url</span>: <span style="color:#66d9ef">string</span>;
+}
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IHomeProps</span> {
+    <span style="color:#a6e22e">games</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">IHomeListItem</span><span style="color:#f92672">&gt;</span>;
+    <span style="color:#a6e22e">changeHomeData</span><span style="color:#f92672">?</span><span style="color:#f92672">:</span> () <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span>;
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Home</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">IHomeProps</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#a6e22e">render() {</span>
+        <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">games</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>;
+        <span style="color:#66d9ef">return</span> (
+            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;g-home__container&#34;</span><span style="color:#f92672">&gt;</span>
+                {<span style="color:#a6e22e">games</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span>) <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> {
+                    <span style="color:#66d9ef">return</span> (
+                        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Link</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">index</span>} <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">url</span>}<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Game</span>
+                                <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">title</span>}
+                                <span style="color:#a6e22e">completed</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">completed</span>}
+                                <span style="color:#a6e22e">img</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">img</span>}
+                            <span style="color:#f92672">&gt;</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">G</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+                        <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">L</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">k</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+                    );
+                })}
+            <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">v</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+        );
+    }
+    <span style="color:#a6e22e">componentDidMount() {</span>
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">changeHomeData</span>();
+    }
+}
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mapStateToProps</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">state</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#a6e22e">games</span>: <span style="color:#66d9ef">state.getIn</span>([<span style="color:#e6db74">&#34;home&#34;</span>, <span style="color:#e6db74">&#34;games&#34;</span>]),
+    };
+};
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mapDispatchToProps</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">dispatch</span>: <span style="color:#66d9ef">Dispatch</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">actionCreator</span>.<span style="color:#a6e22e">IUpdateGamesAction</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">return</span> {
+        <span style="color:#a6e22e">changeHomeData() {</span>
+            <span style="color:#a6e22e">dispatch</span>(<span style="color:#a6e22e">actionCreator</span>.<span style="color:#a6e22e">getGames</span>());
+        },
+    };
+};
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">mapStateToProps</span>, <span style="color:#a6e22e">mapDispatchToProps</span>)(<span style="color:#a6e22e">Home</span>);
+</code></pre></div><h2 id="react-thunk-for-ts">React-thunk for Ts</h2>
+<p>暂未学习</p>
+<h2 id="immutable-for-ts">Immutable for Ts</h2>
+<p>暂未学习</p>
+<h2 id="other-advises">Other Advises</h2>
+<p>全局变量或者自定义的 <code>window</code> 对象属性，统一在项目根下的 <code>global.d.ts</code> 中进行声明定义。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">declare</span> <span style="color:#a6e22e">global</span> {
+  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Window</span> {
+    <span style="color:#a6e22e">__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">compose</span>;
+  }
+}
+</code></pre></div><p>对于项目中常用到的接口数据对象，最好在 <code>interfaces/</code> 目录下定义好其结构化类型声明。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IGameInfo</span> {
+    <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>;
+    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>;
+    <span style="color:#a6e22e">completed</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>;
+    <span style="color:#a6e22e">img</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>;
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">IGameList</span> <span style="color:#f92672">=</span> Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">IGameInfo</span><span style="color:#f92672">&gt;</span>;
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Inno </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/>https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/react/">
+                    #react</a></span>
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/ts/">
+                    #ts</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://blog.innoweb.cn/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://blog.innoweb.cn/2020/%E7%94%A8deno%E6%9D%A5%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8Cts%E4%BB%A3%E7%A0%81/" class="prev" rel="prev" title="用deno来快速运行ts代码"><i class="iconfont icon-left"></i>&nbsp;用deno来快速运行ts代码</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+          
+<div id="gitalk-container/" style="border: 0;"></div>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.css" style="border: 0;" />
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.js" style="border: 0;"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: "11370a73f2287b478b63",
+    clientSecret: "02280a77fa3c4b78089a907c1cff0cdf4cb5853f]",
+    repo: "blog.innoweb.cn",
+    owner: "patrick-prod",
+    admin: ["patrick-prod"],
+    id: location.pathname, 
+    distractionFreeMode: false, 
+  });
+  (function () {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById("gitalk-container").innerHTML =
+        "Gitalk comments not available by default when the website is previewed locally.";
+      return;
+    }
+    gitalk.render("gitalk-container");
+  })();
+</script>
+
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://blog.innoweb.cn/">Inno</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+
+
+     </div>
+  </body>
+</html>
