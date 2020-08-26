@@ -4,7 +4,7 @@
     <url>
       <loc>https://blog.innoweb.cn/categories/</loc>
       
-      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
       
       
       
@@ -14,7 +14,7 @@
     <url>
       <loc>https://blog.innoweb.cn/</loc>
       
-      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
       
       
       
@@ -24,7 +24,57 @@
     <url>
       <loc>https://blog.innoweb.cn/posts/</loc>
       
-      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/</loc>
+      
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/2020/%E6%88%91%E8%84%B1%E5%8D%95%E4%BA%86/</loc>
+      
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/%E6%91%B8%E9%B1%BC/</loc>
+      
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/categories/%E6%9D%82%E8%B0%88/</loc>
+      
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://blog.innoweb.cn/tags/%E7%88%B1%E6%83%85/</loc>
+      
+      <lastmod>2020-08-26T21:09:47+08:00</lastmod>
       
       
       
@@ -43,16 +93,6 @@
   
     <url>
       <loc>https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/</loc>
-      
-      <lastmod>2020-08-26T20:58:13+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://blog.innoweb.cn/tags/</loc>
       
       <lastmod>2020-08-26T20:58:13+08:00</lastmod>
       
@@ -162,7 +202,7 @@
     </url>
   
     <url>
-      <loc>https://blog.innoweb.cn/categories/linux/</loc>
+      <loc>https://blog.innoweb.cn/tags/linux/</loc>
       
       <lastmod>2020-06-27T07:36:08+08:00</lastmod>
       
@@ -172,7 +212,7 @@
     </url>
   
     <url>
-      <loc>https://blog.innoweb.cn/tags/linux/</loc>
+      <loc>https://blog.innoweb.cn/categories/linux/</loc>
       
       <lastmod>2020-06-27T07:36:08+08:00</lastmod>
       
