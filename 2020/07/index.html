@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp" />
+  
+  <meta name="author" content="Inno">
+  
+  <meta name="description" content="inno的个人博客网站，关注Javascript，Golang，Nodejs，Deno，微信小程序等web开发常用技术。">
+  
+  <meta name="keywords" content="leetcode,golang,javascript,typescript,deno,nodejs,算法,前端,后端">
+  
+  
+  <link rel="prev" href="https://blog.innoweb.cn/2020/06/" />
+  
+  <link rel="next" href="https://blog.innoweb.cn/2020/08/" />
+  <link rel="canonical" href="https://blog.innoweb.cn/2020/07/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="/favicon.ico" rel="icon" type="image/x-icon">
+  <link href="https://blog.innoweb.cn/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+    
+    
+    Go处理token | Inno`s Blog
+    
+  </title>
+  <meta name="title"
+    content="Go处理token | Inno`s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/blog.innoweb.cn\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Go处理token",
+    "headline" : "Go处理token",
+    "description" : "golang处理token",
+    "inLanguage" : "zh-CN",
+    "author" : "Inno",
+    "creator" : "Inno",
+    "publisher": "Inno",
+    "accountablePerson" : "Inno",
+    "copyrightHolder" : "Inno",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-01-26 21:34:13 \x2b0800 CST",
+    "dateModified" : "2020-01-26 21:34:13 \x2b0800 CST",
+    "url" : "https:\/\/blog.innoweb.cn\/2020\/07\/",
+    "wordCount" : "1356",
+    "keywords" : [ "golang","token","服务器", "Inno`s Blog"]
+}
+</script>
+
+</head>
+
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    
+        <div class="top-scroll-bar"></div>
+    
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.innoweb.cn/">Inno`s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+        
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+    <div class="top-scroll-bar"></div>
+    
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://blog.innoweb.cn/">Inno`s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/github/" title="inno†">Inno †</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Go处理token</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://blog.innoweb.cn/" rel="author">Inno</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-01-26 itemprop="datePublished">January 26, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://blog.innoweb.cn/categories/golang/"> golang </a>
+                        
+                </span>
+                <span class="post-word-count" style="float: right;">Total <code>1356</code> words</span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>搭建网站时我们经常使用<code>JWT</code>做用户鉴权，在<code>golang</code>中我们🉑️以通过<code>jwt-go</code>的第三方库来为我们实现。</p>
+<p><img src="http://image.innoweb.cn/2020-01-31-125331.png" alt="这里写图片描述"></p>
+<p><strong>常见的处理流程：</strong></p>
+<ol>
+<li>从<code>request</code>获取<code>tokenstring</code>，可能是通过<code>cookie</code>携带，也可能是从<code>lacalstorage</code>读取并写入请求头。</li>
+<li>将<code>tokenstring</code>转化为<code>未解密的token对象</code>。</li>
+<li>将<code>未解密的token对象</code>解密得到<code>解密后的token对象</code>。</li>
+<li>从<code>解密后的token对象</code>里取参数。</li>
+<li>将参数写入程序上下文。</li>
+</ol>
+<h2 id="jwt-的结构">JWT 的结构</h2>
+<p><code>JWT</code> 是由<code>header,payload,signature</code>三部分组成的。</p>
+<p><strong>header</strong></p>
+<p><code>Header</code>中规定了加密算法<code>hash256</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+  <span style="color:#f92672">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+}
+<span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">b</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#ae81ff">64</span><span style="color:#960050;background-color:#1e0010">编</span><span style="color:#960050;background-color:#1e0010">码</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">字</span><span style="color:#960050;background-color:#1e0010">符</span><span style="color:#960050;background-color:#1e0010">串</span><span style="color:#960050;background-color:#1e0010">`</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">y</span><span style="color:#960050;background-color:#1e0010">J</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">b</span><span style="color:#960050;background-color:#1e0010">G</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">O</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">J</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">U</span><span style="color:#960050;background-color:#1e0010">z</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">N</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">R</span><span style="color:#ae81ff">5</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">C</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#ae81ff">6</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">k</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">X</span><span style="color:#960050;background-color:#1e0010">V</span><span style="color:#960050;background-color:#1e0010">C</span><span style="color:#960050;background-color:#1e0010">J</span><span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">`</span>
+</code></pre></div><p><strong>payload</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;uid&#34;</span>: <span style="color:#e6db74">&#34;14&#34;</span>,
+  <span style="color:#f92672">&#34;auth_id&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+}
+<span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">b</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#ae81ff">64</span><span style="color:#960050;background-color:#1e0010">编</span><span style="color:#960050;background-color:#1e0010">码</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">字</span><span style="color:#960050;background-color:#1e0010">符</span><span style="color:#960050;background-color:#1e0010">串</span><span style="color:#960050;background-color:#1e0010">`</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">y</span><span style="color:#960050;background-color:#1e0010">J</span><span style="color:#960050;background-color:#1e0010">z</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">W</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">O</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">M</span><span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">M</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">N</span><span style="color:#960050;background-color:#1e0010">T</span><span style="color:#960050;background-color:#1e0010">Y</span><span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">O</span><span style="color:#960050;background-color:#1e0010">D</span><span style="color:#960050;background-color:#1e0010">k</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">b</span><span style="color:#960050;background-color:#1e0010">m</span><span style="color:#960050;background-color:#1e0010">F</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">Z</span><span style="color:#960050;background-color:#1e0010">S</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#ae81ff">6</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">k</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">v</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">G</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">g</span><span style="color:#960050;background-color:#1e0010">R</span><span style="color:#960050;background-color:#1e0010">G</span><span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">I</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">Y</span><span style="color:#960050;background-color:#1e0010">W</span><span style="color:#960050;background-color:#1e0010">R</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">W</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">O</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">R</span><span style="color:#960050;background-color:#1e0010">y</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">W</span><span style="color:#960050;background-color:#1e0010">V</span><span style="color:#ae81ff">9</span><span style="color:#960050;background-color:#1e0010">`</span>
+<span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">/</span> <span style="color:#960050;background-color:#1e0010">这</span><span style="color:#960050;background-color:#1e0010">里</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">内</span><span style="color:#960050;background-color:#1e0010">容</span><span style="color:#960050;background-color:#1e0010">没</span><span style="color:#960050;background-color:#1e0010">有</span><span style="color:#960050;background-color:#1e0010">强</span><span style="color:#960050;background-color:#1e0010">制</span><span style="color:#960050;background-color:#1e0010">要</span><span style="color:#960050;background-color:#1e0010">求</span><span style="color:#960050;background-color:#1e0010">,</span><span style="color:#960050;background-color:#1e0010">因</span><span style="color:#960050;background-color:#1e0010">为</span> <span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">y</span><span style="color:#960050;background-color:#1e0010">l</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">d</span> <span style="color:#960050;background-color:#1e0010">就</span><span style="color:#960050;background-color:#1e0010">是</span><span style="color:#960050;background-color:#1e0010">为</span><span style="color:#960050;background-color:#1e0010">了</span><span style="color:#960050;background-color:#1e0010">承</span><span style="color:#960050;background-color:#1e0010">载</span><span style="color:#960050;background-color:#1e0010">内</span><span style="color:#960050;background-color:#1e0010">容</span><span style="color:#960050;background-color:#1e0010">而</span><span style="color:#960050;background-color:#1e0010">存</span><span style="color:#960050;background-color:#1e0010">在</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">,</span><span style="color:#960050;background-color:#1e0010">不</span><span style="color:#960050;background-color:#1e0010">过</span><span style="color:#960050;background-color:#1e0010">想</span><span style="color:#960050;background-color:#1e0010">用</span><span style="color:#960050;background-color:#1e0010">规</span><span style="color:#960050;background-color:#1e0010">范</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">话</span><span style="color:#960050;background-color:#1e0010">也</span><span style="color:#960050;background-color:#1e0010">可</span><span style="color:#960050;background-color:#1e0010">以</span><span style="color:#960050;background-color:#1e0010">参</span><span style="color:#960050;background-color:#1e0010">考</span><span style="color:#960050;background-color:#1e0010">下</span><span style="color:#960050;background-color:#1e0010">面</span><span style="color:#960050;background-color:#1e0010">的</span>
+<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">签</span><span style="color:#960050;background-color:#1e0010">发</span><span style="color:#960050;background-color:#1e0010">者</span>
+<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">b</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">所</span><span style="color:#960050;background-color:#1e0010">面</span><span style="color:#960050;background-color:#1e0010">向</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">用</span><span style="color:#960050;background-color:#1e0010">户</span>
+<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">接</span><span style="color:#960050;background-color:#1e0010">收</span><span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">一</span><span style="color:#960050;background-color:#1e0010">方</span>
+<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">x</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">过</span><span style="color:#960050;background-color:#1e0010">期</span><span style="color:#960050;background-color:#1e0010">时</span><span style="color:#960050;background-color:#1e0010">间</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">这</span><span style="color:#960050;background-color:#1e0010">个</span><span style="color:#960050;background-color:#1e0010">过</span><span style="color:#960050;background-color:#1e0010">期</span><span style="color:#960050;background-color:#1e0010">时</span><span style="color:#960050;background-color:#1e0010">间</span><span style="color:#960050;background-color:#1e0010">必</span><span style="color:#960050;background-color:#1e0010">须</span><span style="color:#960050;background-color:#1e0010">要</span><span style="color:#960050;background-color:#1e0010">大</span><span style="color:#960050;background-color:#1e0010">于</span><span style="color:#960050;background-color:#1e0010">签</span><span style="color:#960050;background-color:#1e0010">发</span><span style="color:#960050;background-color:#1e0010">时</span><span style="color:#960050;background-color:#1e0010">间</span>
+<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">b</span><span style="color:#960050;background-color:#1e0010">f</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">定</span><span style="color:#960050;background-color:#1e0010">义</span><span style="color:#960050;background-color:#1e0010">在</span><span style="color:#960050;background-color:#1e0010">什</span><span style="color:#960050;background-color:#1e0010">么</span><span style="color:#960050;background-color:#1e0010">时</span><span style="color:#960050;background-color:#1e0010">间</span><span style="color:#960050;background-color:#1e0010">之</span><span style="color:#960050;background-color:#1e0010">前</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">该</span><span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">都</span><span style="color:#960050;background-color:#1e0010">是</span><span style="color:#960050;background-color:#1e0010">不</span><span style="color:#960050;background-color:#1e0010">可</span><span style="color:#960050;background-color:#1e0010">用</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">.</span>
+<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">签</span><span style="color:#960050;background-color:#1e0010">发</span><span style="color:#960050;background-color:#1e0010">时</span><span style="color:#960050;background-color:#1e0010">间</span>
+<span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#960050;background-color:#1e0010">j</span><span style="color:#960050;background-color:#1e0010">w</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">的</span><span style="color:#960050;background-color:#1e0010">唯</span><span style="color:#960050;background-color:#1e0010">一</span><span style="color:#960050;background-color:#1e0010">身</span><span style="color:#960050;background-color:#1e0010">份</span><span style="color:#960050;background-color:#1e0010">标</span><span style="color:#960050;background-color:#1e0010">识</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#960050;background-color:#1e0010">主</span><span style="color:#960050;background-color:#1e0010">要</span><span style="color:#960050;background-color:#1e0010">用</span><span style="color:#960050;background-color:#1e0010">来</span><span style="color:#960050;background-color:#1e0010">作</span><span style="color:#960050;background-color:#1e0010">为</span><span style="color:#960050;background-color:#1e0010">一</span><span style="color:#960050;background-color:#1e0010">次</span><span style="color:#960050;background-color:#1e0010">性</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">k</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">n</span><span style="color:#960050;background-color:#1e0010">,</span><span style="color:#960050;background-color:#1e0010">从</span><span style="color:#960050;background-color:#1e0010">而</span><span style="color:#960050;background-color:#1e0010">回</span><span style="color:#960050;background-color:#1e0010">避</span><span style="color:#960050;background-color:#1e0010">重</span><span style="color:#960050;background-color:#1e0010">放</span><span style="color:#960050;background-color:#1e0010">攻</span><span style="color:#960050;background-color:#1e0010">击</span><span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><p><strong>signature</strong></p>
+<p>是用 <code>header + payload + secret</code>组合起来加密的,公式是:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">HMACSHA256</span>(<span style="color:#a6e22e">base64UrlEncode</span>(<span style="color:#a6e22e">header</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">+</span><span style="color:#a6e22e">base64UrlEncode</span>(<span style="color:#a6e22e">payload</span>), <span style="color:#a6e22e">secret</span>)
+</code></pre></div><p>这里 <code>secret</code>就是自己定义的一个随机字符串,这一个过程只能发生在 server 端,会随机生成一个 hash 值</p>
+<p>这样组合起来之后就是一个完整的 jwt 了:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.<span style="color:#a6e22e">eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9</span><span style="color:#ae81ff">.4</span><span style="color:#a6e22e">c9540f793ab33b13670169bdf444c1eb1c37047f18e861981e14e34587b1e04</span>
+</code></pre></div><p><strong>总结</strong></p>
+<p><code>jwt</code>中有公钥私钥非对称加密机制，可以保证内容的合法性，token中可以包含很多信息。不过<code>jwt</code>不保证的安全问题，因为<code>header,paylaod</code>是 base64编码,相当于明文可见的,因此不能在<code>payload</code>中放入敏感信息。并不能保证数据传输时会不会被盗用,这一点和 sessionID 一样,因此不要迷信它有多高的安全性..</p>
+<h2 id="起步">起步</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;github.com/dgrijalva/jwt-go&#34;</span>
+</code></pre></div><h2 id="获取token">获取token</h2>
+<p>这里我是用的<code>iris</code>框架，鉴权过程中将<code>token</code>从<code>cookie</code>中获取。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">AuthWithToken</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">iris</span>.<span style="color:#a6e22e">Context</span>) {
+   <span style="color:#a6e22e">tokenString</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">GetCookie</span>(<span style="color:#e6db74">&#34;token&#34;</span>)
+   <span style="color:#a6e22e">uid</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">VerifyToken</span>(<span style="color:#a6e22e">signature</span>,<span style="color:#a6e22e">your</span> <span style="color:#a6e22e">sercetKey</span>)
+   <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Values</span>().<span style="color:#a6e22e">Set</span>(<span style="color:#e6db74">&#34;uid&#34;</span>,<span style="color:#a6e22e">uid</span>)
+   <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Next</span>()
+}
+</code></pre></div><h2 id="制作token">制作token</h2>
+<p><strong>payload</strong></p>
+<p>在<code>go-jwt</code>定义了一个规范的<code>payload</code>结构体<code>Claim</code>，你可按需初始化参数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">jwt</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StandardClaims</span> <span style="color:#66d9ef">struct</span> {
+   <span style="color:#a6e22e">Audience</span>  <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;aud,omitempty&#34;</span><span style="color:#e6db74">`</span>
+   <span style="color:#a6e22e">ExpiresAt</span> <span style="color:#66d9ef">int64</span>  <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;exp,omitempty&#34;</span><span style="color:#e6db74">`</span>
+   <span style="color:#a6e22e">Id</span>        <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;jti,omitempty&#34;</span><span style="color:#e6db74">`</span>
+   <span style="color:#a6e22e">IssuedAt</span>  <span style="color:#66d9ef">int64</span>  <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;iat,omitempty&#34;</span><span style="color:#e6db74">`</span>
+   <span style="color:#a6e22e">Issuer</span>    <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;iss,omitempty&#34;</span><span style="color:#e6db74">`</span>
+   <span style="color:#a6e22e">NotBefore</span> <span style="color:#66d9ef">int64</span>  <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;nbf,omitempty&#34;</span><span style="color:#e6db74">`</span>
+   <span style="color:#a6e22e">Subject</span>   <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;sub,omitempty&#34;</span><span style="color:#e6db74">`</span>
+}
+</code></pre></div><p>通常我们嵌套匿名结构体来加入自定义的<code>payload</code>字段，最后函数会返回一个<code>Claim</code>结构体。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MyCustomClaims</span> <span style="color:#66d9ef">struct</span> {
+   <span style="color:#a6e22e">Uid</span> <span style="color:#66d9ef">int64</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;uid&#34;</span><span style="color:#e6db74">`</span>
+   <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">StandardClaims</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DefaultClaim</span>(<span style="color:#a6e22e">uid</span> <span style="color:#66d9ef">int64</span>) (<span style="color:#a6e22e">tokenString</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+   <span style="color:#a6e22e">AppConfig</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">GetConfig</span>(<span style="color:#a6e22e">RootPath</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;/config/config.json&#34;</span>)
+   <span style="color:#a6e22e">claims</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">MyCustomClaims</span>{
+      <span style="color:#a6e22e">uid</span>,
+      <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">StandardClaims</span>{
+         <span style="color:#a6e22e">ExpiresAt</span>: <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Unix</span>()<span style="color:#f92672">+</span>int64(<span style="color:#a6e22e">AppConfig</span>.<span style="color:#a6e22e">SecurityExpiresIn</span>),	<span style="color:#75715e">//添加你要的过期时间。
+</span><span style="color:#75715e"></span>      }
+   }
+}
+</code></pre></div><p><strong>header</strong></p>
+<p>使用<code>Claim</code>结构体来生成<code>Token</code>结构体。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DefaultToken</span>(<span style="color:#a6e22e">claim</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MyCustomClaim</span>) (<span style="color:#a6e22e">token</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Token</span> , <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+   <span style="color:#a6e22e">token</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">NewWithClaims</span>(<span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">SigningMethodHS256</span>, <span style="color:#a6e22e">claims</span>)		<span style="color:#75715e">//根据Claim生成payload并且加密处理。
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">return</span>
+}
+</code></pre></div><p><strong>signature</strong></p>
+<p>对<code>token</code>进行签名并且返回签名字符串。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DefaultTokenString</span>(<span style="color:#a6e22e">token</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Token</span>) (<span style="color:#a6e22e">tokenString</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+   <span style="color:#a6e22e">AppConfig</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">GetConfig</span>(<span style="color:#a6e22e">RootPath</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;/config/config.json&#34;</span>)
+   <span style="color:#a6e22e">tokenString</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">SignedString</span>([]byte(<span style="color:#a6e22e">AppConfig</span>.<span style="color:#a6e22e">SecurityKey</span>))
+   <span style="color:#66d9ef">return</span>
+}
+</code></pre></div><h2 id="解析token">解析Token</h2>
+<p>根据你自定义的的<code>Claim</code>结构体和<code>sercetKey</code>你就可以对你的<code>tokenString</code>进行解析，拿到负载并且判断是否过期。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">VerifyToken</span>(<span style="color:#a6e22e">tokenString</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">sercetKey</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">uid</span> <span style="color:#66d9ef">int64</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+   <span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">ParseWithClaims</span>(<span style="color:#a6e22e">tokenString</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MyCustomClaims</span>{}, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">token</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">Token</span>) (<span style="color:#66d9ef">interface</span>{}, <span style="color:#66d9ef">error</span>) {
+      <span style="color:#66d9ef">return</span> []byte(<span style="color:#a6e22e">sercetKey</span>), <span style="color:#66d9ef">nil</span>			<span style="color:#75715e">//你的加密字符串。
+</span><span style="color:#75715e"></span>   })
+   <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">claims</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">Claims</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">MyCustomClaims</span>); <span style="color:#a6e22e">ok</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">Valid</span> {
+     <span style="color:#75715e">// 如果解密的 token 合法就可以判断 token 是否过期，并且拿到负载字段。
+</span><span style="color:#75715e"></span>      <span style="color:#a6e22e">uid</span> = <span style="color:#a6e22e">claims</span>.<span style="color:#a6e22e">Uid</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">claims</span>.<span style="color:#a6e22e">VerifyExpiresAt</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Unix</span>(),<span style="color:#66d9ef">true</span>) {
+         <span style="color:#66d9ef">return</span>
+      }<span style="color:#66d9ef">else</span>{
+         <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;token已经过期啦。&#34;</span>)
+         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">nil</span>
+      }
+   } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">return</span>
+   }
+}
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Inno </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://blog.innoweb.cn/2020/07/>https://blog.innoweb.cn/2020/07/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/golang/">
+                    #golang</a></span>
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/token/">
+                    #token</a></span>
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                    #服务器</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://blog.innoweb.cn/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://blog.innoweb.cn/2020/06/" class="prev" rel="prev" title="Go校验层go-validator"><i class="iconfont icon-left"></i>&nbsp;Go校验层go-validator</a>
+         
+        
+        <a href="https://blog.innoweb.cn/2020/08/" class="next" rel="next" title="二叉排序树">二叉排序树&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+          
+<div id="gitalk-container" style="border: 0;"></div>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.css" style="border: 0;" />
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.js" style="border: 0;"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: "29ea93a56bc68af65ba8",
+    clientSecret: "0af554128f5f5ec8a81b515d4df19b6238170fd4",
+    repo: "patrick-prod.github.io",
+    owner: "patrick-prod",
+    admin: ["patrick-prod"],
+    id: location.pathname, 
+    distractionFreeMode: false, 
+  });
+  (function () {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById("gitalk-container").innerHTML =
+        "Gitalk comments not available by default when the website is previewed locally.";
+      return;
+    }
+    gitalk.render("gitalk-container");
+  })();
+</script>
+
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2020 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://blog.innoweb.cn/">Inno</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+
+
+     </div>
+  </body>
+</html>

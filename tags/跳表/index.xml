@@ -14,10 +14,10 @@
     
     <item>
       <title>跳表的原理与实现</title>
-      <link>https://blog.innoweb.cn/2020/%E8%B7%B3%E8%A1%A8/</link>
+      <link>https://blog.innoweb.cn/2020/15/</link>
       <pubDate>Wed, 15 Apr 2020 20:14:51 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/%E8%B7%B3%E8%A1%A8/</guid>
+      <guid>https://blog.innoweb.cn/2020/15/</guid>
       <description>跳表（skip list） Skip list是一个用于有序元素序列快速搜索的数据结构，由美国计算机科学家William Pugh发明于1989年。它的效率和红黑树以及 AVL 树不相上下，但实现起来比较容易。 作者Will</description>
     </item>
     

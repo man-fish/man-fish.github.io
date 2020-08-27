@@ -14,19 +14,19 @@
     
     <item>
       <title>React&#43;Typescript踩坑集</title>
-      <link>https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/</link>
+      <link>https://blog.innoweb.cn/2020/23/</link>
       <pubDate>Wed, 26 Aug 2020 20:58:13 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/react-typescript%E8%B8%A9%E5%9D%91%E9%9B%86/</guid>
+      <guid>https://blog.innoweb.cn/2020/23/</guid>
       <description>最近把自己开发的一个react项目用typescript重构了一遍，使用的技术栈为react+react-redux+react-router，迁移的过程中遇到了很多坑，这就来和大家分享一下。 项目地址</description>
     </item>
     
     <item>
       <title>用deno来快速运行ts代码</title>
-      <link>https://blog.innoweb.cn/2020/%E7%94%A8deno%E6%9D%A5%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8Cts%E4%BB%A3%E7%A0%81/</link>
+      <link>https://blog.innoweb.cn/2020/22/</link>
       <pubDate>Mon, 06 Jul 2020 21:08:07 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/%E7%94%A8deno%E6%9D%A5%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8Cts%E4%BB%A3%E7%A0%81/</guid>
+      <guid>https://blog.innoweb.cn/2020/22/</guid>
       <description>最近博主在用TypeScript来刷题，一开始的时候先通过tsconfig.json配置编译再拿到node里去运行，这个过程不适合很巴适。前一阵子nodejs作者发布的deno可以直接跑ts的语法，配</description>
     </item>
     

@@ -7,27 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 31 Jan 2020 22:00:26 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jan 2020 21:34:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.innoweb.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Go校验层go-validator</title>
-      <link>https://blog.innoweb.cn/2020/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</link>
-      <pubDate>Fri, 31 Jan 2020 22:00:26 +0800</pubDate>
+      <title>Go处理token</title>
+      <link>https://blog.innoweb.cn/2020/07/</link>
+      <pubDate>Sun, 26 Jan 2020 21:34:13 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</guid>
-      <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 go get gopkg.in/validator.v2 Import the package into your own code. import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的</description>
+      <guid>https://blog.innoweb.cn/2020/07/</guid>
+      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能</description>
     </item>
     
     <item>
-      <title>Go处理token</title>
-      <link>https://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</link>
-      <pubDate>Fri, 31 Jan 2020 21:34:13 +0800</pubDate>
+      <title>Go校验层go-validator</title>
+      <link>https://blog.innoweb.cn/2020/06/</link>
+      <pubDate>Fri, 24 Jan 2020 22:00:26 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</guid>
-      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能</description>
+      <guid>https://blog.innoweb.cn/2020/06/</guid>
+      <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 go get gopkg.in/validator.v2 Import the package into your own code. import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的</description>
     </item>
     
   </channel>

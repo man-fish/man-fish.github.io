@@ -14,10 +14,10 @@
     
     <item>
       <title>这个博客是怎么搭出来的</title>
-      <link>https://blog.innoweb.cn/2020/20/</link>
+      <link>https://blog.innoweb.cn/2020/18/</link>
       <pubDate>Sat, 27 Jun 2020 04:56:33 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/20/</guid>
+      <guid>https://blog.innoweb.cn/2020/18/</guid>
       <description>第一步：hugo的安装和基本使用 第一步先偷个懒，直接挂一个bilibili上的教程（BV1q4411i7gL），up主讲的真的很清楚了，成功的小伙伴别忘了三连。 #bilibili { width: 100%; height: 550px; } @media only screen and (min-device-width: 320px) and (max-device-width: 480px) { #bilibili { width:</description>
     </item>
     

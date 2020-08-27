@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 31 Jan 2020 21:34:13 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jan 2020 21:34:13 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.innoweb.cn/tags/token/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go处理token</title>
-      <link>https://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</link>
-      <pubDate>Fri, 31 Jan 2020 21:34:13 +0800</pubDate>
+      <link>https://blog.innoweb.cn/2020/07/</link>
+      <pubDate>Sun, 26 Jan 2020 21:34:13 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</guid>
+      <guid>https://blog.innoweb.cn/2020/07/</guid>
       <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能</description>
     </item>
     

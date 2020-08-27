@@ -14,10 +14,10 @@
     
     <item>
       <title>大数相加和大数相乘</title>
-      <link>https://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</link>
+      <link>https://blog.innoweb.cn/2020/17/</link>
       <pubDate>Mon, 15 Jun 2020 01:31:41 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/</guid>
+      <guid>https://blog.innoweb.cn/2020/17/</guid>
       <description>大数相加和大数相乘 所有的语言数字类型都有安全的计算范围，超过范围之后不同语言的处理不同，有可能会报错，也有可能拿不到精确的结果，对javascript来说它的处理是不精确的结果： console.log(123456789 * 987654321) // 121932631112635260 错误结果 对于</description>
     </item>
     

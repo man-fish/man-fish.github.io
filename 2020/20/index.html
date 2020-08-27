@@ -13,9 +13,9 @@
   <meta name="keywords" content="leetcode,golang,javascript,typescript,deno,nodejs,算法,前端,后端">
   
   
-  <link rel="prev" href="https://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/" />
+  <link rel="prev" href="https://blog.innoweb.cn/2020/21/" />
   
-  <link rel="next" href="https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" />
+  <link rel="next" href="https://blog.innoweb.cn/2020/22/" />
   <link rel="canonical" href="https://blog.innoweb.cn/2020/20/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link href="/favicon.ico" rel="icon" type="image/x-icon">
@@ -29,11 +29,11 @@
   <title>
     
     
-    这个博客是怎么搭出来的 | Inno`s Blog
+    JavaScript模块化-AMD | Inno`s Blog
     
   </title>
   <meta name="title"
-    content="这个博客是怎么搭出来的 | Inno`s Blog">
+    content="JavaScript模块化-AMD | Inno`s Blog">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -52,9 +52,9 @@
          "@id": "https:\/\/blog.innoweb.cn\/"
     },
     "articleSection" : "posts",
-    "name" : "这个博客是怎么搭出来的",
-    "headline" : "这个博客是怎么搭出来的",
-    "description" : "第一步：hugo的安装和基本使用 第一步先偷个懒，直接挂一个bilibili上的教程（BV1q4411i7gL），up主讲的真的很清楚了，成功的小伙伴别忘了三连。 #bilibili { width: 100%; height: 550px; } @media only screen and (min-device-width: 320px) and (max-device-width: 480px) { #bilibili { width:",
+    "name" : "JavaScript模块化-AMD",
+    "headline" : "JavaScript模块化-AMD",
+    "description" : "JavaScript模块化-AMD规范和ReuqireJs使用",
     "inLanguage" : "zh-CN",
     "author" : "Inno",
     "creator" : "Inno",
@@ -62,11 +62,11 @@
     "accountablePerson" : "Inno",
     "copyrightHolder" : "Inno",
     "copyrightYear" : "2020",
-    "datePublished": "2020-06-27 04:56:33 \x2b0800 CST",
-    "dateModified" : "2020-06-27 04:56:33 \x2b0800 CST",
+    "datePublished": "2020-07-02 23:44:17 \x2b0800 CST",
+    "dateModified" : "2020-07-02 23:44:17 \x2b0800 CST",
     "url" : "https:\/\/blog.innoweb.cn\/2020\/20\/",
-    "wordCount" : "3120",
-    "keywords" : [ "hugo","blog", "Inno`s Blog"]
+    "wordCount" : "2351",
+    "keywords" : [ "javascript","模块化","requirejs","AMD", "Inno`s Blog"]
 }
 </script>
 
@@ -134,19 +134,19 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">这个博客是怎么搭出来的</h1>
+        <h1 class="post-title" itemprop="name headline">JavaScript模块化-AMD</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://blog.innoweb.cn/" rel="author">Inno</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2020-06-27 itemprop="datePublished">June 27, 2020</time>
+                on <time datetime=2020-07-02 itemprop="datePublished">July 2, 2020</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="https://blog.innoweb.cn/categories/%E5%8D%9A%E5%AE%A2%E7%9E%8E%E6%8A%98%E8%85%BE/"> 博客瞎折腾 </a>
+                        <a href="https://blog.innoweb.cn/categories/javascript/"> javascript </a>
                         
                 </span>
-                <span class="post-word-count" style="float: right;">Total <code>3120</code> words</span>
+                <span class="post-word-count" style="float: right;">Total <code>2351</code> words</span>
         </div>
     </header>
     <div class="post-content">
@@ -167,271 +167,220 @@
           
           
 
-          <h2 id="第一步hugo的安装和基本使用">第一步：hugo的安装和基本使用</h2>
-<p>第一步先偷个懒，直接挂一个<code>bilibili</code>上的教程（BV1q4411i7gL），up主讲的真的很清楚了，成功的小伙伴别忘了三连。</p>
+          <p>最近写一个小游戏的时候用的是<code>RequireJs</code>构建项目，顺便补了一下<code>RequireJs</code>，下面讲解一些基础和进阶的用法。</p>
+<p><img src="http://image.innoweb.cn/2020-07-02-154317.png" alt="image-20200702234124624"></p>
+<h2 id="amd">AMD</h2>
+<p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a><code>Async Module Definition</code>代表的意思为异步模块定义，是<code>Javascript</code>模块化的浏览器解决方案，它采用异步的方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在回调函数中，等到加载完成之后，这个回调函数才会运行。</p>
+<p><img src="http://image.innoweb.cn/2020-07-02-154840.png" alt="image-20200702233814576"></p>
+<p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a>规范定义了一个函数<code>define</code>，通过<code>define</code>方法定义模块：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"> <span style="color:#a6e22e">define</span>(<span style="color:#a6e22e">id</span><span style="color:#f92672">?</span>, <span style="color:#a6e22e">dependencies</span><span style="color:#f92672">?</span>, <span style="color:#a6e22e">factory</span>);
+</code></pre></div><p>并且采用<code>require()</code>语句加载模块：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">require</span>([<span style="color:#a6e22e">module</span>], <span style="color:#a6e22e">callback</span>);
+</code></pre></div><p>引入的模块和回调函数不是同步的，所以浏览器不会因为引入的模块加载不成功而假死。</p>
+<h2 id="requirejs">RequireJS</h2>
+<p><code>RequireJS</code>是一个基于<code>AMD</code>规范实现的<code>JavaScript</code>文件和模块加载器。它针对浏览器内使用进行了优化，并且对其他<code>JS</code>环境<code>(Rhino和Node)</code>做了兼容。使用<code>RequireJS</code>这样的模块化脚本加载器可以提高代码的速度和质量。</p>
+<ul>
+<li>**异步加载：**使用 <strong>RequireJS</strong>，会在相关的 <strong>js</strong> 加载后执行回调函数，这个过程是异步的，所以它不会阻塞页面。</li>
+<li>**按需加载：**通过 <strong>RequireJS</strong>，你可以在需要加载 <strong>js</strong> 逻辑的时候再加载对应的 <strong>js</strong> 模块，不需要的模块就不加载，这样避免了在初始化网页的时候发生大量的请求和数据传输。</li>
+</ul>
+<h3 id="基本使用">基本使用</h3>
+<p>根据官方文档和项目实例，接下来说一下<code>ReuqireJS</code>的基本使用：</p>
+<h4 id="reuqire-download">Reuqire Download</h4>
+<p>下载最新版的<a href="https://requirejs.org/docs/download.html">RequireJS</a>。</p>
+<h4 id="project-structure">Project Structure</h4>
+<p>下面是官方示例的<code>RequireJS</code>项目结构，对内容做了小小的改动，<code>www</code>作为项目的根目录，<code>lib</code>中存放项目依赖即需要的一些<code>JS</code>库，<code>app.js</code>为主入口文件，<code>app</code>中存放自己写的模块文件。</p>
+<p><img src="http://image.innoweb.cn/2020-07-02-152321.png" alt="image-20200702194455250"></p>
+<h4 id="project-code">Project Code</h4>
+<p><strong>1. index.html</strong></p>
+<p><code>index.html</code>中定义了一个<code>script</code>标签来引入<code>require.js</code>，其中<code>data-main</code>属性是一个自定义属性，这个属性指定在加载完 <code>reuqire.js</code> 后，就将属性指定路径下的<code>JS</code>文件并运行，这个文件即入口文件，这里的<code>app.js</code>的<code>js</code>后缀被省略掉了。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+    &lt;<span style="color:#f92672">head</span>&gt;
+        &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">data-main</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lib/require.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+    &lt;/<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">body</span>&gt;
+        &lt;<span style="color:#f92672">h1</span>&gt;Hello World&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><blockquote>
+<p>如果 <strong><code>&lt;script/&gt;</code></strong> 标签引入 <strong>require.js</strong> 时没有指定 <strong>data-main</strong> 属性，则以引入该 <strong>js</strong> 的 <strong>html</strong> 文件所在的路径为根路径，如果有指定 <strong>data-main</strong> 属性，也就是有指定入口文件，则以入口文件所在的路径为根路径。</p>
+</blockquote>
+<p><strong>2. app.js</strong></p>
+<p><code>Main.js</code>加载主模块并且配置项目依赖，要改变 <code>RequireJS</code>的默认配置，可以使用<code>require.config</code>函数传入一个可选参数对象。下面是一些可以使用的配置：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// For any third party dependencies, like jQuery, place them in the lib folder.
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// Configure loading modules from the lib directory,
+</span><span style="color:#75715e"></span><span style="color:#75715e">// except for &#39;app&#39; ones, which are in a sibling
+</span><span style="color:#75715e"></span><span style="color:#75715e">// directory.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">requirejs</span>.<span style="color:#a6e22e">config</span>({
+  <span style="color:#75715e">// 模块加载的根路径。
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;.&#34;</span>,
+ 	<span style="color:#75715e">// 用于一些常用库文件或者文件夹路径映射，js后缀可以省略
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">paths</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">app</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;app/&#34;</span>,
+    <span style="color:#a6e22e">fmt</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;lib/fmt&#34;</span>,
+  },
+});
 
+<span style="color:#75715e">// Start loading the main app file. Put all of
+</span><span style="color:#75715e"></span><span style="color:#75715e">// your application logic in there.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">requirejs</span>([<span style="color:#e6db74">&#34;app/main&#34;</span>]);
 
+</code></pre></div><blockquote>
+<p>如果在 <strong>require.config()</strong> 中有配置 <strong>baseUrl</strong>，则以 <strong>baseUrl</strong> 的路径为根路径，这条规则会覆盖上面<code>data-main</code>的效果。</p>
+</blockquote>
+<p><strong>3. app/</strong></p>
+<p><code>Main.js</code>中我们通过<code>require</code>函数加载了一个<code>message</code>模块，该模块用于打印一些定义好的字符串。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">require</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./message&#34;</span>);
+  <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">helloWorld</span>();
+});
+</code></pre></div><p><code>Main.js</code>中使用的模块定义在<code>message.js</code>中，他引入了一个输出依赖<code>fmt</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>([<span style="color:#e6db74">&#34;fmt&#34;</span>], <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">fmt</span>) {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">helloWorld</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;hello word&#34;</span>);
+    },
+  };
+});
+</code></pre></div><blockquote>
+<p>这两种依赖的加载方式又和不同稍后介绍。</p>
+</blockquote>
+<p><strong>4. lib/</strong></p>
+<p><code>Lib/fmt.js</code>中我定义一个 <code>js</code> 模块模拟<code>go</code>的<code>fmt</code>包，通过<code>return</code>对外暴露出接口。注意，暴露的对象就是引入的对象。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>(<span style="color:#66d9ef">function</span> () {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">msg</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">msg</span>);
+  };
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">println</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">msg</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">msg</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span>);
+  };
 
-<style>
-    #bilibili {
-        width: 100%;
-        height: 550px;
-    }
-
-    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-        #bilibili {
-            width: 100%;
-            height: 250px;
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">moduleName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;fmt&#34;</span>,
+    <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">print</span>,
+    <span style="color:#a6e22e">println</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">println</span>,
+  };
+});
+</code></pre></div><h3 id="requireconfig-函数配置">require.config 函数配置</h3>
+<p>要改变<code>RequireJS</code>的默认配置，可以使用<code>require.config</code>函数传入一个可选参数对象，其实这个对象可以配置五个属性：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">config</span>({
+    <span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;.&#39;</span>,
+  	<span style="color:#a6e22e">paths</span><span style="color:#f92672">:</span> {
+    	<span style="color:#a6e22e">app</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;app/&#34;</span>,
+    	<span style="color:#a6e22e">fmt</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;lib/fmt&#34;</span>,
+  	},
+    <span style="color:#a6e22e">shim</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#39;backbone&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">deps</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;underscore&#39;</span>, <span style="color:#e6db74">&#39;jquery&#39;</span>],
+            <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Backbone&#39;</span>
+        },
+        <span style="color:#e6db74">&#39;underscore&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;_&#39;</span>
         }
-    }
-</style>
-<div><iframe id="biliplayer" src="//player.bilibili.com/player.html?bvid=BV1q4411i7gL&page=1"
-        scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" loading="lazy"> </iframe>
-</div>
-
-<h2 id="第二步添加主题">第二步：添加主题</h2>
-<p>我用的这个主题是<a href="https://github.com/liuzc/leaveit"><code>LeaveIt</code></a>，自己稍微模改了一下。 除此之外，在<a href="https://themes.gohugo.io/">hugo官网</a> 也提供了很多很棒的主题，选择你看中的主题后，就可以去安装了。首先进入你安装<code>hugo</code>的目录里的<code>themes</code>文件夹，然后克隆主题的<code>git</code>仓库。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~/blog                                                                                                                   
-&gt; cd themes
-~/blog/themes                                                                                                           
-&gt; git clone https://github.com/liuzc/LeaveIt.git
-</code></pre></div><p>安装成功之后，你的目录里就会多一个新下载的主题文件夹：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">╭─ inno@patrick   ../blog/themes                                                                                                           
-╰─ ll
-total <span style="color:#ae81ff">0</span>
-drwxr-xr-x  <span style="color:#ae81ff">13</span> inno  staff   416B  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">26</span> 09:40 LeaveIt
-drwxr-xr-x  <span style="color:#ae81ff">16</span> inno  staff   512B  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">25</span> 10:42 base16
-</code></pre></div><p>主题添加完成了之后需要重新构建博客，这个时候我们需要切回安装博客的根目录，然后指定新主题进行构建，如果出现下面的输出就可以通过本地的<code>localhost:1313</code>端口进行访问了。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~/blog/themes
-&gt; cd ..
-~/blog
-&gt; hugo server -t LeaveIt --buildDrafts
-Building sites … WARN 2020/06/27 03:43:44 Page.RSSLink is deprecated and will be removed in a future release. Use the Output Format<span style="color:#960050;background-color:#1e0010">&#39;</span>s link, e.g. something like:
-    <span style="color:#f92672">{</span><span style="color:#f92672">{</span> with .OutputFormats.Get <span style="color:#e6db74">&#34;RSS&#34;</span> <span style="color:#f92672">}</span><span style="color:#f92672">}</span><span style="color:#f92672">{</span><span style="color:#f92672">{</span> .RelPermalink <span style="color:#f92672">}</span><span style="color:#f92672">}</span><span style="color:#f92672">{</span><span style="color:#f92672">{</span> end <span style="color:#f92672">}</span><span style="color:#f92672">}</span>
-WARN 2020/06/27 03:43:44 Page.URL is deprecated and will be removed in a future release. Use .Permalink or .RelPermalink. If what you want is the front matter URL value, use .Params.url
-
-                   | EN
--------------------+-----
-  Pages            | <span style="color:#ae81ff">82</span>
-  Paginator pages  |  <span style="color:#ae81ff">2</span>
-  Non-page files   |  <span style="color:#ae81ff">4</span>
-  Static files     |  <span style="color:#ae81ff">4</span>
-  Processed images |  <span style="color:#ae81ff">0</span>
-  Aliases          | <span style="color:#ae81ff">27</span>
-  Sitemaps         |  <span style="color:#ae81ff">1</span>
-  Cleaned          |  <span style="color:#ae81ff">0</span>
-
-Built in <span style="color:#ae81ff">190</span> ms
-Watching <span style="color:#66d9ef">for</span> changes in /Users/inno/blog/<span style="color:#f92672">{</span>archetypes,content,data,layouts,static,themes<span style="color:#f92672">}</span>
-Watching <span style="color:#66d9ef">for</span> config changes in /Users/inno/blog/config.toml
-Environment: <span style="color:#e6db74">&#34;development&#34;</span>
-Serving pages from memory
-Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
-Web Server is available at http://localhost:1313/ <span style="color:#f92672">(</span>bind address 127.0.0.1<span style="color:#f92672">)</span>
-Press Ctrl+C to stop
-</code></pre></div><blockquote>
-<p>这个时候hugo编译器读的是theme文件里的文件名。</p>
-</blockquote>
-<p>这个我们还需要对<code>~/blog/config.toml</code>进行一些配置，下面是我的配置，如果用的是同样的主题可以直接粘过去，如果用的是别的主题需要去读它的文档进行配置。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#75715e"># &lt;head&gt; 里面的 baseurl 信息，填你的博客地址</span>
-<span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#34;https://blog.innoweb.cn&#34;</span>
-<span style="color:#75715e"># 浏览器的标题</span>
-<span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#34;Inno`s Blog&#34;</span>
-<span style="color:#75715e"># 网站标题</span>
-<span style="color:#a6e22e">favicon</span> = <span style="color:#e6db74">&#34;/favicon.ico&#34;</span>
-<span style="color:#75715e"># meta 标签里的 description，对 SEO 很重要。</span>
-<span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;inno的个人博客网站，关注Javascript，Golang，Nodejs，Deno，微信小程序等web开发常用技术。&#34;</span> 
-<span style="color:#75715e"># site keywords</span>
-<span style="color:#a6e22e">keywords</span> = <span style="color:#e6db74">&#34;leetcode,golang,javascript,typescript,deno,nodejs,算法,前端,后端&#34;</span> 
-<span style="color:#75715e"># 默认编译主题</span>
-<span style="color:#a6e22e">theme</span> = <span style="color:#e6db74">&#34;LeaveIt&#34;</span> 
-<span style="color:#75715e"># 语言</span>
-<span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#34;zh-CN&#34;</span>
-<span style="color:#75715e"># copyright</span>
-<span style="color:#a6e22e">copyright</span> = <span style="color:#e6db74">&#34;Copyright (c) 2020 - 2020, Steve Francia; all rights reserved.&#34;</span>
-<span style="color:#75715e"># 保持分类的原始名字（false会做转小写处理）</span>
-<span style="color:#a6e22e">preserveTaxonomyNames</span> = <span style="color:#66d9ef">true</span>
-<span style="color:#75715e"># 是否禁止URL Path转小写</span>
-<span style="color:#a6e22e">disablePathToLower</span> = <span style="color:#66d9ef">true</span>
-<span style="color:#75715e"># 可以让字数统计统计汉字</span>
-<span style="color:#a6e22e">hasCJKLanguage</span> = <span style="color:#66d9ef">true</span>
-<span style="color:#75715e"># 文章简介长度</span>
-<span style="color:#a6e22e">summaryLength</span> = <span style="color:#ae81ff">100</span>
-<span style="color:#75715e"># 每页的文章数</span>
-<span style="color:#a6e22e">paginate</span> = <span style="color:#ae81ff">11</span>
-<span style="color:#75715e"># 支持 Emoji</span>
-<span style="color:#a6e22e">enableEmoji</span> = <span style="color:#66d9ef">true</span> 
-<span style="color:#75715e"># 支持 robots.txt</span>
-<span style="color:#a6e22e">enableRobotsTXT</span> = <span style="color:#66d9ef">true</span> 
-<span style="color:#75715e"># nav 里的菜单显示项</span>
-[<span style="color:#a6e22e">menu</span>]
-  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
-    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Blog&#34;</span>
-    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/posts/&#34;</span>
-    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">1</span>
-
-  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
-    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Categories&#34;</span>
-    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/categories/&#34;</span>
-    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">2</span>
-
-  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
-    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Tags&#34;</span>
-    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/tags/&#34;</span>
-    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">3</span>
-
-  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
-    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;About&#34;</span>
-    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/about/&#34;</span>
-    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">4</span>
-
-[[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
-    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Inno †&#34;</span>
-    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/github/&#34;</span>
-    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">5</span> 
-    <span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#34;inno†&#34;</span>
-
-[<span style="color:#a6e22e">blackfriday</span>]
-  <span style="color:#a6e22e">hrefTargetBlank</span> = <span style="color:#66d9ef">true</span>
-  <span style="color:#a6e22e">nofollowLinks</span> = <span style="color:#66d9ef">true</span>
-  <span style="color:#a6e22e">noreferrerLinks</span> = <span style="color:#66d9ef">true</span>
-
-<span style="color:#75715e"># 配置路由格式</span>
-[<span style="color:#a6e22e">Permalinks</span>]
-  <span style="color:#a6e22e">posts</span> = <span style="color:#e6db74">&#34;/:year/:filename/&#34;</span>
-
-[<span style="color:#a6e22e">params</span>]
-  <span style="color:#a6e22e">favicon</span> = <span style="color:#e6db74">&#34;/favicon.ico&#34;</span>
-  <span style="color:#75715e"># Start of Blog</span>
-  <span style="color:#a6e22e">since</span> = <span style="color:#ae81ff">2020</span>
-  <span style="color:#75715e"># Author&#39;s name</span>
-  <span style="color:#a6e22e">author</span> = <span style="color:#e6db74">&#34;Inno&#34;</span>                          
-  <span style="color:#75715e"># Author&#39;s avatar</span>
-  <span style="color:#a6e22e">avatar</span> = <span style="color:#e6db74">&#34;/images/me/avatar.jpg&#34;</span>
-  <span style="color:#75715e"># Subtitle           </span>
-  <span style="color:#a6e22e">subtitle</span> = <span style="color:#e6db74">&#34;Not pain, Trust me&#34;</span>
-  <span style="color:#75715e"># 这里我存放在了主题的static文件夹里，根目录的似乎也可以</span>
-  <span style="color:#75715e"># if [&#39;custom.css&#39;], load &#39;/static/css/custom.css&#39; file</span>
-  <span style="color:#a6e22e">customCSS</span> = [<span style="color:#e6db74">&#39;my.css&#39;</span>]
-  <span style="color:#75715e"># if [&#39;custom.js&#39;], load &#39;/static/js/custom.js&#39; file</span>
-  <span style="color:#a6e22e">customJS</span> = [<span style="color:#e6db74">&#39;custom.js&#39;</span>]
-  <span style="color:#75715e"># (Meta) 描述</span>
-  <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;inno的个人博客网站，关注Javascript，Golang，Nodejs，Deno，微信小程序等web开发常用技术。&#34;</span> 
-  <span style="color:#75715e"># site keywords</span>
-  <span style="color:#a6e22e">keywords</span> = <span style="color:#e6db74">&#34;leetcode,golang,javascript,typescript,deno,nodejs,算法,前端,后端&#34;</span> 
-  <span style="color:#75715e"># Base CDN URL</span>
-  <span style="color:#a6e22e">cdn_url</span> = <span style="color:#e6db74">&#34;&#34;</span>           
-  <span style="color:#75715e"># post or other</span>
-  <span style="color:#a6e22e">home_mode</span> = <span style="color:#e6db74">&#34;&#34;</span> 
-  <span style="color:#a6e22e">enableGitalk</span> = <span style="color:#66d9ef">true</span>
-  <span style="color:#a6e22e">beian</span> = <span style="color:#e6db74">&#34;&#34;</span>
-  <span style="color:#a6e22e">baiduAnalytics</span> = <span style="color:#e6db74">&#34;&#34;</span>
-  <span style="color:#75715e"># 知识共享协议</span>
-  <span style="color:#a6e22e">license</span>= <span style="color:#e6db74">&#39;本文采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;进行许可&#39;</span>
-
-<span style="color:#75715e"># 首页展示的四个联系方式</span>
-[<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">social</span>]
-    <span style="color:#a6e22e">GitHub</span> = <span style="color:#e6db74">&#34;your github page&#34;</span>
-    <span style="color:#a6e22e">Email</span>   = <span style="color:#e6db74">&#34;your email&#34;</span>
-    <span style="color:#a6e22e">Wechat</span> = <span style="color:#e6db74">&#34;/images/me/QRCODE.png&#34;</span>  <span style="color:#75715e"># Wechat QRcode image</span>
-    <span style="color:#a6e22e">Telegram</span> = <span style="color:#e6db74">&#34;/images/page/404.png&#34;</span>
-
-<span style="color:#75715e"># 允许 markdown 引擎读取 html 标签</span>
-[<span style="color:#a6e22e">markup</span>.<span style="color:#a6e22e">goldmark</span>.<span style="color:#a6e22e">renderer</span>]
-<span style="color:#a6e22e">unsafe</span>=<span style="color:#66d9ef">true</span>
-</code></pre></div><p>要注意这里这里每一个菜单对应的都是<code>${blog}/content</code>下的文件夹，这里的<code>about</code>和<code>inno</code>是我自定义的，默认会显示各自文件夹下<code>index.md</code>的内容。</p>
-<p><img src="http://image.innoweb.cn/2020-06-26-210255.png" alt="image-20200627035220907"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~ ~/blog/content                                                                                                          
-&gt; ll
-drwxr-xr-x   <span style="color:#ae81ff">3</span> inno  staff    96B  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">26</span> 11:04 about
-drwxr-xr-x   <span style="color:#ae81ff">3</span> inno  staff    96B  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">26</span> 11:22 github
-drwxr-xr-x   <span style="color:#ae81ff">4</span> inno  staff   128B  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">26</span> 14:06 images
-drwxr-xr-x  <span style="color:#ae81ff">20</span> inno  staff   640B  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">25</span> 22:16 posts
-</code></pre></div><p>到这里博客主题也算是安装成功了，接下来就该迁移了。</p>
-<h2 id="第三步迁移上云">第三步：迁移上云</h2>
-<p>要进行这步，我们先要准备一个云服务器，一个已经备案了的域名。这里我的配置是<code>阿里云+nginx</code>，<code>nginx</code>提供<code>https</code>和静态文件服务。我们知道<code>hugo</code>最后编译出来的网站都在<code>${blog}/public</code>文件夹里，所以我们只需要在服务器上搭建一个<code>git</code>仓库然后和本地进行同步就<code>OK</code>了。</p>
-<h3 id="git-部分">Git 部分</h3>
-<p>这里我使用<code>centos</code>作为演示，先来给你的服务器安装<code>git</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel
-$ yum install git
-</code></pre></div><p>安装好之后我们需要给<code>git</code>创建一个用户组和用户来运行服务：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ groupadd git
-$ useradd git -g git
-$ passwd git   //为git用户创建密码，这个密码待会要拿来用。
-</code></pre></div><p>这个时候你的<code>/home/</code>目录里会多出来一个<code>git</code>用户的文件夹，我们需要创建ssh公钥：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd /home/git/
-$ mkdir .ssh
-$ chmod <span style="color:#ae81ff">755</span> .ssh
-$ touch .ssh/authorized_keys
-$ chmod <span style="color:#ae81ff">644</span> .ssh/authorized_keys
-</code></pre></div><p>之后我们就可创建一个仓库用来和本地进行同步了，这里我们要创建一个裸仓库，因为我们不需他的工作区。同时注意这里我们用的<code>root</code>用户创建的文件夹，所以要给与权限：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd /home/git
-$ mkdir repository/
-$ git init --bare hugo-blog.git
-$ chown -R git:git /home/git/repository
-</code></pre></div><blockquote>
-<p><strong>在初始化远程仓库时最好使用 git &ndash;bare init  而不要使用：git init</strong></p>
-<p>如果使用了git init初始化，则远程仓库的目录下，也包含work tree，当本地仓库向远程仓库push时,  如果远程仓库正在push的分支上（如果当时不在push的分支，就没有问题）, 那么push后的结果不会反应在work tree上, 也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用git reset &ndash;hard才能看到push后的内容.</p>
-</blockquote>
-<p>在服务器上创建好之后我们回到本地来进行推送，这个时候他会问你要密码，就是刚刚给<code>git</code>用户设置的密码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git remote add ali git@你服务器的公网ip:/home/git/repository/hugo-blog.git
-$ git push -u ali master
-git@xx.xx.xx.xx<span style="color:#960050;background-color:#1e0010">&#39;</span>s password: 
-</code></pre></div><p>这个时候可能会出现如下错误：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>remote rejected<span style="color:#f92672">]</span> master -&gt; master <span style="color:#f92672">(</span>branch is currently checked out<span style="color:#f92672">)</span>
-remote: error: refusing to update checked out branch: refs/heads/master
-...
-...
-remote: error: <span style="color:#e6db74">&#39;receive.denyCurrentBranch&#39;</span> configuration variable to <span style="color:#e6db74">&#39;refuse&#39;</span>.
-To git@192.168.1.X:/var/git.server/.../web
- ! <span style="color:#f92672">[</span>remote rejected<span style="color:#f92672">]</span> master -&gt; master <span style="color:#f92672">(</span>branch is currently checked out<span style="color:#f92672">)</span>
-error: failed to push some refs to <span style="color:#e6db74">&#39;git@192.168.1.X:/var/git.server/.../web&#39;</span>
-</code></pre></div><p>这是由于<code>git</code>默认拒绝了<code>push</code>操作，需要进行设置，修改<code>.git/config</code>添加如下代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>receive<span style="color:#f92672">]</span>
-denyCurrentBranch <span style="color:#f92672">=</span> ignore
-</code></pre></div><p>注意，这个仓库只是用来和本地进行同步的版本管理仓库，并不是我们要作为网站跟目录的文件夹（他本身也没有工作区，也就是实际的文件） 。所以我们要将文件自动同步到<code>/var/www/blog</code>，自动同步使用的是<code>git</code>的钩子功能。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 创建站点文件夹</span>
-$ mkdir -p /var/www/blog
-<span style="color:#75715e"># 将文件拥有者修改为git 用户</span>
-$ chown -R git:git /var/www
-<span style="color:#75715e"># 更改权限</span>
-$ chmod -R <span style="color:#ae81ff">755</span> /var/www
-<span style="color:#75715e"># 进入你要同步的代码仓库的hooks文件夹</span>
-$ cd /home/git/reporisity/hugo-blog.git/hooks
-<span style="color:#75715e"># 创建post-receive文件</span>
-$ vim post-receive
-<span style="color:#75715e"># 输入以下内容(不包括序号)</span>
-1. <span style="color:#75715e">#!/bin/bash</span>
-2. git --work-tree<span style="color:#f92672">=</span>/home/www checkout -f
-<span style="color:#75715e"># 将文件拥有者改为git</span>
-$ chown git:git post-receive
-$ chmod +x post-receiv
-</code></pre></div><p>到这里你只需要在本地进行提交，就可以把<code>hugo</code>生成的静态网站文件同步到服务器的<code>/var/www/blog</code>文件夹了，最后我们来用<code>nginx</code>提供<code>web</code>服务，顺便再搞一个<code>https</code>。</p>
-<h3 id="nginx-部分">Nginx 部分</h3>
-<p>其实<code>nginx</code>可以替换成<code>caddy</code>，<code>caddy</code>可以和<code>github</code>仓库进行同步，就可以省略到上面👆的步骤。但是，<code>caddy</code>我不会用&hellip;.。</p>
-<p>只是提供静态文件服务器的话，只需要更改一下<code>${nginx}/conf/nginx.conf</code>配置文件就行了，添加下面这一段：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">server</span> {
-	<span style="color:#f92672">listen</span>	<span style="color:#ae81ff">80</span>;
-	<span style="color:#f92672">server_name</span>	<span style="color:#e6db74">你服务器的公网IP</span>;
-	<span style="color:#f92672">root</span>	<span style="color:#e6db74">/var/www/blog</span>;			
-  <span style="color:#75715e"># 要作为根目录展示的文件
-</span><span style="color:#75715e"></span>	<span style="color:#f92672">charset</span> <span style="color:#e6db74">koi8-r</span>;
-
-	<span style="color:#f92672">access_log</span>  <span style="color:#e6db74">logs/host</span><span style="color:#e6db74">.access.log</span>  <span style="color:#e6db74">main</span>;
-
-  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
-      <span style="color:#f92672">index</span>  <span style="color:#e6db74">index.html</span> <span style="color:#e6db74">index.htm</span>;
+    },
+    <span style="color:#a6e22e">config</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#39;app/main&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">ENV</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;development&#39;</span>
+        }
+    },
+     <span style="color:#a6e22e">map</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#39;script/newmodule&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#e6db74">&#39;foo&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;foo1.2&#39;</span>
+        },
+        <span style="color:#e6db74">&#39;script/oldmodule&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#e6db74">&#39;foo&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;foo1.0&#39;</span>
+        }
+    },
+});
+</code></pre></div><p><strong>1. baseUrl</strong></p>
+<p><code>baseUrl</code>作为加载模块的根路径。在配置这个属性后，之后所有的路径定义都是基于这个根路径的（包括配置和依赖引入中）。</p>
+<p><strong>2. path</strong></p>
+<p>用于一些常用库文件或者文件夹路径映射，定义之后可以直接在依赖引入中使用。</p>
+<p><strong>3. shim</strong></p>
+<p>虽然目前已经有一部分流行的函数库符合 <strong>AMD</strong> 规范，但还有很多库并不符合。<code>shim</code>就是为了加载这些非<code>AMD</code>规范的<code>js</code>，并解决其载入顺序的，比如上面的<code>backbone</code>。</p>
+<p><strong>4. config</strong></p>
+<p><code>config</code>将配置信息传给一个模块。这些配置往往是<code>application</code>级别的信息，需要一个手段将它们向下传递给模块。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">config</span><span style="color:#f92672">:</span> {
+  <span style="color:#e6db74">&#39;app/main&#39;</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">ENV</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;development&#39;</span>
   }
 }
-</code></pre></div><p>然后重启<code>nginx</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ service nginx restart
-</code></pre></div><h2 id="第四步域名解析">第四步：域名解析</h2>
-<p>如果你可以通过<code>ip</code>访问你的网站的话，那就说明你的前三部都成功了，可喜可贺、可喜可贺。接下来我们需要把我们实现准备好的域名解析到我们的服务器上，添加完就可以通过域名访问了。</p>
-<p><img src="http://image.innoweb.cn/2020-06-26-210320.png" alt="image-20200627044408139"></p>
-<blockquote>
-<p>这篇就先说这些，后面我会更一些关于免费的https、向百度和google添加站点（现在你的站点在搜索引擎是搜不到的）、还有我博客的一些魔改的过程。</p>
-</blockquote>
+</code></pre></div><p>可以通过加载特殊的依赖<code>module</code>来获取这些信息。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>([<span style="color:#e6db74">&#39;module&#39;</span>], <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">module</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ENV</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">config</span>().<span style="color:#a6e22e">ENV</span>;  <span style="color:#75715e">// development
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./message&#34;</span>);
+  <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">helloWorld</span>();
+});
+</code></pre></div><p><strong>5. map</strong></p>
+<p>对于给定的模块前缀，使用一个不同的模块 <strong>ID</strong> 来加载该模块。该手段对于某些大型项目很重要。比如上面配置以后，不同的模块会使用不同版本的<code>foo</code>。</p>
+<p>当<code>some/newmodule</code>调用了<code>require('foo')</code>，它将获取到<code>foo1.2.js</code>文件，当<code>oldmodule</code>调用 <code>require('foo')</code>，时它将获取到 <code>foo1.0.js</code> 文件。</p>
+<p><code>map</code>还支持<code>*</code>，意思是“对于所有的模块加载，使用本 <code>map</code> 配置”。如果还有更细化的 <code>map</code> 配置，会优先于<code>*</code>配置。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">requirejs</span>.<span style="color:#a6e22e">config</span>({
+    <span style="color:#a6e22e">map</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#39;*&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#e6db74">&#39;foo&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;foo1.2&#39;</span>
+        },
+        <span style="color:#e6db74">&#39;some/oldmodule&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#e6db74">&#39;foo&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;foo1.0&#39;</span>
+        }
+    }
+});
+</code></pre></div><h3 id="模块定义">模块定义</h3>
+<p><strong>1. 对象</strong></p>
+<p>如果一个模块仅含键值对，没有任何依赖，可以直接在<code>define</code>中定义。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>({
+    <span style="color:#a6e22e">foo</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;foo&#34;</span>,
+    <span style="color:#a6e22e">bar</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){}
+});
+</code></pre></div><p><strong>2. 需要预处理的对象</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>(<span style="color:#66d9ef">function</span> () {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Do something...&#34;</span>);
+ 
+    <span style="color:#66d9ef">return</span> {
+    	<span style="color:#a6e22e">foo</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;foo&#34;</span>,
+    	<span style="color:#a6e22e">bar</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){}
+    }
+});
+</code></pre></div><p><strong>3. 只有一个函数</strong></p>
+<p>没有任何依赖的函数直接这么定义：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>(<span style="color:#66d9ef">function</span> () {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> (){};
+});
+</code></pre></div><p>调用时直接打<code>()</code>调用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">require</span>([<span style="color:#e6db74">&#39;lib/foo&#39;</span>],<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">foo</span>) {
+    <span style="color:#a6e22e">foo</span>();
+});
+</code></pre></div><p><strong>4. 需要其他的依赖：</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">define</span>([<span style="color:#e6db74">&#39;jquery&#39;</span>],<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> (){};
+});
+</code></pre></div><h3 id="循环加载">循环加载</h3>
+<p>假设我们有如下 <code>a、b</code> 两个互相依赖的模块，我们如果调用 <code>b</code> 模块的 <code>b</code> 方法。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// app/a.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">define</span>([<span style="color:#e6db74">&#39;app/b&#39;</span>],<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">b</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>() { <span style="color:#a6e22e">b</span>() }
+});
 
+<span style="color:#75715e">// app/b.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">define</span>([<span style="color:#e6db74">&#39;app/a&#39;</span>],<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">a</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>() { <span style="color:#a6e22e">a</span>() }
+});
+</code></pre></div><p>会发现 <code>b</code> 调用 <code>a</code> 正常，但是 <code>a</code> 中调用 <code>b</code> 方法会报 <code>undefined</code> 错误。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">require</span>([<span style="color:#e6db74">&#39;app/b&#39;</span>],<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">b</span>) {
+    <span style="color:#a6e22e">b</span>();	<span style="color:#75715e">// b is not defined.
+</span><span style="color:#75715e"></span>});
+</code></pre></div><p><strong>解决：</strong></p>
+<p>循环依赖比较罕见，对于循环依赖，只要依赖环中任何一条边是运行时依赖，这个环理论上就是活的。而如果全部边都是装载时依赖，这个环就是死的。</p>
+<p>对模块 <code>a</code> 进行如下修改，即不再依赖前置加载。而是通过引入 <code>require</code> 依赖，然后再通过 <code>require()</code> 方法去载入模块 <code>b</code>，并在回调中去执行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// app/a.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">define</span>([<span style="color:#e6db74">&#39;require&#39;</span>],<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">require</span>){
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;b&#39;</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>() {
+      <span style="color:#a6e22e">b</span>()
+    }
+});
+</code></pre></div>
     </div>
 
     <div class="post-copyright">
@@ -461,11 +410,17 @@ $ chmod +x post-receiv
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="https://blog.innoweb.cn/tags/hugo/">
-                    #hugo</a></span>
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/javascript/">
+                    #javascript</a></span>
             
-            <span class="tag"><a href="https://blog.innoweb.cn/tags/blog/">
-                    #blog</a></span>
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/">
+                    #模块化</a></span>
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/requirejs/">
+                    #requirejs</a></span>
+            
+            <span class="tag"><a href="https://blog.innoweb.cn/tags/AMD/">
+                    #AMD</a></span>
             
             </section>
         
@@ -477,10 +432,10 @@ $ chmod +x post-receiv
 
     <div class="post-nav">
         
-        <a href="https://blog.innoweb.cn/2020/%E5%A4%A7%E6%95%B0%E7%9B%B8%E5%8A%A0%E5%92%8C%E5%A4%A7%E6%95%B0%E7%9B%B8%E4%B9%98/" class="prev" rel="prev" title="大数相加和大数相乘"><i class="iconfont icon-left"></i>&nbsp;大数相加和大数相乘</a>
+        <a href="https://blog.innoweb.cn/2020/21/" class="prev" rel="prev" title="Linux系统服务"><i class="iconfont icon-left"></i>&nbsp;Linux系统服务</a>
          
         
-        <a href="https://blog.innoweb.cn/2020/linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" class="next" rel="next" title="Linux系统服务">Linux系统服务&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="https://blog.innoweb.cn/2020/22/" class="next" rel="next" title="用deno来快速运行ts代码">用deno来快速运行ts代码&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

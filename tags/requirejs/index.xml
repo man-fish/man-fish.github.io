@@ -14,10 +14,10 @@
     
     <item>
       <title>JavaScript模块化-AMD</title>
-      <link>https://blog.innoweb.cn/2020/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96-AMD/</link>
+      <link>https://blog.innoweb.cn/2020/20/</link>
       <pubDate>Thu, 02 Jul 2020 23:44:17 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96-AMD/</guid>
+      <guid>https://blog.innoweb.cn/2020/20/</guid>
       <description>最近写一个小游戏的时候用的是RequireJs构建项目，顺便补了一下RequireJs，下面讲解一些基础和进阶的用法。 AMD AMDAsync Module Definition代表的意思为异步模块定义，是Javascript模块化的</description>
     </item>
     

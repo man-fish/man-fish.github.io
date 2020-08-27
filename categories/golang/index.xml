@@ -14,38 +14,38 @@
     
     <item>
       <title>Go编程规范</title>
-      <link>https://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <link>https://blog.innoweb.cn/2020/10/</link>
       <pubDate>Tue, 11 Feb 2020 19:57:37 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
+      <guid>https://blog.innoweb.cn/2020/10/</guid>
       <description>要使用好你的语言，重要的是要了解它的特性和约定。 了解Go编程中已建立的约定（如命名，格式设置，程序构造等）非常重要，这样您编写的程序将易于其他Go程序员理解。以下我们介绍了惯用的Go代码的技巧和语言规</description>
     </item>
     
     <item>
       <title>Go操作kafka</title>
-      <link>https://blog.innoweb.cn/2020/go%E6%93%8D%E4%BD%9Ckafka/</link>
+      <link>https://blog.innoweb.cn/2020/09/</link>
       <pubDate>Sat, 08 Feb 2020 07:04:04 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E6%93%8D%E4%BD%9Ckafka/</guid>
+      <guid>https://blog.innoweb.cn/2020/09/</guid>
       <description>消息概念部分引自李文周的个人博客。 什么叫消息队列💩 消息（Message）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。 消息队列（Message Queu</description>
     </item>
     
     <item>
-      <title>Go校验层go-validator</title>
-      <link>https://blog.innoweb.cn/2020/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</link>
-      <pubDate>Fri, 31 Jan 2020 22:00:26 +0800</pubDate>
+      <title>Go处理token</title>
+      <link>https://blog.innoweb.cn/2020/07/</link>
+      <pubDate>Sun, 26 Jan 2020 21:34:13 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E6%A0%A1%E9%AA%8C%E5%B1%82go-validator/</guid>
-      <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 go get gopkg.in/validator.v2 Import the package into your own code. import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的</description>
+      <guid>https://blog.innoweb.cn/2020/07/</guid>
+      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能</description>
     </item>
     
     <item>
-      <title>Go处理token</title>
-      <link>https://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</link>
-      <pubDate>Fri, 31 Jan 2020 21:34:13 +0800</pubDate>
+      <title>Go校验层go-validator</title>
+      <link>https://blog.innoweb.cn/2020/06/</link>
+      <pubDate>Fri, 24 Jan 2020 22:00:26 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E5%A4%84%E7%90%86token/</guid>
-      <description>搭建网站时我们经常使用JWT做用户鉴权，在golang中我们🉑️以通过jwt-go的第三方库来为我们实现。 常见的处理流程： 从request获取tokenstring，可能是通过cookie携带，也可能</description>
+      <guid>https://blog.innoweb.cn/2020/06/</guid>
+      <description>最近在使用iris框架开发应用的时候，框架本身没有提供优秀的校验层，于是找到了一个第三方库go-validator来搭建校验层。 安装 Go get 获取依赖。 go get gopkg.in/validator.v2 Import the package into your own code. import ( &amp;#34;gopkg.in/validator.v2&amp;#34; ) 使用 定义校验规则 自定义你的</description>
     </item>
     
   </channel>

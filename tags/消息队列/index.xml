@@ -14,10 +14,10 @@
     
     <item>
       <title>Go操作kafka</title>
-      <link>https://blog.innoweb.cn/2020/go%E6%93%8D%E4%BD%9Ckafka/</link>
+      <link>https://blog.innoweb.cn/2020/09/</link>
       <pubDate>Sat, 08 Feb 2020 07:04:04 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E6%93%8D%E4%BD%9Ckafka/</guid>
+      <guid>https://blog.innoweb.cn/2020/09/</guid>
       <description>消息概念部分引自李文周的个人博客。 什么叫消息队列💩 消息（Message）是指在应用间传送的数据。消息可以非常简单，比如只包含文本字符串，也可以更复杂，可能包含嵌入对象。 消息队列（Message Queu</description>
     </item>
     

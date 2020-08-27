@@ -14,10 +14,10 @@
     
     <item>
       <title>Go编程规范</title>
-      <link>https://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</link>
+      <link>https://blog.innoweb.cn/2020/10/</link>
       <pubDate>Tue, 11 Feb 2020 19:57:37 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/go%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</guid>
+      <guid>https://blog.innoweb.cn/2020/10/</guid>
       <description>要使用好你的语言，重要的是要了解它的特性和约定。 了解Go编程中已建立的约定（如命名，格式设置，程序构造等）非常重要，这样您编写的程序将易于其他Go程序员理解。以下我们介绍了惯用的Go代码的技巧和语言规</description>
     </item>
     

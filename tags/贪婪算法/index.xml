@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2008 - 2014, Steve Francia; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 31 Jan 2020 08:18:46 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jan 2020 18:18:21 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.innoweb.cn/tags/%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>贪心算法</title>
-      <link>https://blog.innoweb.cn/2020/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Fri, 31 Jan 2020 08:18:46 +0800</pubDate>
+      <link>https://blog.innoweb.cn/2020/03/</link>
+      <pubDate>Sun, 12 Jan 2020 18:18:21 +0800</pubDate>
       
-      <guid>https://blog.innoweb.cn/2020/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://blog.innoweb.cn/2020/03/</guid>
       <description>简介 贪心算法（英语：greedy algorithm），又称贪婪算法，是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是最好或最优的算法。比如在旅行推销员问题中，如果</description>
     </item>
     
