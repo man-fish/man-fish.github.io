@@ -94,6 +94,15 @@
     </item>
     
     <item>
+      <title>动态规划</title>
+      <link>https://blog.innoweb.cn/2020/05/</link>
+      <pubDate>Mon, 20 Jan 2020 22:04:57 +0800</pubDate>
+      
+      <guid>https://blog.innoweb.cn/2020/05/</guid>
+      <description>前言 ✍ 动态规划（Dynamic Programming），求解的问题必须有两个性质：最优子结构和子问题重叠，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问</description>
+    </item>
+    
+    <item>
       <title>动态规划模型</title>
       <link>https://blog.innoweb.cn/2020/04/</link>
       <pubDate>Fri, 17 Jan 2020 21:17:16 +0800</pubDate>
@@ -127,15 +136,6 @@
       
       <guid>https://blog.innoweb.cn/2020/01/</guid>
       <description>回溯算法实际上一个类似枚举的搜索尝试过程，是穷举的子集，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。 所谓的回溯，其实就是利用了for循环的执行先后顺序，</description>
-    </item>
-    
-    <item>
-      <title>动态规划</title>
-      <link>https://blog.innoweb.cn/1/05/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.innoweb.cn/1/05/</guid>
-      <description>前言 ✍ 动态规划（Dynamic Programming），求解的问题必须有两个性质：最优子结构和子问题重叠，和分治法的思想相同，动态规划的思路也是先将大问题分解成若干个规模相同的子问题，但是动态规划的问</description>
     </item>
     
   </channel>
