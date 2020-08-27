@@ -44,7 +44,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;TypeScript&lt;/td&gt;
-&lt;td&gt;&amp;lt; 20 %&lt;/td&gt;
+&lt;td&gt;&amp;gt; 20 %&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Golang&lt;/td&gt;
@@ -65,7 +65,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;del&gt;Vue&lt;/del&gt;&lt;/li&gt;
 &lt;li&gt;&lt;del&gt;Nuxt&lt;/del&gt;&lt;/li&gt;
-&lt;li&gt;React 「 计划中 」&lt;/li&gt;
+&lt;li&gt;React 「 进行中 」&lt;/li&gt;
 &lt;li&gt;Next&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;NodeJs&lt;/strong&gt;&lt;/p&gt;
